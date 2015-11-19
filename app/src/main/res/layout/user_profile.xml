@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:text="Sex"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="@color/darkGray" />
@@ -57,7 +57,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="12dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:text="Age"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="@color/darkGray" />
@@ -129,7 +129,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="12dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:text="Height"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="@color/darkGray" />
@@ -203,7 +203,6 @@
         android:text="@string/lifestyle"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="@color/darkGray" />
-
 
     <RadioGroup
         android:layout_width="wrap_content"
