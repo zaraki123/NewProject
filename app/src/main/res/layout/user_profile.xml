@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -12,7 +11,7 @@
         android:layout_marginTop="10dp"
         android:text="Username"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="@color/darkGray"/>
+        android:textColor="@color/darkGray" />
 
     <EditText
         android:id="@+id/username"
@@ -26,10 +25,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:text="Sex"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="@color/darkGray"/>
+        android:textColor="@color/darkGray" />
 
 
     <RadioGroup
@@ -58,10 +57,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="12dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:text="Age"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="@color/darkGray"/>
+        android:textColor="@color/darkGray" />
 
     <RadioGroup
         android:layout_width="wrap_content"
@@ -79,20 +78,20 @@
             android:layout_height="wrap_content"
             android:text="@string/child"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black" />
 
         <RadioButton
             android:id="@+id/young"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"/>
+            android:layout_marginLeft="15dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/young"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black" />
 
         <RadioButton
             android:id="@+id/adult"
@@ -105,7 +104,7 @@
             android:layout_height="wrap_content"
             android:text="@string/adult"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black" />
 
         <RadioButton
             android:id="@+id/old"
@@ -118,7 +117,7 @@
             android:layout_height="wrap_content"
             android:text="@string/old"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black" />
 
     </RadioGroup>
 
@@ -130,19 +129,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="12dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:text="Height"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="@color/darkGray"/>
+            android:textColor="@color/darkGray" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="120dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:text="Weight"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="@color/darkGray"/>
+            android:textColor="@color/darkGray" />
 
     </LinearLayout>
 
@@ -164,7 +163,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="2dp"
             android:text="cm"
-            android:textColor="@color/darkGray"/>
+            android:textColor="@color/darkGray" />
 
         <Button
             android:id="@+id/heightPicker"
@@ -185,7 +184,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="2dp"
             android:text="kg"
-            android:textColor="@color/darkGray"/>
+            android:textColor="@color/darkGray" />
 
         <Button
             android:id="@+id/weightPicker"
@@ -200,10 +199,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:text="@string/lifestyle"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="@color/darkGray"/>
+        android:textColor="@color/darkGray" />
 
 
     <RadioGroup
@@ -237,5 +236,67 @@
             android:text="@string/competitive" />
 
     </RadioGroup>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp"
+        android:text="@string/sportPresent"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="@color/darkGray" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/sportPresent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/sportPickerPresent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/chooseSport"
+            android:textAllCaps="false" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:text="@string/sportPast"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="@color/darkGray" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/sportPast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:inputType="text"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/sportPickerPast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/chooseSport"
+            android:textAllCaps="false" />
+
+    </LinearLayout>
 
 </LinearLayout>

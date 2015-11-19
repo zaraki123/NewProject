@@ -11,5 +11,8 @@
     <string name="active">Active</string>
     <string name="sedentary">Sedentary</string>
     <string name="lifestyle">LifeStyle</string>
+    <string name="sportPresent">Are you doing any sport, now?</string>
+    <string name="sportPast">Did you do any sport, in the past?</string>
+    <string name="chooseSport">PickSport</string>
 
 </resources>
