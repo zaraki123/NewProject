@@ -1,0 +1,15 @@
+<resources>
+
+    <string name="app_name">CaliPlay</string>
+    <string name="username">Username</string>
+    <string name="child"><![CDATA[< 16]]></string>
+    <string name="young">16 - 30</string>
+    <string name="adult">31 - 50</string>
+    <string name="old"><![CDATA[> 50]]></string>
+    <string name="athletic">Athletic</string>
+    <string name="competitive">Competitive</string>
+    <string name="active">Active</string>
+    <string name="sedentary">Sedentary</string>
+    <string name="lifestyle">LifeStyle</string>
+
+</resources>
