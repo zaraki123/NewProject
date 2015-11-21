@@ -17,13 +17,21 @@ import android.widget.Toast;
 
 public class UserProfile extends AppCompatActivity implements NumberPicker.OnValueChangeListener {
 
+
     private static EditText height, weight, sportPast, sportPresent = null;
+    private static EditText username;
+    private String user_name;
+    private User trainer = new User("gio", "maschio");
+    private User trainer2 = new User("nessuno", "nessuno");
+    public MyApplication app;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_profile);
+        app = (MyApplication) getApplication();
+        username = (EditText) findViewById(R.id.username);
         height = (EditText) findViewById(R.id.height_measurement);
         weight = (EditText) findViewById(R.id.weight_measurement);
         sportPresent = (EditText) findViewById(R.id.sportPresent);
@@ -71,6 +79,7 @@ public class UserProfile extends AppCompatActivity implements NumberPicker.OnVal
     }
 
     public void showHeight() {
+
 
         final Dialog d = new Dialog(UserProfile.this);
         d.setTitle("NumberPicker");
@@ -158,7 +167,7 @@ public class UserProfile extends AppCompatActivity implements NumberPicker.OnVal
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         if (requestCode == 1) {
-            if(resultCode == Activity.RESULT_OK){
+            if (resultCode == Activity.RESULT_OK) {
                 String sportType = data.getStringExtra("sportType");
                 String selectedSport = data.getStringExtra("selectedSport");
                 if (sportType.equals("sportPresent")) {
@@ -173,5 +182,14 @@ public class UserProfile extends AppCompatActivity implements NumberPicker.OnVal
         }
     }
 
+    public void next(View v) {
+        user_name = username.getText().toString();
+        String sex = "Maschio";
+        trainer.setUsername(user_name);
+        trainer.setSex(sex);
+        app.getDataManager().saveUser(trainer);
+        trainer2 = app.getDataManager().findUser(trainer.getUsername());
+        System.out.println(trainer2.getUsername().toString());
+    }
 
 }
