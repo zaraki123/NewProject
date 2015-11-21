@@ -1,9 +1,12 @@
-package com.example.nelson.caliplay;
+package com.example.nelson.caliplay.data;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+
+import com.example.nelson.caliplay.Constants;
+import com.example.nelson.caliplay.data.UserTable;
 
 /**
  * Created by Zaraki on 21/11/2015.

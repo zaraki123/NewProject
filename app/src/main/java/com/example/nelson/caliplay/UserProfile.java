@@ -11,6 +11,8 @@ import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.Toast;
 
+import com.example.nelson.caliplay.model.User;
+
 /**
  * Created by Zaraki on 19/11/2015.
  */
@@ -188,8 +190,11 @@ public class UserProfile extends AppCompatActivity implements NumberPicker.OnVal
         trainer.setUsername(user_name);
         trainer.setSex(sex);
         app.getDataManager().saveUser(trainer);
-        trainer2 = app.getDataManager().findUser(trainer.getUsername());
-        System.out.println(trainer2.getUsername().toString());
+        trainer2 = app.getDataManager().findUser("hghgki");
+        if (trainer2 != null) {
+            System.out.println(trainer2.getUsername().toString());
+        }
+
     }
 
 }
