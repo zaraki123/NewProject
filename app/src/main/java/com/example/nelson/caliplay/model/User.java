@@ -5,7 +5,6 @@ package com.example.nelson.caliplay.model;
  */
 public class User extends ModelBase {
 
-    private String id;
     private String username;
     private String sex;
 

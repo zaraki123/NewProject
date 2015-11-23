@@ -37,7 +37,6 @@ public class SchemaHelper extends SQLiteOpenHelper {
 
     }
 
-
     @Override
     public void onUpgrade(final SQLiteDatabase db, final int oldVersion, final int newVersion) {
         Log.i(Constants.LOG_TAG, "SQLiteOpenHelper onUpgrade - oldVersion:" + oldVersion + " newVersion:" + newVersion);

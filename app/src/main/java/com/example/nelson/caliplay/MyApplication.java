@@ -5,6 +5,8 @@ import android.app.Application;
 import com.example.nelson.caliplay.data.DataManager;
 import com.example.nelson.caliplay.data.DataManagerImpl;
 
+// to call the DataManager wherever you want without declaring every time it
+
 public class MyApplication extends Application
 {
 

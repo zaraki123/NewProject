@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.NumberPicker;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.example.nelson.caliplay.model.User;
@@ -19,10 +20,11 @@ import com.example.nelson.caliplay.model.User;
 
 public class UserProfile extends AppCompatActivity implements NumberPicker.OnValueChangeListener {
 
-
     private static EditText height, weight, sportPast, sportPresent = null;
     private static EditText username;
     private String user_name;
+    private String sex = "";
+    private String age, lifeStyle;
     private User trainer = new User("gio", "maschio");
     private User trainer2 = new User("nessuno", "nessuno");
     public MyApplication app;
@@ -38,10 +40,12 @@ public class UserProfile extends AppCompatActivity implements NumberPicker.OnVal
         weight = (EditText) findViewById(R.id.weight_measurement);
         sportPresent = (EditText) findViewById(R.id.sportPresent);
         sportPast = (EditText) findViewById(R.id.sportPast);
+
         Button pickerHeight = (Button) findViewById(R.id.heightPicker);
         Button pickerWeight = (Button) findViewById(R.id.weightPicker);
         Button sportPickerPresent = (Button) findViewById(R.id.sportPickerPresent);
         Button sportPickerPast = (Button) findViewById(R.id.sportPickerPast);
+
         pickerHeight.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -49,7 +53,6 @@ public class UserProfile extends AppCompatActivity implements NumberPicker.OnVal
                 showHeight();
             }
         });
-
         pickerWeight.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -57,7 +60,6 @@ public class UserProfile extends AppCompatActivity implements NumberPicker.OnVal
                 showWeight();
             }
         });
-
         sportPickerPresent.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -65,7 +67,6 @@ public class UserProfile extends AppCompatActivity implements NumberPicker.OnVal
                 sportPresentPicker();
             }
         });
-
         sportPickerPast.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -78,6 +79,52 @@ public class UserProfile extends AppCompatActivity implements NumberPicker.OnVal
     @Override
     public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
 
+    }
+
+    public void onRadioSexClicked(View view) {
+        boolean checked = ((RadioButton) view).isChecked();
+
+        switch (view.getId()) {
+            case R.id.male:
+                if (checked) {
+                    sex = "male";
+
+                }
+                break;
+            case R.id.female:
+                if (checked) {
+                    sex = "female";
+                }
+                break;
+        }
+    }
+
+    public void onRadioAge(View view) {
+        boolean checked = ((RadioButton) view).isChecked();
+
+        switch (view.getId()) {
+            case R.id.child:
+                if (checked) {
+                    age = "<16";
+                }
+                break;
+            case R.id.young:
+                if (checked) {
+                    age = "16-30";
+                }
+                break;
+            case R.id.adult:
+                if (checked) {
+                    age = "31-50";
+                }
+                break;
+            case R.id.old:
+                if (checked) {
+                    age = ">50";
+                }
+                break;
+
+        }
     }
 
     public void showHeight() {
@@ -140,7 +187,7 @@ public class UserProfile extends AppCompatActivity implements NumberPicker.OnVal
 
     }
 
-
+    // list sports to let user a sport of the present
     public void sportPresentPicker() {
         String sportType = "sportPresent";
         Intent sportPicker = new Intent(this, ListSports.class);
@@ -153,6 +200,7 @@ public class UserProfile extends AppCompatActivity implements NumberPicker.OnVal
 
     }
 
+    // list sports to let user a sport of the past
     public void sportPastPicker() {
         String sportType = "sportPast";
         Intent sportPicker = new Intent(this, ListSports.class);
@@ -165,6 +213,7 @@ public class UserProfile extends AppCompatActivity implements NumberPicker.OnVal
 
     }
 
+    // get back what user typed in the username form
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
@@ -184,17 +233,52 @@ public class UserProfile extends AppCompatActivity implements NumberPicker.OnVal
         }
     }
 
+    public void onRadioLifeStyle(View view) {
+
+        boolean checked = ((RadioButton) view).isChecked();
+
+        switch (view.getId()) {
+            case R.id.sedentary:
+                if (checked) {
+                    lifeStyle = "sedentary";
+                }
+                break;
+            case R.id.active:
+                if (checked) {
+                    lifeStyle = "active";
+                }
+                break;
+            case R.id.athletic:
+                if (checked) {
+                    lifeStyle = "athlete";
+                }
+                break;
+            case R.id.veryAthletic:
+                if (checked) {
+                    lifeStyle = "competitive";
+                }
+                break;
+        }
+    }
+
     public void next(View v) {
         user_name = username.getText().toString();
-        String sex = "Maschio";
-        trainer.setUsername(user_name);
-        trainer.setSex(sex);
-        app.getDataManager().saveUser(trainer);
-        trainer2 = app.getDataManager().findUser("hghgki");
-        if (trainer2 != null) {
-            System.out.println(trainer2.getUsername().toString());
+        if (user_name.matches("") || user_name.contains(" ")) {
+            Toast.makeText(UserProfile.this, "Type a valid username", Toast.LENGTH_SHORT).show();
+        }
+
+        if (sex.isEmpty()) {
+            Toast.makeText(UserProfile.this, "Choose your sex", Toast.LENGTH_SHORT).show();
+        } else {
+            trainer.setUsername(user_name);
+            trainer.setSex(sex);
+
+            app.getDataManager().saveUser(trainer);
+            trainer2 = app.getDataManager().findUser("giovanni");
+            if (trainer2 != null) {
+                System.out.println(trainer2.getUsername().toString());
+            }
         }
 
     }
-
 }

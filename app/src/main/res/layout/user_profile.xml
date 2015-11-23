@@ -22,6 +22,7 @@
         android:inputType="textPersonName" />
 
     <TextView
+        android:id="@+id/sexType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
@@ -42,12 +43,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
+            android:onClick="onRadioSexClicked"
             android:text="Male" />
 
         <RadioButton
             android:id="@+id/female"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="onRadioSexClicked"
             android:text="Female" />
 
     </RadioGroup>
@@ -71,7 +74,8 @@
         <RadioButton
             android:id="@+id/child"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:onClick="onRadioAge" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -84,7 +88,8 @@
             android:id="@+id/young"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp" />
+            android:layout_marginLeft="15dp"
+            android:onClick="onRadioAge" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -97,7 +102,8 @@
             android:id="@+id/adult"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp" />
+            android:layout_marginLeft="15dp"
+            android:onClick="onRadioAge" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -110,7 +116,8 @@
             android:id="@+id/old"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp" />
+            android:layout_marginLeft="15dp"
+            android:onClick="onRadioAge" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -126,6 +133,7 @@
         android:layout_height="wrap_content">
 
         <TextView
+            android:id="@+id/heightText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="12dp"
@@ -135,10 +143,11 @@
             android:textColor="@color/darkGray" />
 
         <TextView
+            android:id="@+id/weightText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="120dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:text="Weight"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="@color/darkGray" />
@@ -198,6 +207,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/lifeStyle"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="15dp"
         android:text="@string/lifestyle"
@@ -214,25 +224,29 @@
             android:id="@+id/sedentary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/sedentary" />
+            android:text="@string/sedentary"
+            android:onClick="onRadioLifeStyle"/>
 
         <RadioButton
             android:id="@+id/active"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/active" />
+            android:text="@string/active"
+            android:onClick="onRadioLifeStyle"/>
 
         <RadioButton
             android:id="@+id/athletic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/athletic" />
+            android:text="@string/athletic"
+            android:onClick="onRadioLifeStyle"/>
 
         <RadioButton
             android:id="@+id/veryAthletic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/competitive" />
+            android:text="@string/competitive"
+            android:onClick="onRadioLifeStyle" />
 
     </RadioGroup>
 
@@ -300,8 +314,8 @@
             android:id="@+id/next"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="next"
-            android:onClick="next"/>
+            android:onClick="next"
+            android:text="next" />
 
     </LinearLayout>
 
