@@ -11,8 +11,14 @@ public final class UserTable {
     public static final String TABLE_NAME = "user";
 
     public static class UserColumns implements BaseColumns {
-        public static final String NAME = "name";
-        public static final String SEX = "sex";
+        public static final String NAME = "";
+        public static final String SEX = "";
+        public static final String AGE = "";
+        public static final int HEIGHT = 0;
+        public static final int WEIGHT = 0;
+        public static final String LIFESTYLE = "";
+        public static final String SPORTPRESENT = "";
+        public static final String SPORTPAST = "";
     }
 
     public static void onCreate(SQLiteDatabase db) {
@@ -20,7 +26,13 @@ public final class UserTable {
         sb.append("CREATE TABLE " + UserTable.TABLE_NAME + " (");
         sb.append(BaseColumns._ID + " INTEGER PRIMARY KEY, ");
         sb.append(UserColumns.NAME + " TEXT, ");
-        sb.append(UserColumns.SEX + " TEXT ");
+        sb.append(UserColumns.SEX + " TEXT, ");
+        sb.append(UserColumns.AGE + " TEXT, ");
+        sb.append(UserColumns.HEIGHT + " INT, ");
+        sb.append(UserColumns.WEIGHT + " INT, ");
+        sb.append(UserColumns.LIFESTYLE + " TEXT, ");
+        sb.append(UserColumns.SPORTPRESENT + " TEXT, ");
+        sb.append(UserColumns.SPORTPAST + " TEXT");
         sb.append(");");
         db.execSQL(sb.toString());
     }

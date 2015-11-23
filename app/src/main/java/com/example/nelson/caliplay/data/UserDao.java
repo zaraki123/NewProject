@@ -16,8 +16,16 @@ import java.util.List;
  */
 public class UserDao implements Dao<User> {
 
-    private static final String INSERT = "insert into " + UserTable.TABLE_NAME
-            + "(" + UserTable.UserColumns.NAME + ", " + UserTable.UserColumns.SEX + ") values (?, ?)";
+    private static final String INSERT = "insert into "
+            + UserTable.TABLE_NAME
+            + "(" + UserTable.UserColumns.NAME + ","
+            + UserTable.UserColumns.SEX + ","
+            + UserTable.UserColumns.AGE + ","
+            + UserTable.UserColumns.HEIGHT + ","
+            + UserTable.UserColumns.WEIGHT + ","
+            + UserTable.UserColumns.LIFESTYLE + ","
+            + UserTable.UserColumns.SPORTPRESENT + ","
+            + UserTable.UserColumns.SPORTPAST + ") values (?, ?, ?, ?, ?, ?, ?, ?)";
 
     private SQLiteDatabase db;
     private SQLiteStatement insertStatement;
