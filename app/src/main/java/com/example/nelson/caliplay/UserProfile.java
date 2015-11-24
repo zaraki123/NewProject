@@ -30,7 +30,7 @@ public class UserProfile extends AppCompatActivity implements NumberPicker.OnVal
     private int altezza = 0, peso = 0;
     private User trainer = new User("gio", "maschio", "25", 0, 0, "", "", "");
     private User trainer2 = new User("nessuno", "nessuno", "25", 0, 0, "", "", "");
-    public MyApplication app;
+    private MyApplication app;
 
 
     @Override
@@ -295,7 +295,9 @@ public class UserProfile extends AppCompatActivity implements NumberPicker.OnVal
             trainer.setAge(age);
             trainer.setHeight(altezza);
             trainer.setWeight(peso);
-
+            trainer.setLifeStyle(lifeStyle);
+            trainer.setSportPresent(sportOfPresent);
+            trainer.setSportPast(sportOfPast);
 
             app.getDataManager().saveUser(trainer);
             trainer2 = app.getDataManager().findUser("Giovanni");
@@ -305,7 +307,12 @@ public class UserProfile extends AppCompatActivity implements NumberPicker.OnVal
                 System.out.println(trainer2.getAge());
                 System.out.println(trainer2.getHeight());
                 System.out.println(trainer2.getWeight());
+                System.out.println(trainer2.getSportPresent());
             }
+
+            Intent print = new Intent(this, UserPrint.class);
+            if (print.resolveActivity(getPackageManager()) != null)
+                startActivity(print);
         }
     }
 }
