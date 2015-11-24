@@ -15,8 +15,8 @@ public class SchemaHelper extends SQLiteOpenHelper {
 
     private Context context;
 
-    private static final String DATABASE_NAME = "caliplay.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final String DATABASE_NAME = "caliplay2.db";
+    private static final int DATABASE_VERSION = 2;
 
     SchemaHelper(final Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

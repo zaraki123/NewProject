@@ -3,29 +3,22 @@ package com.example.nelson.caliplay.model;
 /**
  * Created by Zaraki on 21/11/2015.
  */
+
 public class User extends ModelBase {
 
-    private String username;
-    private String sex;
-    private String age;
-    private int height;
-    private int weight;
-    private String lifestyle;
-    private String sportPresent;
-    private String sportPast;
+    private String username, sex, age;
+    private int height, weight;
+    private String lifeStyle, sportPresent, sportPast;
 
-    public User(String age, int height, int weight, String lifestyle, String sportPresent, String sportPast) {
+    public User(String username, String sex, String age, int height, int weight, String lifeStyle, String sportPresent, String sportPast) {
+        this.username = username;
+        this.sex = sex;
         this.age = age;
         this.height = height;
         this.weight = weight;
-        this.lifestyle = lifestyle;
+        this.lifeStyle = lifeStyle;
         this.sportPresent = sportPresent;
         this.sportPast = sportPast;
-    }
-
-    public User(String username, String sex) {
-        this.username = username;
-        this.sex = sex;
     }
 
     public String getUsername() {
@@ -43,7 +36,6 @@ public class User extends ModelBase {
     public void setSex(String sex) {
         this.sex = sex;
     }
-
 
     public String getAge() {
         return age;
@@ -69,12 +61,12 @@ public class User extends ModelBase {
         this.weight = weight;
     }
 
-    public String getLifestyle() {
-        return lifestyle;
+    public String getLifeStyle() {
+        return lifeStyle;
     }
 
-    public void setLifestyle(String lifestyle) {
-        this.lifestyle = lifestyle;
+    public void setLifeStyle(String lifeStyle) {
+        this.lifeStyle = lifeStyle;
     }
 
     public String getSportPresent() {

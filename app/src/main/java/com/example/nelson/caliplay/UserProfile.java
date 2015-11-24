@@ -20,13 +20,16 @@ import com.example.nelson.caliplay.model.User;
 
 public class UserProfile extends AppCompatActivity implements NumberPicker.OnValueChangeListener {
 
-    private static EditText height, weight, sportPast, sportPresent = null;
+    private static EditText height, weight, sportPast, sportPresent;
     private static EditText username;
-    private String user_name;
     private String sex = "";
-    private String age, lifeStyle;
-    private User trainer = new User("gio", "maschio");
-    private User trainer2 = new User("nessuno", "nessuno");
+    private String age = "";
+    private String lifeStyle = "";
+    private String sportOfPresent = "";
+    private String sportOfPast = "";
+    private int altezza = 0, peso = 0;
+    private User trainer = new User("gio", "maschio", "25", 0, 0, "", "", "");
+    private User trainer2 = new User("nessuno", "nessuno", "25", 0, 0, "", "", "");
     public MyApplication app;
 
 
@@ -88,7 +91,6 @@ public class UserProfile extends AppCompatActivity implements NumberPicker.OnVal
             case R.id.male:
                 if (checked) {
                     sex = "male";
-
                 }
                 break;
             case R.id.female:
@@ -129,7 +131,6 @@ public class UserProfile extends AppCompatActivity implements NumberPicker.OnVal
 
     public void showHeight() {
 
-
         final Dialog d = new Dialog(UserProfile.this);
         d.setTitle("NumberPicker");
         d.setContentView(R.layout.dialog);
@@ -144,6 +145,7 @@ public class UserProfile extends AppCompatActivity implements NumberPicker.OnVal
             @Override
             public void onClick(View v) {
                 height.setText(String.valueOf(np.getValue()));
+                altezza = np.getValue();
                 d.dismiss();
             }
         });
@@ -173,6 +175,7 @@ public class UserProfile extends AppCompatActivity implements NumberPicker.OnVal
             @Override
             public void onClick(View v) {
                 weight.setText(String.valueOf(np.getValue()));
+                peso = np.getValue();
                 d.dismiss();
             }
         });
@@ -223,8 +226,10 @@ public class UserProfile extends AppCompatActivity implements NumberPicker.OnVal
                 String selectedSport = data.getStringExtra("selectedSport");
                 if (sportType.equals("sportPresent")) {
                     sportPresent.setText(selectedSport);
+                    sportOfPresent = selectedSport;
                 } else if (sportType.equals("sportPast")) {
                     sportPast.setText(selectedSport);
+                    sportOfPast = selectedSport;
                 }
             }
             if (resultCode == Activity.RESULT_CANCELED) {
@@ -261,24 +266,49 @@ public class UserProfile extends AppCompatActivity implements NumberPicker.OnVal
         }
     }
 
-    public void next(View v) {
-        user_name = username.getText().toString();
-        if (user_name.matches("") || user_name.contains(" ")) {
-            Toast.makeText(UserProfile.this, "Type a valid username", Toast.LENGTH_SHORT).show();
-        }
 
-        if (sex.isEmpty()) {
+    public void next(View v) {
+
+        // check the forms and the options before saving everything into the database
+
+        if (app.getDataManager().findUser(username.getText().toString()) != null) {
+            Toast.makeText(UserProfile.this, "Username not available", Toast.LENGTH_SHORT).show();
+        } else if (username.getText().toString().matches("") || username.getText().toString().contains(" ")) {
+            Toast.makeText(UserProfile.this, "Type a valid username without empty spaces", Toast.LENGTH_SHORT).show();
+        } else if (sex.isEmpty()) {
             Toast.makeText(UserProfile.this, "Choose your sex", Toast.LENGTH_SHORT).show();
+        } else if (age.isEmpty()) {
+            Toast.makeText(UserProfile.this, "Choose your age", Toast.LENGTH_SHORT).show();
+        } else if (altezza == 0) {
+            Toast.makeText(UserProfile.this, "Choose your height", Toast.LENGTH_SHORT).show();
+        } else if (peso == 0) {
+            Toast.makeText(UserProfile.this, "Choose your weight", Toast.LENGTH_SHORT).show();
+        } else if (lifeStyle.isEmpty()) {
+            Toast.makeText(UserProfile.this, "Choose your lifeStyle", Toast.LENGTH_SHORT).show();
+        } else if (sportOfPresent.isEmpty()) {
+            Toast.makeText(UserProfile.this, "Choose the sport you do today", Toast.LENGTH_SHORT).show();
+        } else if (sportOfPast.isEmpty()) {
+            Toast.makeText(UserProfile.this, "Choose the sport you did in the past", Toast.LENGTH_SHORT).show();
         } else {
-            trainer.setUsername(user_name);
+            trainer.setUsername(username.getText().toString());
             trainer.setSex(sex);
+            trainer.setAge(age);
+            trainer.setHeight(altezza);
+            trainer.setWeight(peso);
+
 
             app.getDataManager().saveUser(trainer);
-            trainer2 = app.getDataManager().findUser("giovanni");
+            trainer2 = app.getDataManager().findUser("Giovanni");
             if (trainer2 != null) {
-                System.out.println(trainer2.getUsername().toString());
+                System.out.println(trainer2.getUsername());
+                System.out.println(trainer2.getSex());
+                System.out.println(trainer2.getAge());
+                System.out.println(trainer2.getHeight());
+                System.out.println(trainer2.getWeight());
             }
         }
-
     }
 }
+
+
+

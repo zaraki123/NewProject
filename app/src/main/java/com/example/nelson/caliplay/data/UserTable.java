@@ -6,19 +6,20 @@ import android.provider.BaseColumns;
 /**
  * Created by Zaraki on 21/11/2015.
  */
+
 public final class UserTable {
 
     public static final String TABLE_NAME = "user";
 
     public static class UserColumns implements BaseColumns {
-        public static final String NAME = "";
-        public static final String SEX = "";
-        public static final String AGE = "";
-        public static final int HEIGHT = 0;
-        public static final int WEIGHT = 0;
-        public static final String LIFESTYLE = "";
-        public static final String SPORTPRESENT = "";
-        public static final String SPORTPAST = "";
+        public static final String NAME = "name";
+        public static final String SEX = "sex";
+        public static final String AGE = "age";
+        public static final String HEIGHT = "height";
+        public static final String WEIGHT = "weight";
+        public static final String LIFESTYLE = "lifestyle";
+        public static final String SPORTPRESENT = "sportpresent";
+        public static final String SPORTPAST = "sportpast";
     }
 
     public static void onCreate(SQLiteDatabase db) {
@@ -28,11 +29,11 @@ public final class UserTable {
         sb.append(UserColumns.NAME + " TEXT, ");
         sb.append(UserColumns.SEX + " TEXT, ");
         sb.append(UserColumns.AGE + " TEXT, ");
-        sb.append(UserColumns.HEIGHT + " INT, ");
-        sb.append(UserColumns.WEIGHT + " INT, ");
+        sb.append(UserColumns.HEIGHT + " INTEGER, ");
+        sb.append(UserColumns.WEIGHT + " INTEGER, ");
         sb.append(UserColumns.LIFESTYLE + " TEXT, ");
         sb.append(UserColumns.SPORTPRESENT + " TEXT, ");
-        sb.append(UserColumns.SPORTPAST + " TEXT");
+        sb.append(UserColumns.SPORTPAST + " TEXT ");
         sb.append(");");
         db.execSQL(sb.toString());
     }
