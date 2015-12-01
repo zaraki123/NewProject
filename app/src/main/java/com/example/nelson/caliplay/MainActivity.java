@@ -24,5 +24,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void test (View view) {
+
+        Intent test = new Intent(this, StrengthTest.class);
+        if (test.resolveActivity(getPackageManager()) != null) {
+            startActivity(test);
+        }
+    }
+
 }
 

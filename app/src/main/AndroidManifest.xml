@@ -47,6 +47,14 @@
 
         <activity android:name=".UserPrint">
 
+        </activity>
+
+        <activity android:name=".StrengthTest">
+
+        </activity>
+
+        <activity android:name=".TestResult">
+
 
         </activity>
 

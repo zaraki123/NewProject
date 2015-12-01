@@ -28,5 +28,14 @@
         android:layout_marginTop="39dp"
         android:onClick="picker"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TEST"
+        android:id="@+id/test"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="test"/>
+
 
 </RelativeLayout>
