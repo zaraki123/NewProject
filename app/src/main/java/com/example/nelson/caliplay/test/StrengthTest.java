@@ -80,6 +80,10 @@ public class StrengthTest extends AppCompatActivity {
         if (requestCode == 1) {
             if (resultCode == Activity.RESULT_OK) {
                 msecs = data.getIntExtra("milliseconds", 1);
+                openTimer(30000);
+                timer.start();
+                openTimer(msecs);
+                timer.start();
             }
             if (resultCode == Activity.RESULT_CANCELED) {
                 Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_SHORT).show();//Write your code if there's no result
