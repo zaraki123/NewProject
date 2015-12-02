@@ -19,10 +19,12 @@ import com.example.nelson.caliplay.R;
  */
 
 public class StrengthTest extends AppCompatActivity {
+    private static final int PAUSE = 30000;
     private TextView timerDisplay;
+    private Color color;
     private CircularSeekBar seekBar;
     private int secs = 0;
-    private CountDownTimer timer;
+    private CountDownTimer timer1, timer2;
     private int msecs = 10000;
     private MediaPlayer clockTicking, applause;
 
@@ -42,7 +44,10 @@ public class StrengthTest extends AppCompatActivity {
         secs = 0;
         seekBar.setProgress(secs);
         seekBar.setMax(msecs / 1000);
-        timer = new CountDownTimer(msecs, 1000) {
+        seekBar.setCircleProgressColor(color.parseColor("#ffa600"));
+        seekBar.setPointerColor(color.parseColor("#ff3700"));
+        seekBar.setPointerHaloColor(color.parseColor("#ae0300"));
+        timer1 = new CountDownTimer(msecs, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 secs++;
@@ -71,7 +76,7 @@ public class StrengthTest extends AppCompatActivity {
 
     public void start(View view) {
         openTimer(msecs);
-        timer.start();
+        timer1.start();
     }
 
     @Override
@@ -80,16 +85,44 @@ public class StrengthTest extends AppCompatActivity {
         if (requestCode == 1) {
             if (resultCode == Activity.RESULT_OK) {
                 msecs = data.getIntExtra("milliseconds", 1);
-                openTimer(30000);
-                timer.start();
-                openTimer(msecs);
-                timer.start();
+                openTimer2();
+
             }
             if (resultCode == Activity.RESULT_CANCELED) {
                 Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_SHORT).show();//Write your code if there's no result
             }
         }
 
+    }
+
+    private void openTimer2() {
+        secs = 0;
+        seekBar.setProgress(secs);
+        seekBar.setMax(PAUSE / 1000);
+        seekBar.setCircleProgressColor(color.parseColor("#00d4ff"));
+        seekBar.setPointerColor(color.parseColor("#0088ff"));
+        seekBar.setPointerHaloColor(color.parseColor("#000dff"));
+        timer1 = new CountDownTimer(PAUSE, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                secs++;
+                timerDisplay.setText("" + millisUntilFinished / 1000);
+                seekBar.setProgress(secs);
+                clockTicking.start();
+            }
+
+            @Override
+            public void onFinish() {
+                secs++;
+                seekBar.setProgress(secs);
+                timerDisplay.setText("0");
+                applause.start();
+                openTimer(msecs);
+                timer1.start();
+
+            }
+
+        }.start();
     }
 }
 
