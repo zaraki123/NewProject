@@ -49,12 +49,11 @@
 
         </activity>
 
-        <activity android:name=".StrengthTest">
+        <activity android:name=".test.StrengthTest">
 
         </activity>
 
-        <activity android:name=".TestResult">
-
+        <activity android:name=".test.TestResult">
 
         </activity>
 

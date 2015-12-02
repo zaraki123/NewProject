@@ -17,7 +17,6 @@
 
     <TextView
         android:id="@+id/timer"
-        android:text="30"
         android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -25,7 +24,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="100sp"
         android:textColor="@color/white"
-        android:layout_marginTop="123dp"
+        android:layout_marginTop="115dp"
         />
 
 
@@ -36,14 +35,14 @@
         app:use_custom_radii="true"
         app:circle_x_radius="150dp"
         app:circle_y_radius="150dp"
-        app:max="30"
         app:circle_fill="@color/black"
         app:circle_color="@color/black"
         app:circle_progress_color="@color/orange"
         app:circle_stroke_width="30dp"
         app:pointer_color="@color/red"
         app:pointer_halo_color="@color/darkRed"
-        app:pointer_halo_width="7dp"/>
+        app:pointer_halo_width="6dp"
+        app:pointer_radius="10dp"/>
 
     <Button
         android:id="@+id/start"

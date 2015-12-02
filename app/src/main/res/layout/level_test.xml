@@ -15,43 +15,47 @@
 
     <Button
         android:id="@+id/very_easy"
-        android:layout_width="200dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
+        android:background="@color/green"
+        android:onClick="result"
         android:text="@string/very_easy"
-        android:onClick="result"/>
+        android:textAllCaps="false" />
 
     <Button
         android:id="@+id/easy"
-        android:layout_width="200dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="@color/yellow"
+        android:onClick="result"
         android:text="@string/easy"
-        android:onClick="result"/>
+        android:textAllCaps="false" />
 
-    <Button
-        android:id="@+id/normal"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/normal"
-        android:onClick="result"/>
 
     <Button
         android:id="@+id/hard"
-        android:layout_width="200dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="@color/orange"
+        android:onClick="result"
         android:text="@string/hard"
-        android:onClick="result"/>
+        android:textAllCaps="false" />
 
     <Button
         android:id="@+id/impossible"
-        android:layout_width="200dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="@color/red"
+        android:onClick="result"
         android:text="@string/impossible"
-        android:onClick="result"/>
+        android:textAllCaps="false" />
 
 </LinearLayout>
