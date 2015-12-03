@@ -49,7 +49,7 @@
 
         </activity>
 
-        <activity android:name=".test.StrengthTest">
+        <activity android:name=".test.Timer">
 
         </activity>
 

@@ -271,7 +271,7 @@ public class UserProfile extends AppCompatActivity implements NumberPicker.OnVal
 
         // check the forms and the options before saving everything into the database
 
-        if (app.getDataManager().findUser(username.getText().toString()) != null) {
+        if (app.getDataManagerUser().findUser(username.getText().toString()) != null) {
             Toast.makeText(UserProfile.this, "Username not available", Toast.LENGTH_SHORT).show();
         } else if (username.getText().toString().matches("") || username.getText().toString().contains(" ")) {
             Toast.makeText(UserProfile.this, "Type a valid username without empty spaces", Toast.LENGTH_SHORT).show();
@@ -299,8 +299,8 @@ public class UserProfile extends AppCompatActivity implements NumberPicker.OnVal
             trainer.setSportPresent(sportOfPresent);
             trainer.setSportPast(sportOfPast);
 
-            app.getDataManager().saveUser(trainer);
-            trainer2 = app.getDataManager().findUser("Giovanni");
+            app.getDataManagerUser().saveUser(trainer);
+            trainer2 = app.getDataManagerUser().findUser("Giovanni");
             if (trainer2 != null) {
                 System.out.println(trainer2.getUsername());
                 System.out.println(trainer2.getSex());

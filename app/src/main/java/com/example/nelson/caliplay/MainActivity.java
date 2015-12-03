@@ -5,10 +5,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.example.nelson.caliplay.test.StrengthTest;
+import com.example.nelson.caliplay.test.Timer;
 
 public class MainActivity extends AppCompatActivity {
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void test (View view) {
 
-        Intent test = new Intent(this, StrengthTest.class);
+        Intent test = new Intent(this, Timer.class);
         if (test.resolveActivity(getPackageManager()) != null) {
             startActivity(test);
         }

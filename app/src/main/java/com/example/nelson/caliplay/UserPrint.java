@@ -24,10 +24,10 @@ public class UserPrint extends AppCompatActivity {
         sportPresent = (TextView) findViewById(R.id.sportPresentPrint);
         lifeStyle = (TextView) findViewById(R.id.lifeStylePrint);
 
-        username.setText(app.getDataManager().findUser("Giovanni").getUsername());
-        sex.setText(app.getDataManager().findUser("Giovanni").getSex());
-        sportPresent.setText(app.getDataManager().findUser("Giovanni").getSportPresent());
-        lifeStyle.setText(app.getDataManager().findUser("Giovanni").getLifeStyle());
+        username.setText(app.getDataManagerUser().findUser("Giovanni").getUsername());
+        sex.setText(app.getDataManagerUser().findUser("Giovanni").getSex());
+        sportPresent.setText(app.getDataManagerUser().findUser("Giovanni").getSportPresent());
+        lifeStyle.setText(app.getDataManagerUser().findUser("Giovanni").getLifeStyle());
     }
 
 

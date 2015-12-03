@@ -16,7 +16,7 @@ public class SchemaHelper extends SQLiteOpenHelper {
     private Context context;
 
     private static final String DATABASE_NAME = "caliplay2.db";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 1;
 
     SchemaHelper(final Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -34,11 +34,15 @@ public class SchemaHelper extends SQLiteOpenHelper {
     public void onCreate(final SQLiteDatabase db) {
 
         UserTable.onCreate(db);
+        ExerciseTable.onCreate(db);
 
     }
 
     @Override
     public void onUpgrade(final SQLiteDatabase db, final int oldVersion, final int newVersion) {
         Log.i(Constants.LOG_TAG, "SQLiteOpenHelper onUpgrade - oldVersion:" + oldVersion + " newVersion:" + newVersion);
+        UserTable.onUpgrade(db, oldVersion, newVersion);
+        ExerciseTable.onUpgrade(db, oldVersion, newVersion);
+
     }
 }

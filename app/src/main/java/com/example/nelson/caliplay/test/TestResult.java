@@ -72,7 +72,7 @@ public class TestResult extends AppCompatActivity {
     }
 
 
-    public void goBack(int seconds) {
+    private void goBack(int seconds) {
         seconds = seconds * 1000;
         Intent send_mecs = new Intent();
         send_mecs.putExtra("milliseconds", seconds);

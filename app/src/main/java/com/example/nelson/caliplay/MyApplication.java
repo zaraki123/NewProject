@@ -11,7 +11,7 @@ public class MyApplication extends Application
 {
 
     private DataManager dataManager;
-    public DataManager getDataManager() {
+    public DataManager getDataManagerUser() {
         return this.dataManager;
     }
 

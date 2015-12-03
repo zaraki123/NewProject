@@ -18,15 +18,16 @@ import com.example.nelson.caliplay.R;
  * Created by Zaraki on 01/12/2015.
  */
 
-public class StrengthTest extends AppCompatActivity {
+public class Timer extends AppCompatActivity {
     private static final int PAUSE = 30000;
     private TextView timerDisplay;
     private Color color;
     private CircularSeekBar seekBar;
+    private int sets = 0;
     private int secs = 0;
-    private CountDownTimer timer1, timer2;
+    private CountDownTimer timer1;
     private int msecs = 10000;
-    private MediaPlayer clockTicking, applause;
+    private MediaPlayer clockTicking, applause, racestart1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,7 @@ public class StrengthTest extends AppCompatActivity {
         timerDisplay.bringToFront();
         clockTicking = MediaPlayer.create(this, R.raw.clock_ticking);
         applause = MediaPlayer.create(this, R.raw.applause);
+        racestart1 = MediaPlayer.create(this, R.raw.race_start1);
     }
 
     private void openTimer(int msecs) {
@@ -86,7 +88,6 @@ public class StrengthTest extends AppCompatActivity {
             if (resultCode == Activity.RESULT_OK) {
                 msecs = data.getIntExtra("milliseconds", 1);
                 openTimer2();
-
             }
             if (resultCode == Activity.RESULT_CANCELED) {
                 Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_SHORT).show();//Write your code if there's no result
@@ -108,7 +109,11 @@ public class StrengthTest extends AppCompatActivity {
                 secs++;
                 timerDisplay.setText("" + millisUntilFinished / 1000);
                 seekBar.setProgress(secs);
-                clockTicking.start();
+                if (secs <= 29 && secs >= 28) {
+                    racestart1.start();
+                } else {
+                    clockTicking.start();
+                }
             }
 
             @Override
@@ -119,7 +124,6 @@ public class StrengthTest extends AppCompatActivity {
                 applause.start();
                 openTimer(msecs);
                 timer1.start();
-
             }
 
         }.start();
