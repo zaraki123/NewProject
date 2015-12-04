@@ -1,14 +1,17 @@
 package com.example.nelson.caliplay.test;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.nelson.caliplay.ExerciseProfile;
 import com.example.nelson.caliplay.MyApplication;
 import com.example.nelson.caliplay.R;
+import com.example.nelson.caliplay.model.Exercise;
 
 /**
  * Created by Zaraki on 03/12/2015.
@@ -16,20 +19,65 @@ import com.example.nelson.caliplay.R;
 public class StartingTest extends AppCompatActivity {
 
     private MyApplication app;
-    private ExerciseProfile exercises;
-
+    private int msecs = 10000;
+    private TextView result;
+    private Exercise tuckHollow1 = new Exercise("tuckHollow1", "Isometric", "Core", 0, 1, 1);
+    private Exercise tuckHollow2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.starting_test);
+        result = (TextView)findViewById(R.id.seconds);
+        app = (MyApplication) getApplication();
     }
 
     public void start(View view) {
-        Intent startTest = new Intent(this, Timer.class);
-        if (startTest.resolveActivity(getPackageManager()) != null) {
-            startActivity(startTest);
+
+        switch (view.getId()) {
+
+            case R.id.startCoreTest:
+                startTimer(msecs);
+                break;
+
+            case R.id.startPullTest:
+                startTimer(msecs);
+                break;
+
+            case R.id.startPushTest:
+                startTimer(msecs);
+                break;
+
+
         }
     }
 
+    private void startTimer(int msecs) {
+        Intent startTest = new Intent(this, Timer.class);
+        startTest.putExtra("msecs", msecs);
+        if (startTest.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(startTest, 1);
+        }
 
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == 1) {
+            if (resultCode == Activity.RESULT_OK) {
+                msecs = data.getIntExtra("seconds", 1);
+                System.out.println("prova");
+                tuckHollow1.setSeconds(msecs);
+                System.out.println(tuckHollow1.getSeconds());
+                app.getDataManager().saveExercise(tuckHollow1);
+                tuckHollow2 = app.getDataManager().findExercise("tuckHollow1");
+                result.setText(String.valueOf(tuckHollow2.getSeconds()));
+
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+                Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_SHORT).show();//Write your code if there's no result
+            }
+        }
+    }
 }

@@ -11,9 +11,10 @@ public class MyApplication extends Application
 {
 
     private DataManager dataManager;
-    public DataManager getDataManagerUser() {
+    public DataManager getDataManager() {
         return this.dataManager;
     }
+
 
     @Override
     public void onCreate()

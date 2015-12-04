@@ -37,5 +37,13 @@
         android:layout_centerHorizontal="true"
         android:onClick="test"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="VIDEO"
+        android:layout_below="@id/picker"
+        android:onClick="video"
+        android:layout_centerHorizontal="true"/>
+
 
 </RelativeLayout>

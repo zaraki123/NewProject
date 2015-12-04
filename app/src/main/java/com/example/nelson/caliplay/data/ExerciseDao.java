@@ -132,7 +132,7 @@ public class ExerciseDao implements Dao<Exercise>  {
 
     public Exercise find (String name) {
         long exerciseId = 0L;
-        String sql = "select_id from " + ExerciseTable.TABLE_NAME
+        String sql = "select _id from " + ExerciseTable.TABLE_NAME
                 + " where upper(" + ExerciseTable.ExerciseColumns.NAME + ") = ? limit 1";
         Cursor c = db.rawQuery(sql,
                 new String[]

@@ -16,7 +16,7 @@ public class TestResult extends AppCompatActivity {
 
     private static final int MAX_SETS = 5;
     private int secs = 0;
-
+    private boolean testComplete = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,10 +31,10 @@ public class TestResult extends AppCompatActivity {
             case R.id.very_easy:
                 if (secs <= 10) {
                     secs *= 2;
-                    goBack(secs);
+                    goBack(secs, testComplete);
                 } else {
                     secs *= 1.5;
-                    goBack(secs);
+                    goBack(secs, testComplete);
                 }
 
                 break;
@@ -43,10 +43,10 @@ public class TestResult extends AppCompatActivity {
 
                 if (secs <= 20) {
                     secs *= 1.5;
-                    goBack(secs);
+                    goBack(secs, testComplete);
                 } else {
                     secs *= 1.25;
-                    goBack(secs);
+                    goBack(secs, testComplete);
                 }
 
                 break;
@@ -54,10 +54,12 @@ public class TestResult extends AppCompatActivity {
             case R.id.hard:
                 if (secs >= 20) {
                     secs *= 0.8;
-                    goBack(secs);
+                    testComplete = true;
+                    goBack(secs, testComplete);
                 } else {
                     secs *= 0.6;
-                    goBack(secs);
+                    testComplete = true;
+                    goBack(secs, testComplete);
                 }
 
             case R.id.impossible:
@@ -65,6 +67,7 @@ public class TestResult extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "it's better to change exercise", Toast.LENGTH_SHORT).show();
                 } else {
                     secs *= 0.75;
+                    goBack(secs, testComplete);
                 }
 
         }
@@ -72,10 +75,11 @@ public class TestResult extends AppCompatActivity {
     }
 
 
-    private void goBack(int seconds) {
+    private void goBack(int seconds, boolean testCompleted) {
         seconds = seconds * 1000;
         Intent send_mecs = new Intent();
         send_mecs.putExtra("milliseconds", seconds);
+        send_mecs.putExtra("testCompleted", testCompleted);
         setResult(Activity.RESULT_OK, send_mecs);
         finish();
     }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.example.nelson.caliplay.test.StartingTest;
 import com.example.nelson.caliplay.test.Timer;
 
 public class MainActivity extends AppCompatActivity {
@@ -27,9 +28,17 @@ public class MainActivity extends AppCompatActivity {
 
     public void test (View view) {
 
-        Intent test = new Intent(this, Timer.class);
+        Intent test = new Intent(this, StartingTest.class);
         if (test.resolveActivity(getPackageManager()) != null) {
             startActivity(test);
+        }
+    }
+
+    public void video (View view) {
+
+        Intent video = new Intent(this, ExerciseOverview.class);
+        if (video.resolveActivity(getPackageManager()) != null) {
+            startActivity(video);
         }
     }
 
