@@ -42,5 +42,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void youtube (View view) {
+
+        Intent video = new Intent(this, YouTube.class);
+        if (video.resolveActivity(getPackageManager()) != null) {
+            startActivity(video);
+        }
+    }
+
 }
 

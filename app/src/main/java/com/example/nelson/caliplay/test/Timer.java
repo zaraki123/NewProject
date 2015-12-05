@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
@@ -29,6 +30,7 @@ public class Timer extends AppCompatActivity {
     private int msecs = 0;
     private MediaPlayer clockTicking, racestart1, racestart2;
     private boolean testCompleted = false;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +43,10 @@ public class Timer extends AppCompatActivity {
         clockTicking = MediaPlayer.create(this, R.raw.clock_ticking);
         racestart1 = MediaPlayer.create(this, R.raw.race_start1);
         racestart2 = MediaPlayer.create(this, R.raw.race_start2);
+
         Bundle extras = getIntent().getExtras();
         msecs = extras.getInt("msecs");
+        timerDisplay.setText("" + msecs/1000);
     }
 
     private void openTimer(int msecs) {
@@ -53,11 +57,18 @@ public class Timer extends AppCompatActivity {
         seekBar.setCircleProgressColor(color.parseColor("#ffa600"));
         seekBar.setPointerColor(color.parseColor("#ff3700"));
         seekBar.setPointerHaloColor(color.parseColor("#ae0300"));
+        timerDisplay.setText("" + lastSeconds);
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("wait for 1s");
+            }
+        }, 1000);
         timer1 = new CountDownTimer(msecs, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 secs++;
-                timerDisplay.setText("" + millisUntilFinished / 1000);
+                timerDisplay.setText("" + (millisUntilFinished) / 1000);
                 seekBar.setProgress(secs);
                 clockTicking.start();
             }
@@ -67,14 +78,19 @@ public class Timer extends AppCompatActivity {
                 secs++;
                 seekBar.setProgress(secs);
                 timerDisplay.setText("0");
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent result = new Intent(getApplicationContext(), TestResult.class);
+                        result.putExtra("result", secs);
+                        if (result.resolveActivity(getPackageManager()) != null) {
+                            seekBar.setProgress(0);
+                            startActivityForResult(result, 1);
+                        }
+                    }
+                }, 1000);
 
 
-                Intent result = new Intent(getApplicationContext(), TestResult.class);
-                result.putExtra("result", secs);
-                if (result.resolveActivity(getPackageManager()) != null) {
-                    seekBar.setProgress(0);
-                    startActivityForResult(result, 1);
-                }
             }
 
         };
@@ -96,7 +112,7 @@ public class Timer extends AppCompatActivity {
                     openTimer2(PAUSE);
                 } else {
                     Intent result = new Intent();
-                    result.putExtra("seconds", msecs/1000);
+                    result.putExtra("seconds", msecs / 1000);
                     setResult(Activity.RESULT_OK, result);
                     finish();
                 }
@@ -121,11 +137,11 @@ public class Timer extends AppCompatActivity {
             @Override
             public void onTick(long millisUntilFinished) {
                 secs++;
-                timerDisplay.setText("" + millisUntilFinished / 1000);
+                timerDisplay.setText("" + (millisUntilFinished) / 1000);
                 seekBar.setProgress(secs);
-                if (secs >= (lastSeconds - 3) && secs < (lastSeconds - 1)) {
+                if (secs >= (lastSeconds - 3) && secs < lastSeconds ) {
                     racestart1.start();
-                } else if (secs >= (lastSeconds - 1)) {
+                } else if (secs >= lastSeconds) {
                     racestart2.start();
                 } else {
                     clockTicking.start();
@@ -137,8 +153,16 @@ public class Timer extends AppCompatActivity {
                 secs++;
                 seekBar.setProgress(secs);
                 timerDisplay.setText("0");
-                openTimer(msecs);
-                timer1.start();
+                racestart2.start();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        timerDisplay.setText("" + msecs/1000);
+                        openTimer(msecs);
+                        timer1.start();
+                    }
+                },1000);
+
             }
 
         }.start();

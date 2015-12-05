@@ -12,6 +12,9 @@ import android.widget.VideoView;
 /**
  * Created by Zaraki on 03/12/2015.
  */
+
+
+
 public class ExerciseOverview extends AppCompatActivity {
 
     private MediaController videoPlayer;
@@ -29,6 +32,7 @@ public class ExerciseOverview extends AppCompatActivity {
         String path = "android.resource://" + getPackageName() + "/" + R.raw.video_example;
         video.setVideoURI(Uri.parse(path));
         videoPlayer = new MediaController(ExerciseOverview.this);
+        videoPlayer.setAnchorView(video);
         videoPlayer.setMediaPlayer(video);
         video.setMediaController(videoPlayer);
         video.requestFocus();

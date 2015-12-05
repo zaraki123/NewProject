@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.nelson.caliplay.ExerciseProfile;
+import com.example.nelson.caliplay.ExerciseProfileTest;
 import com.example.nelson.caliplay.MyApplication;
 import com.example.nelson.caliplay.R;
 import com.example.nelson.caliplay.model.Exercise;
@@ -20,9 +20,12 @@ public class StartingTest extends AppCompatActivity {
 
     private MyApplication app;
     private int msecs = 10000;
+    private int secs = 0;
     private TextView result;
-    private Exercise tuckHollow1 = new Exercise("tuckHollow1", "Isometric", "Core", 0, 1, 1);
-    private Exercise tuckHollow2;
+    private ExerciseProfileTest exerciseProfileTest;
+    private Exercise exercise;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,13 +69,8 @@ public class StartingTest extends AppCompatActivity {
 
         if (requestCode == 1) {
             if (resultCode == Activity.RESULT_OK) {
-                msecs = data.getIntExtra("seconds", 1);
-                System.out.println("prova");
-                tuckHollow1.setSeconds(msecs);
-                System.out.println(tuckHollow1.getSeconds());
-                app.getDataManager().saveExercise(tuckHollow1);
-                tuckHollow2 = app.getDataManager().findExercise("tuckHollow1");
-                result.setText(String.valueOf(tuckHollow2.getSeconds()));
+                secs = data.getIntExtra("seconds", 1);
+
 
             }
             if (resultCode == Activity.RESULT_CANCELED) {

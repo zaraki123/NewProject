@@ -32,10 +32,8 @@ public class SchemaHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(final SQLiteDatabase db) {
-
         UserTable.onCreate(db);
         ExerciseTable.onCreate(db);
-
     }
 
     @Override
