@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.example.nelson.caliplay.ExerciseProfileTest;
 import com.example.nelson.caliplay.MyApplication;
 import com.example.nelson.caliplay.R;
+import com.example.nelson.caliplay.YouTube;
 import com.example.nelson.caliplay.model.Exercise;
 
 /**
@@ -24,6 +25,7 @@ public class StartingTest extends AppCompatActivity {
     private TextView result;
     private ExerciseProfileTest exerciseProfileTest;
     private Exercise exercise;
+    private String tuckHollow= "6i1LsA5NDMQ";
 
 
     @Override
@@ -39,29 +41,29 @@ public class StartingTest extends AppCompatActivity {
         switch (view.getId()) {
 
             case R.id.startCoreTest:
-                startTimer(msecs);
+                startVideo(tuckHollow);
                 break;
 
             case R.id.startPullTest:
-                startTimer(msecs);
                 break;
 
             case R.id.startPushTest:
-                startTimer(msecs);
                 break;
 
 
         }
     }
 
-    private void startTimer(int msecs) {
-        Intent startTest = new Intent(this, Timer.class);
-        startTest.putExtra("msecs", msecs);
-        if (startTest.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(startTest, 1);
+    private void startVideo (String videoId) {
+        Intent startVideo = new Intent(this, YouTube.class);
+        startVideo.putExtra("videoId", videoId);
+        startVideo.putExtra("msecs", msecs);
+        if (startVideo.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(startVideo, 1);
         }
-
     }
+
+
 
 
     @Override
@@ -70,7 +72,7 @@ public class StartingTest extends AppCompatActivity {
         if (requestCode == 1) {
             if (resultCode == Activity.RESULT_OK) {
                 secs = data.getIntExtra("seconds", 1);
-
+                result.setText(String.valueOf(secs));
 
             }
             if (resultCode == Activity.RESULT_CANCELED) {

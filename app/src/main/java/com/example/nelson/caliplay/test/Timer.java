@@ -119,7 +119,7 @@ public class Timer extends AppCompatActivity {
 
             }
             if (resultCode == Activity.RESULT_CANCELED) {
-                Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_SHORT).show();//Write your code if there's no result
+                Toast.makeText(getApplicationContext(), "Something went wrong ", Toast.LENGTH_SHORT).show();//Write your code if there's no result
             }
         }
 
@@ -171,7 +171,9 @@ public class Timer extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        timer1.cancel();
+        if (timer1 != null) {
+            timer1.cancel();
+        }
     }
 }
 
