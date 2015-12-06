@@ -21,7 +21,7 @@ public class YouTube extends YouTubeBaseActivity implements YouTubePlayer.OnInit
     private YouTubePlayerView youTubeView;
     private String videoID;
     private int msecs = 0, secs = 0;
-    private boolean exerciseCompleted = false;
+    private boolean exerciseCompleted = false, testCompleted = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,9 +63,11 @@ public class YouTube extends YouTubeBaseActivity implements YouTubePlayer.OnInit
 
                 secs = data.getIntExtra("seconds", 1);
                 exerciseCompleted = data.getBooleanExtra("exerciseCompleted", false);
+                testCompleted = data.getBooleanExtra("testCompleted", false);
                 Intent result = new Intent();
                 result.putExtra("seconds", secs);
                 result.putExtra("exerciseCompleted", exerciseCompleted);
+                result.putExtra("testCompleted", testCompleted);
                 setResult(Activity.RESULT_OK, result);
                 finish();
 

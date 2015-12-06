@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -27,13 +26,13 @@ public class StartingTest extends AppCompatActivity {
     private MyApplication app;
     private int msecs = 30000;
     private int secs = 0;
-    private int firstExercise = 0;
+    private int exerciseSelected = 0;
     private TextView result, nextLevel;
     private Button next;
     private ExerciseProfileTest exerciseProfileTest = new ExerciseProfileTest();
     private ArrayList<Exercise> coreExerciseList = new ArrayList<>();
     private ArrayList<Exercise> pullExerciseList = new ArrayList<>();
-    private boolean exerciseCompleted = false;
+    private boolean exerciseCompleted = false, testCompleted = false;
     private MediaPlayer exerciseCompletedSound;
 
 
@@ -41,7 +40,7 @@ public class StartingTest extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.starting_test);
-        result = (TextView)findViewById(R.id.seconds);
+        result = (TextView) findViewById(R.id.seconds);
         app = (MyApplication) getApplication();
         next = (Button) findViewById(R.id.next);
         next.setVisibility(Button.GONE);
@@ -57,7 +56,7 @@ public class StartingTest extends AppCompatActivity {
         switch (view.getId()) {
 
             case R.id.startCoreTest:
-                startVideo(coreExerciseList.get(firstExercise).getVideoId());
+                startVideo(coreExerciseList.get(exerciseSelected).getVideoId());
                 break;
 
             case R.id.startPullTest:
@@ -70,7 +69,7 @@ public class StartingTest extends AppCompatActivity {
         }
     }
 
-    private void startVideo (String videoId) {
+    private void startVideo(String videoId) {
         Intent startVideo = new Intent(this, YouTube.class);
         startVideo.putExtra("videoId", videoId);
         startVideo.putExtra("msecs", msecs);
@@ -80,8 +79,6 @@ public class StartingTest extends AppCompatActivity {
     }
 
 
-
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
@@ -89,26 +86,25 @@ public class StartingTest extends AppCompatActivity {
             if (resultCode == Activity.RESULT_OK) {
                 secs = data.getIntExtra("seconds", 1);
                 exerciseCompleted = data.getBooleanExtra("exerciseCompleted", false);
+                testCompleted = data.getBooleanExtra("testCompleted", false);
                 result.setText(String.valueOf(secs));
                 if (exerciseCompleted) {
                     next.setVisibility(Button.VISIBLE);
                     nextLevel.setVisibility(Button.VISIBLE);
                     exerciseCompletedSound.start();
-
-
+                    exerciseSelected++;
+                    startVideo(coreExerciseList.get(exerciseSelected).getVideoId());
+                } else if (testCompleted) {
+                    app.getDataManager().saveExercise(coreExerciseList.get(exerciseSelected));
 
 
                 }
-
-
-
-            }
-            if (resultCode == Activity.RESULT_CANCELED) {
-                Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_SHORT).show();//Write your code if there's no result
+                if (resultCode == Activity.RESULT_CANCELED) {
+                    Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_SHORT).show();//Write your code if there's no result
+                }
             }
         }
     }
-
     private void coreExerciseInitialization() {
         coreExerciseList.add(exerciseProfileTest.getTuckHollow1());
         coreExerciseList.add(exerciseProfileTest.getTuckHollow2());
@@ -125,7 +121,7 @@ public class StartingTest extends AppCompatActivity {
 
     }
 
-    public void next (View view) {
+    public void next(View view) {
 
     }
 }

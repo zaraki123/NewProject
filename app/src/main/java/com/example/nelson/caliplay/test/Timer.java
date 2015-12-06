@@ -122,9 +122,12 @@ public class Timer extends AppCompatActivity {
 
                 } else if (!testCompleted) {
                     openTimer2(PAUSE);
-                } else {
+                } else if (testCompleted){
+                    secs = newMsecs/1000;
                     Intent result = new Intent();
-                    result.putExtra("seconds", newMsecs / 1000);
+                    result.putExtra("seconds", secs);
+                    result.putExtra("testCompleted", testCompleted);
+                    result.putExtra("exerciseCompleted", exerciseCompleted);
                     setResult(Activity.RESULT_OK, result);
                     finish();
                 }

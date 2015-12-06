@@ -42,7 +42,7 @@ public class ExerciseProfileTest {
 
 
     private Exercise tuckHollow1 = new Exercise("TuckHollow1", "6i1LsA5NDMQ", TypeOfContraction.ISOMETRIC.toString(), TypeOfMovement.CORE.toString(), 0, 1, 1);
-    private Exercise tuckHollow2 = new Exercise("TuckHollow2", "", TypeOfContraction.ISOMETRIC.toString(), TypeOfMovement.CORE.toString(), 0, 1, 2);
+    private Exercise tuckHollow2 = new Exercise("TuckHollow2", "l6s1F0Xj0wk", TypeOfContraction.ISOMETRIC.toString(), TypeOfMovement.CORE.toString(), 0, 1, 2);
     private Exercise tuckHollow3 = new Exercise("TuckHollow3", "", TypeOfContraction.ISOMETRIC.toString(), TypeOfMovement.CORE.toString(), 0, 1, 3);
     private Exercise hollow1 = new Exercise("Hollow1", "", TypeOfContraction.ISOMETRIC.toString(), TypeOfMovement.CORE.toString(), 0, 2, 1);
     private Exercise hollow2 = new Exercise("Hollow2", "", TypeOfContraction.ISOMETRIC.toString(), TypeOfMovement.CORE.toString(), 0, 2, 2);
