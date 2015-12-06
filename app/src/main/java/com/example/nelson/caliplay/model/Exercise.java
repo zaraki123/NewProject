@@ -5,11 +5,12 @@ package com.example.nelson.caliplay.model;
  */
 public class Exercise extends ModelBase {
 
-    private String name, typeOfContraction, typeOfMovement;
+    private String name, typeOfContraction, typeOfMovement, videoId;
     private int seconds, level, sublevel;
 
-    public Exercise(String name, String typeOfContraction, String typeOfMovement, int seconds, int level, int sublevel) {
+    public Exercise(String name, String videoId, String typeOfContraction, String typeOfMovement, int seconds, int level, int sublevel) {
         this.name = name;
+        this.videoId = videoId;
         this.typeOfContraction = typeOfContraction;
         this.typeOfMovement = typeOfMovement;
         this.seconds = seconds;
@@ -17,12 +18,22 @@ public class Exercise extends ModelBase {
         this.sublevel = sublevel;
     }
 
+
+
     public String getExerciseName() {
         return name;
     }
 
     public void setExerciseName(String name) {
         this.name = name;
+    }
+
+    public String getVideoId() {
+        return videoId;
+    }
+
+    public void setVideoId(String videoId) {
+        this.videoId = videoId;
     }
 
     public String getTypeOfContraction() {

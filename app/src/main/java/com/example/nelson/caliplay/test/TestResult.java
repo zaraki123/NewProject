@@ -16,7 +16,8 @@ public class TestResult extends AppCompatActivity {
 
     private static final int MAX_SETS = 5;
     private int secs = 0;
-    private boolean testComplete = false;
+    private boolean testComplete = false, exerciseCompleted = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,37 +30,48 @@ public class TestResult extends AppCompatActivity {
     public void result(View view) {
         switch (view.getId()) {
             case R.id.very_easy:
-                if (secs <= 10) {
+
+                if (secs >= 40) {
+                    exerciseCompleted = true;
+                    goBack(secs, testComplete, exerciseCompleted);
+                } else if (secs <= 10) {
                     secs *= 2;
-                    goBack(secs, testComplete);
+                    goBack(secs, testComplete, exerciseCompleted);
                 } else {
                     secs *= 1.5;
-                    goBack(secs, testComplete);
+                    goBack(secs, testComplete, exerciseCompleted);
                 }
 
                 break;
 
             case R.id.easy:
 
-                if (secs <= 20) {
+                if (secs >= 40) {
+                    exerciseCompleted = true;
+                    goBack(secs, testComplete, exerciseCompleted);
+                } else if (secs <= 20) {
                     secs *= 1.5;
-                    goBack(secs, testComplete);
+                    goBack(secs, testComplete, exerciseCompleted);
                 } else {
                     secs *= 1.25;
-                    goBack(secs, testComplete);
+                    goBack(secs, testComplete, exerciseCompleted);
                 }
 
                 break;
 
             case R.id.hard:
-                if (secs >= 20) {
+
+                if (secs >= 40) {
+                    exerciseCompleted = true;
+                    goBack(secs, testComplete, exerciseCompleted);
+                } else if (secs >= 20) {
                     secs *= 0.8;
                     testComplete = true;
-                    goBack(secs, testComplete);
+                    goBack(secs, testComplete, exerciseCompleted);
                 } else {
                     secs *= 0.6;
                     testComplete = true;
-                    goBack(secs, testComplete);
+                    goBack(secs, testComplete, exerciseCompleted);
                 }
 
             case R.id.impossible:
@@ -67,7 +79,7 @@ public class TestResult extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "it's better to change exercise", Toast.LENGTH_SHORT).show();
                 } else {
                     secs *= 0.75;
-                    goBack(secs, testComplete);
+                    goBack(secs, testComplete, exerciseCompleted);
                 }
 
         }
@@ -75,11 +87,12 @@ public class TestResult extends AppCompatActivity {
     }
 
 
-    private void goBack(int seconds, boolean testCompleted) {
+    private void goBack(int seconds, boolean testCompleted, boolean exerciseCompleted) {
         seconds = seconds * 1000;
         Intent send_mecs = new Intent();
         send_mecs.putExtra("milliseconds", seconds);
         send_mecs.putExtra("testCompleted", testCompleted);
+        send_mecs.putExtra("exerciseCompleted", exerciseCompleted);
         setResult(Activity.RESULT_OK, send_mecs);
         finish();
     }

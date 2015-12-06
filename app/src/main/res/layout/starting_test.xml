@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:id="@+id/startingTestLayout">
 
     <TextView
         android:layout_width="wrap_content"
@@ -123,9 +124,28 @@
         android:text="Result Core Test:"
  />
     <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textAppearance="?android:attr/textAppearanceLarge"
+    android:id="@+id/seconds" />
+
+    <TextView
+        android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/seconds" />
+        android:text="Great, you completed a level!!!"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/textViewLevelCompleted" />
+
+    <Button
+        android:id="@+id/next"
+        android:background="@drawable/rounded_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:onClick="next"
+        android:text="next" />
 
 </LinearLayout>

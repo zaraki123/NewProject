@@ -18,11 +18,12 @@ public class ExerciseDao implements Dao<Exercise>  {
 
     private static final String INSERT = "insert into " + ExerciseTable.TABLE_NAME
             + "(" + ExerciseTable.ExerciseColumns.NAME + ", "
+            + ExerciseTable.ExerciseColumns.VIDEOID + ", "
             + ExerciseTable.ExerciseColumns.TYPEOFCONTRATION + ", "
             + ExerciseTable.ExerciseColumns.TYPEOFMOVEMENT + ", "
             + ExerciseTable.ExerciseColumns.SECONDS + ", "
             + ExerciseTable.ExerciseColumns.LEVEL + ", "
-            + ExerciseTable.ExerciseColumns.SUBLEVEL + ") values (?, ?, ?, ?, ?, ?)";
+            + ExerciseTable.ExerciseColumns.SUBLEVEL + ") values (?, ?, ?, ?, ?, ?, ?)";
 
     private SQLiteDatabase db;
     private SQLiteStatement insertStatement;
@@ -36,11 +37,12 @@ public class ExerciseDao implements Dao<Exercise>  {
     public long save(Exercise entity) {
         insertStatement.clearBindings();
         insertStatement.bindString(1, entity.getExerciseName());
-        insertStatement.bindString(2, entity.getTypeOfContraction());
-        insertStatement.bindString(3, entity.getTypeOfMovement());
-        insertStatement.bindDouble(4, entity.getSeconds());
-        insertStatement.bindDouble(5, entity.getLevel());
-        insertStatement.bindDouble(6, entity.getSublevel());
+        insertStatement.bindString(2, entity.getVideoId());
+        insertStatement.bindString(3, entity.getTypeOfContraction());
+        insertStatement.bindString(4, entity.getTypeOfMovement());
+        insertStatement.bindDouble(5, entity.getSeconds());
+        insertStatement.bindDouble(6, entity.getLevel());
+        insertStatement.bindDouble(7, entity.getSublevel());
         System.out.println("salvataggio esercizio effettuato");
         Cursor c = db.rawQuery("SELECT * from " + ExerciseTable.TABLE_NAME, null);
         while (c.moveToNext()) {
@@ -56,6 +58,7 @@ public class ExerciseDao implements Dao<Exercise>  {
     public void update(Exercise entity) {
         final ContentValues values = new ContentValues();
         values.put(ExerciseTable.ExerciseColumns.NAME, entity.getExerciseName());
+        values.put(ExerciseTable.ExerciseColumns.VIDEOID, entity.getExerciseName());
         values.put(ExerciseTable.ExerciseColumns.TYPEOFCONTRATION, entity.getTypeOfContraction());
         values.put(ExerciseTable.ExerciseColumns.TYPEOFMOVEMENT, entity.getTypeOfMovement());
         values.put(ExerciseTable.ExerciseColumns.SECONDS, entity.getSeconds());
@@ -80,7 +83,7 @@ public class ExerciseDao implements Dao<Exercise>  {
     public Exercise get(long id) {
         Exercise exercise = null;
         Cursor c = db.query(ExerciseTable.TABLE_NAME, new String[]{
-                BaseColumns._ID, ExerciseTable.ExerciseColumns.NAME, ExerciseTable.ExerciseColumns.TYPEOFCONTRATION, ExerciseTable.ExerciseColumns.TYPEOFMOVEMENT, ExerciseTable.ExerciseColumns.SECONDS,
+                BaseColumns._ID, ExerciseTable.ExerciseColumns.NAME, ExerciseTable.ExerciseColumns.VIDEOID, ExerciseTable.ExerciseColumns.TYPEOFCONTRATION, ExerciseTable.ExerciseColumns.TYPEOFMOVEMENT, ExerciseTable.ExerciseColumns.SECONDS,
                 ExerciseTable.ExerciseColumns.LEVEL, ExerciseTable.ExerciseColumns.SUBLEVEL}, BaseColumns._ID + " = ?", new String[]{String.valueOf(id)}, null, null, null, "1");
         if (c.moveToFirst()) {
             exercise = this.buildExerciseFromCursor(c);
@@ -97,7 +100,7 @@ public class ExerciseDao implements Dao<Exercise>  {
 
         List<Exercise> list = new ArrayList<>();
         Cursor c = db.query(ExerciseTable.TABLE_NAME, new String[]{
-                BaseColumns._ID, ExerciseTable.ExerciseColumns.NAME, ExerciseTable.ExerciseColumns.TYPEOFCONTRATION, ExerciseTable.ExerciseColumns.TYPEOFMOVEMENT,
+                BaseColumns._ID, ExerciseTable.ExerciseColumns.NAME,  ExerciseTable.ExerciseColumns.VIDEOID, ExerciseTable.ExerciseColumns.TYPEOFCONTRATION, ExerciseTable.ExerciseColumns.TYPEOFMOVEMENT,
                 ExerciseTable.ExerciseColumns.SECONDS, ExerciseTable.ExerciseColumns.LEVEL, ExerciseTable.ExerciseColumns.SUBLEVEL}, null, null, null, null, ExerciseTable.ExerciseColumns.NAME, null);
 
         if (c.moveToFirst()) {
@@ -118,7 +121,7 @@ public class ExerciseDao implements Dao<Exercise>  {
     private Exercise buildExerciseFromCursor(Cursor c) {
         Exercise exercise = null;
         if (c != null) {
-            exercise = new Exercise("", "", "", 0, 0, 0);
+            exercise = new Exercise("", "", "", "", 0, 0, 0);
             exercise.setId(c.getLong(0));
             exercise.setExerciseName(c.getString(1));
             exercise.setTypeOfContraction(c.getString(2));

@@ -2,6 +2,7 @@ package com.example.nelson.caliplay.test;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,9 +29,9 @@ public class Timer extends AppCompatActivity {
     private int sets = 0;
     private int secs = 0, lastSeconds = 0;
     private CountDownTimer timer1;
-    private int msecs = 0;
+    private int msecs = 0, newMsecs = 0;
     private MediaPlayer clockTicking, racestart1, racestart2;
-    private boolean testCompleted = false;
+    private boolean testCompleted = false, exerciseCompleted = false;
     private Handler handler = new Handler();
 
     @Override
@@ -37,6 +39,7 @@ public class Timer extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.timer);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         seekBar = (CircularSeekBar) findViewById(R.id.circularSeekBar1);
         timerDisplay = (TextView) findViewById(R.id.timer);
         timerDisplay.bringToFront();
@@ -106,13 +109,22 @@ public class Timer extends AppCompatActivity {
 
         if (requestCode == 1) {
             if (resultCode == Activity.RESULT_OK) {
-                msecs = data.getIntExtra("milliseconds", 1);
+                newMsecs = data.getIntExtra("milliseconds", 1);
                 testCompleted = data.getBooleanExtra("testCompleted", false);
-                if (!testCompleted) {
+                exerciseCompleted = data.getBooleanExtra("exerciseCompleted", false);
+                if (exerciseCompleted) {
+                    secs = newMsecs/1000;
+                    Intent result = new Intent();
+                    result.putExtra("seconds", secs);
+                    result.putExtra("exerciseCompleted", exerciseCompleted);
+                    setResult(Activity.RESULT_OK, result);
+                    finish();
+
+                } else if (!testCompleted) {
                     openTimer2(PAUSE);
                 } else {
                     Intent result = new Intent();
-                    result.putExtra("seconds", msecs / 1000);
+                    result.putExtra("seconds", newMsecs / 1000);
                     setResult(Activity.RESULT_OK, result);
                     finish();
                 }
@@ -157,8 +169,8 @@ public class Timer extends AppCompatActivity {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        timerDisplay.setText("" + msecs/1000);
-                        openTimer(msecs);
+                        timerDisplay.setText("" + newMsecs/1000);
+                        openTimer(newMsecs);
                         timer1.start();
                     }
                 },1000);
@@ -175,6 +187,8 @@ public class Timer extends AppCompatActivity {
             timer1.cancel();
         }
     }
+
+
 }
 
 

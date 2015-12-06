@@ -14,6 +14,7 @@ public class ExerciseTable {
 
     public static class ExerciseColumns implements BaseColumns {
         public static final String NAME = "name";
+        public static final String VIDEOID = "videoId";
         public static final String TYPEOFCONTRATION = "typeOfContration";
         public static final String TYPEOFMOVEMENT = "typeOfMovement";
         public static final String SECONDS = "seconds";
@@ -26,6 +27,7 @@ public class ExerciseTable {
         sb.append("CREATE TABLE " + ExerciseTable.TABLE_NAME + " (");
         sb.append(BaseColumns._ID + " INTEGER PRIMARY KEY, ");
         sb.append(ExerciseColumns.NAME + " TEXT, ");
+        sb.append(ExerciseColumns.VIDEOID + " TEXT, ");
         sb.append(ExerciseColumns.TYPEOFCONTRATION + " TEXT, ");
         sb.append(ExerciseColumns.TYPEOFMOVEMENT + " TEXT, ");
         sb.append(ExerciseColumns.SECONDS + " INTEGER, ");

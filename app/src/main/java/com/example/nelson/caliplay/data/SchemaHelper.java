@@ -23,7 +23,6 @@ public class SchemaHelper extends SQLiteOpenHelper {
         this.context = context;
     }
 
-
     @Override
     public void onOpen(SQLiteDatabase db) {
         super.onOpen(db);

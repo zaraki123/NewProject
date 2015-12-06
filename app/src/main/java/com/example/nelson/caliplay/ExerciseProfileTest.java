@@ -40,18 +40,19 @@ public class ExerciseProfileTest {
 
     }
 
-    private Exercise tuckHollow1 = new Exercise("TuckHollow1", TypeOfContraction.ISOMETRIC.toString(), TypeOfMovement.CORE.toString(), 0, 1, 1);
-    private Exercise tuckHollow2 = new Exercise("TuckHollow2", TypeOfContraction.ISOMETRIC.toString(), TypeOfMovement.CORE.toString(), 0, 1, 2);
-    private Exercise tuckHollow3 = new Exercise("TuckHollow3", TypeOfContraction.ISOMETRIC.toString(), TypeOfMovement.CORE.toString(), 0, 1, 3);
-    private Exercise hollow1 = new Exercise("Hollow1", TypeOfContraction.ISOMETRIC.toString(), TypeOfMovement.CORE.toString(), 0, 2, 1);
-    private Exercise hollow2 = new Exercise("Hollow2", TypeOfContraction.ISOMETRIC.toString(), TypeOfMovement.CORE.toString(), 0, 2, 2);
-    private Exercise hollow3 = new Exercise("Hollow3", TypeOfContraction.ISOMETRIC.toString(), TypeOfMovement.CORE.toString(), 0, 2, 3);
-    private Exercise hollowPlank1 = new Exercise("HollowPlank1", TypeOfContraction.ISOMETRIC.toString(), TypeOfMovement.CORE.toString(), 0, 1, 1);
-    private Exercise hollowPlank2 = new Exercise("HolloowPlank2", TypeOfContraction.ISOMETRIC.toString(), TypeOfMovement.CORE.toString(), 0, 1, 2);
-    private Exercise hollowPlank3 = new Exercise("HollowPlank3", TypeOfContraction.ISOMETRIC.toString(), TypeOfMovement.CORE.toString(), 0, 1, 3);
-    private Exercise rowPullup1 = new Exercise("RowPullup1", TypeOfContraction.ISOMETRIC.toString(), TypeOfMovement.CORE.toString(), 0, 1, 1);
-    private Exercise rowPullup2 = new Exercise("RowPullup2", TypeOfContraction.ISOMETRIC.toString(), TypeOfMovement.CORE.toString(), 0, 1, 2);
-    private Exercise rowPullup3 = new Exercise("RowPullup3", TypeOfContraction.ISOMETRIC.toString(), TypeOfMovement.CORE.toString(), 0, 1, 3);
+
+    private Exercise tuckHollow1 = new Exercise("TuckHollow1", "6i1LsA5NDMQ", TypeOfContraction.ISOMETRIC.toString(), TypeOfMovement.CORE.toString(), 0, 1, 1);
+    private Exercise tuckHollow2 = new Exercise("TuckHollow2", "", TypeOfContraction.ISOMETRIC.toString(), TypeOfMovement.CORE.toString(), 0, 1, 2);
+    private Exercise tuckHollow3 = new Exercise("TuckHollow3", "", TypeOfContraction.ISOMETRIC.toString(), TypeOfMovement.CORE.toString(), 0, 1, 3);
+    private Exercise hollow1 = new Exercise("Hollow1", "", TypeOfContraction.ISOMETRIC.toString(), TypeOfMovement.CORE.toString(), 0, 2, 1);
+    private Exercise hollow2 = new Exercise("Hollow2", "", TypeOfContraction.ISOMETRIC.toString(), TypeOfMovement.CORE.toString(), 0, 2, 2);
+    private Exercise hollow3 = new Exercise("Hollow3", "", TypeOfContraction.ISOMETRIC.toString(), TypeOfMovement.CORE.toString(), 0, 2, 3);
+    private Exercise hollowPlank1 = new Exercise("HollowPlank1", "", TypeOfContraction.ISOMETRIC.toString(), TypeOfMovement.PUSHING.toString(), 0, 1, 1);
+    private Exercise hollowPlank2 = new Exercise("HolloowPlank2", "", TypeOfContraction.ISOMETRIC.toString(), TypeOfMovement.PUSHING.toString(), 0, 1, 2);
+    private Exercise hollowPlank3 = new Exercise("HollowPlank3", "", TypeOfContraction.ISOMETRIC.toString(), TypeOfMovement.PUSHING.toString(), 0, 1, 3);
+    private Exercise rowPullup1 = new Exercise("RowPullup1", "", TypeOfContraction.DYNAMIC.toString(), TypeOfMovement.PULLING.toString(), 0, 1, 1);
+    private Exercise rowPullup2 = new Exercise("RowPullup2", "", TypeOfContraction.DYNAMIC.toString(), TypeOfMovement.PULLING.toString(), 0, 1, 2);
+    private Exercise rowPullup3 = new Exercise("RowPullup3", "", TypeOfContraction.DYNAMIC.toString(), TypeOfMovement.PULLING.toString(), 0, 1, 3);
 
     public Exercise getTuckHollow1() {
         return tuckHollow1;
