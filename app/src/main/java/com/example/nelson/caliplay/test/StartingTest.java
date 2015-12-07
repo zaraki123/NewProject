@@ -24,17 +24,19 @@ import java.util.ArrayList;
 public class StartingTest extends AppCompatActivity {
 
     private MyApplication app;
-    private int msecs = 30000;
+    private int msecs = 41000;
     private int secs = 0;
-    private int exerciseSelected = 0;
+    private int exerciseLevel = 1;
     private TextView result, nextLevel;
     private Button next;
+    private String typeOfMovement;
     private ExerciseProfileTest exerciseProfileTest = new ExerciseProfileTest();
     private ArrayList<Exercise> coreExerciseList = new ArrayList<>();
     private ArrayList<Exercise> pullExerciseList = new ArrayList<>();
+    private ArrayList<Exercise> pushExerciseList = new ArrayList<>();
+    private ArrayList<Exercise> exerciseList = new ArrayList<>();
     private boolean exerciseCompleted = false, testCompleted = false;
     private MediaPlayer exerciseCompletedSound;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +51,7 @@ public class StartingTest extends AppCompatActivity {
         exerciseCompletedSound = MediaPlayer.create(this, R.raw.tadaaa);
         coreExerciseInitialization();
         pullExerciseInitialization();
+        pushExerciseInitialization();
     }
 
     public void start(View view) {
@@ -56,23 +59,26 @@ public class StartingTest extends AppCompatActivity {
         switch (view.getId()) {
 
             case R.id.startCoreTest:
-                startVideo(coreExerciseList.get(exerciseSelected).getVideoId());
+                startVideo(coreExerciseList, exerciseLevel-1);
                 break;
 
             case R.id.startPullTest:
+                startVideo(pullExerciseList, exerciseLevel-1);
                 break;
 
             case R.id.startPushTest:
+                startVideo(pushExerciseList, exerciseLevel-1);
                 break;
 
 
         }
     }
 
-    private void startVideo(String videoId) {
+    private void startVideo(ArrayList<Exercise> exerciseList, int exerciseLevel) {
         Intent startVideo = new Intent(this, YouTube.class);
-        startVideo.putExtra("videoId", videoId);
+        startVideo.putParcelableArrayListExtra("exerciseArrayList", exerciseList);
         startVideo.putExtra("msecs", msecs);
+        startVideo.putExtra("exerciseLevel", exerciseLevel);
         if (startVideo.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(startVideo, 1);
         }
@@ -85,19 +91,19 @@ public class StartingTest extends AppCompatActivity {
         if (requestCode == 1) {
             if (resultCode == Activity.RESULT_OK) {
                 secs = data.getIntExtra("seconds", 1);
-                exerciseCompleted = data.getBooleanExtra("exerciseCompleted", false);
+                exerciseList = data.getParcelableArrayListExtra("exerciseArrayList");
+                exerciseCompleted = (exerciseList.get(exerciseLevel-1).getCompleted() != 0);
                 testCompleted = data.getBooleanExtra("testCompleted", false);
                 result.setText(String.valueOf(secs));
                 if (exerciseCompleted) {
                     next.setVisibility(Button.VISIBLE);
                     nextLevel.setVisibility(Button.VISIBLE);
                     exerciseCompletedSound.start();
-                    exerciseSelected++;
-                    startVideo(coreExerciseList.get(exerciseSelected).getVideoId());
+                    typeOfMovement = exerciseList.get(exerciseLevel-1).getTypeOfMovement();
+                    exerciseLevel++;
+
                 } else if (testCompleted) {
-                    app.getDataManager().saveExercise(coreExerciseList.get(exerciseSelected));
-
-
+                    app.getDataManager().saveExercise(coreExerciseList.get(exerciseLevel -1));
                 }
                 if (resultCode == Activity.RESULT_CANCELED) {
                     Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_SHORT).show();//Write your code if there's no result
@@ -116,12 +122,26 @@ public class StartingTest extends AppCompatActivity {
 
     private void pullExerciseInitialization() {
         pullExerciseList.add(exerciseProfileTest.getRowPullup1());
-        pullExerciseList.add(exerciseProfileTest.getRowPullup2());
-        pullExerciseList.add(exerciseProfileTest.getRowPullup3());
+    }
 
+    private void pushExerciseInitialization() {
+        pushExerciseList.add(exerciseProfileTest.getHollowPlank1());
     }
 
     public void next(View view) {
 
+            switch (typeOfMovement) {
+                case "Core":
+                    startVideo(coreExerciseList, exerciseLevel - 1);
+                    break;
+                case "Pulling":
+                    startVideo(pullExerciseList, exerciseLevel - 1);
+                    break;
+                case "Pushing":
+                    startVideo(pushExerciseList, exerciseLevel - 1);
+                    break;
+
+            }
     }
+
 }

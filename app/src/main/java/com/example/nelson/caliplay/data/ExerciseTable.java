@@ -19,7 +19,7 @@ public class ExerciseTable {
         public static final String TYPEOFMOVEMENT = "typeOfMovement";
         public static final String SECONDS = "seconds";
         public static final String LEVEL = "level";
-        public static final String SUBLEVEL = "sublevel";
+        public static final String COMPLETED = "completed";
     }
 
     public static void onCreate(SQLiteDatabase db) {
@@ -32,7 +32,7 @@ public class ExerciseTable {
         sb.append(ExerciseColumns.TYPEOFMOVEMENT + " TEXT, ");
         sb.append(ExerciseColumns.SECONDS + " INTEGER, ");
         sb.append(ExerciseColumns.LEVEL + " INTEGER, ");
-        sb.append(ExerciseColumns.SUBLEVEL + " INTEGER ");
+        sb.append(ExerciseColumns.COMPLETED + " INTEGER ");
         sb.append(");");
         db.execSQL(sb.toString());
     }

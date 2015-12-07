@@ -8,15 +8,18 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.nelson.caliplay.R;
+import com.example.nelson.caliplay.model.Exercise;
+
+import java.util.ArrayList;
 
 /**
  * Created by Zaraki on 01/12/2015.
  */
 public class TestResult extends AppCompatActivity {
 
-    private static final int MAX_SETS = 5;
-    private int secs = 0;
-    private boolean testComplete = false, exerciseCompleted = false;
+    private int secs = 0, exerciseLevel = 0;
+    private boolean testComplete = false;
+    private ArrayList<Exercise> exerciseList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +27,8 @@ public class TestResult extends AppCompatActivity {
         setContentView(R.layout.level_test);
         Bundle extras = getIntent().getExtras();
         secs = extras.getInt("result");
+        exerciseList = extras.getParcelableArrayList("exerciseArrayList");
+        exerciseLevel = extras.getInt("exerciseLevel");
 
     }
 
@@ -32,14 +37,14 @@ public class TestResult extends AppCompatActivity {
             case R.id.very_easy:
 
                 if (secs >= 40) {
-                    exerciseCompleted = true;
-                    goBack(secs, testComplete, exerciseCompleted);
+                    exerciseList.get(exerciseLevel).setCompleted(1);
+                    goBack(secs, testComplete);
                 } else if (secs <= 10) {
                     secs *= 2;
-                    goBack(secs, testComplete, exerciseCompleted);
+                    goBack(secs, testComplete);
                 } else {
                     secs *= 1.5;
-                    goBack(secs, testComplete, exerciseCompleted);
+                    goBack(secs, testComplete);
                 }
 
                 break;
@@ -47,14 +52,14 @@ public class TestResult extends AppCompatActivity {
             case R.id.easy:
 
                 if (secs >= 40) {
-                    exerciseCompleted = true;
-                    goBack(secs, testComplete, exerciseCompleted);
+                    exerciseList.get(exerciseLevel).setCompleted(1);
+                    goBack(secs, testComplete);
                 } else if (secs <= 20) {
                     secs *= 1.5;
-                    goBack(secs, testComplete, exerciseCompleted);
+                    goBack(secs, testComplete);
                 } else {
                     secs *= 1.25;
-                    goBack(secs, testComplete, exerciseCompleted);
+                    goBack(secs, testComplete);
                 }
 
                 break;
@@ -62,16 +67,16 @@ public class TestResult extends AppCompatActivity {
             case R.id.hard:
 
                 if (secs >= 40) {
-                    exerciseCompleted = true;
-                    goBack(secs, testComplete, exerciseCompleted);
+                    exerciseList.get(exerciseLevel).setCompleted(1);
+                    goBack(secs, testComplete);
                 } else if (secs >= 20) {
                     secs *= 0.8;
                     testComplete = true;
-                    goBack(secs, testComplete, exerciseCompleted);
+                    goBack(secs, testComplete);
                 } else {
                     secs *= 0.6;
                     testComplete = true;
-                    goBack(secs, testComplete, exerciseCompleted);
+                    goBack(secs, testComplete);
                 }
 
             case R.id.impossible:
@@ -79,7 +84,7 @@ public class TestResult extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "it's better to change exercise", Toast.LENGTH_SHORT).show();
                 } else {
                     secs *= 0.75;
-                    goBack(secs, testComplete, exerciseCompleted);
+                    goBack(secs, testComplete);
                 }
 
         }
@@ -87,13 +92,13 @@ public class TestResult extends AppCompatActivity {
     }
 
 
-    private void goBack(int seconds, boolean testCompleted, boolean exerciseCompleted) {
+    private void goBack(int seconds, boolean testCompleted) {
         seconds = seconds * 1000;
-        Intent send_mecs = new Intent();
-        send_mecs.putExtra("milliseconds", seconds);
-        send_mecs.putExtra("testCompleted", testCompleted);
-        send_mecs.putExtra("exerciseCompleted", exerciseCompleted);
-        setResult(Activity.RESULT_OK, send_mecs);
+        Intent result = new Intent();
+        result.putExtra("milliseconds", seconds);
+        result.putExtra("testCompleted", testCompleted);
+        result.putParcelableArrayListExtra("exerciseArrayList", exerciseList);
+        setResult(Activity.RESULT_OK, result);
         finish();
     }
 

@@ -1,26 +1,28 @@
 package com.example.nelson.caliplay.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by Zaraki on 03/12/2015.
  */
-public class Exercise extends ModelBase {
+public class Exercise extends ModelBase implements Parcelable {
 
     private String name, typeOfContraction, typeOfMovement, videoId;
     private int seconds, level, sublevel;
+    private int completed = 0;
 
-    public Exercise(String name, String videoId, String typeOfContraction, String typeOfMovement, int seconds, int level, int sublevel) {
+    public Exercise(String name, String videoId, String typeOfContraction, String typeOfMovement, int seconds, int level, int completed) {
         this.name = name;
         this.videoId = videoId;
         this.typeOfContraction = typeOfContraction;
         this.typeOfMovement = typeOfMovement;
         this.seconds = seconds;
         this.level = level;
-        this.sublevel = sublevel;
+        this.completed = completed;
     }
 
-
-
-    public String getExerciseName() {
+       public String getExerciseName() {
         return name;
     }
 
@@ -76,11 +78,51 @@ public class Exercise extends ModelBase {
         this.name = name;
     }
 
-    public int getSublevel() {
-        return sublevel;
+    public int getCompleted() {
+        return completed;
     }
 
-    public void setSublevel(int sublevel) {
-        this.sublevel = sublevel;
+    public void setCompleted(int completed) {
+        this.completed = completed;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+
+        dest.writeString(name);
+        dest.writeString(typeOfContraction);
+        dest.writeString(typeOfMovement);
+        dest.writeString(videoId);
+        dest.writeInt(seconds);
+        dest.writeInt(level);
+        dest.writeInt(completed);
+
+    }
+
+    public static final Parcelable.Creator<Exercise> CREATOR
+            = new Parcelable.Creator<Exercise>() {
+        public Exercise createFromParcel(Parcel in) {
+            return  new Exercise(in);
+        }
+
+        public Exercise[] newArray(int size) {
+            return new Exercise[size];
+        }
+
+    };
+
+    public Exercise (Parcel in) {
+        name = in.readString();
+        typeOfContraction = in.readString();
+        typeOfMovement = in.readString();
+        videoId = in.readString();
+        seconds = in.readInt();
+        level = in.readInt();
+        completed = in.readInt();
     }
 }

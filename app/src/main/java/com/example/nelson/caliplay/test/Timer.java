@@ -15,7 +15,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.nelson.caliplay.CircularSeekBar;
+import com.example.nelson.caliplay.ExerciseProfileTest;
 import com.example.nelson.caliplay.R;
+import com.example.nelson.caliplay.model.Exercise;
+
+import java.util.ArrayList;
 
 /**
  * Created by Zaraki on 01/12/2015.
@@ -26,12 +30,12 @@ public class Timer extends AppCompatActivity {
     private TextView timerDisplay;
     private Color color;
     private CircularSeekBar seekBar;
-    private int sets = 0;
-    private int secs = 0, lastSeconds = 0;
+    private int secs = 0, lastSeconds = 0, exerciseLevel = 0;
     private CountDownTimer timer1;
     private int msecs = 0, newMsecs = 0;
     private MediaPlayer clockTicking, racestart1, racestart2;
     private boolean testCompleted = false, exerciseCompleted = false;
+    private ArrayList<Exercise> exerciseList;
     private Handler handler = new Handler();
 
     @Override
@@ -48,7 +52,9 @@ public class Timer extends AppCompatActivity {
         racestart2 = MediaPlayer.create(this, R.raw.race_start2);
 
         Bundle extras = getIntent().getExtras();
+        exerciseList = extras.getParcelableArrayList("exerciseArrayList");
         msecs = extras.getInt("msecs");
+        exerciseLevel = extras.getInt("exerciseLevel");
         timerDisplay.setText("" + msecs/1000);
     }
 
@@ -85,6 +91,7 @@ public class Timer extends AppCompatActivity {
                     @Override
                     public void run() {
                         Intent result = new Intent(getApplicationContext(), TestResult.class);
+                        result.putParcelableArrayListExtra("exerciseArrayList", exerciseList);
                         result.putExtra("result", secs);
                         if (result.resolveActivity(getPackageManager()) != null) {
                             seekBar.setProgress(0);
@@ -111,12 +118,14 @@ public class Timer extends AppCompatActivity {
             if (resultCode == Activity.RESULT_OK) {
                 newMsecs = data.getIntExtra("milliseconds", 1);
                 testCompleted = data.getBooleanExtra("testCompleted", false);
-                exerciseCompleted = data.getBooleanExtra("exerciseCompleted", false);
+                exerciseList = data.getParcelableArrayListExtra("exerciseArrayList");
+                exerciseCompleted = (exerciseList.get(exerciseLevel).getCompleted() != 0);
+
                 if (exerciseCompleted) {
                     secs = newMsecs/1000;
                     Intent result = new Intent();
                     result.putExtra("seconds", secs);
-                    result.putExtra("exerciseCompleted", exerciseCompleted);
+                    result.putParcelableArrayListExtra("exerciseArrayList", exerciseList);
                     setResult(Activity.RESULT_OK, result);
                     finish();
 
@@ -127,7 +136,7 @@ public class Timer extends AppCompatActivity {
                     Intent result = new Intent();
                     result.putExtra("seconds", secs);
                     result.putExtra("testCompleted", testCompleted);
-                    result.putExtra("exerciseCompleted", exerciseCompleted);
+                    result.putParcelableArrayListExtra("exerciseArrayList", exerciseList);
                     setResult(Activity.RESULT_OK, result);
                     finish();
                 }

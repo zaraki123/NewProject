@@ -1,11 +1,29 @@
 package com.example.nelson.caliplay;
 
+import android.os.Parcel;
+
 import com.example.nelson.caliplay.model.Exercise;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Zaraki on 03/12/2015.
  */
 public class ExerciseProfileTest {
+
+    private Exercise tuckHollow1 = new Exercise("TuckHollow1", "6i1LsA5NDMQ", TypeOfContraction.ISOMETRIC.toString(), TypeOfMovement.CORE.toString(), 0, 1, 0);
+    private Exercise tuckHollow2 = new Exercise("TuckHollow2", "l6s1F0Xj0wk", TypeOfContraction.ISOMETRIC.toString(), TypeOfMovement.CORE.toString(), 0, 2, 0);
+    private Exercise tuckHollow3 = new Exercise("TuckHollow3", "", TypeOfContraction.ISOMETRIC.toString(), TypeOfMovement.CORE.toString(), 0, 3, 0);
+    private Exercise hollow1 = new Exercise("Hollow1", "", TypeOfContraction.ISOMETRIC.toString(), TypeOfMovement.CORE.toString(), 0, 4, 0);
+    private Exercise hollow2 = new Exercise("Hollow2", "", TypeOfContraction.ISOMETRIC.toString(), TypeOfMovement.CORE.toString(), 0, 5, 0);
+    private Exercise hollow3 = new Exercise("Hollow3", "", TypeOfContraction.ISOMETRIC.toString(), TypeOfMovement.CORE.toString(), 0, 6, 0);
+    private Exercise hollowPlank1 = new Exercise("HollowPlank1", "", TypeOfContraction.ISOMETRIC.toString(), TypeOfMovement.PUSHING.toString(), 0, 1, 0);
+    private Exercise hollowPlank2 = new Exercise("HolloowPlank2", "", TypeOfContraction.ISOMETRIC.toString(), TypeOfMovement.PUSHING.toString(), 0, 1, 0);
+    private Exercise hollowPlank3 = new Exercise("HollowPlank3", "", TypeOfContraction.ISOMETRIC.toString(), TypeOfMovement.PUSHING.toString(), 0, 1, 0);
+    private Exercise rowPullup1 = new Exercise("RowPullup1", "", TypeOfContraction.DYNAMIC.toString(), TypeOfMovement.PULLING.toString(), 0, 1, 0);
+    private Exercise rowPullup2 = new Exercise("RowPullup2", "", TypeOfContraction.DYNAMIC.toString(), TypeOfMovement.PULLING.toString(), 0, 1, 0);
+    private Exercise rowPullup3 = new Exercise("RowPullup3", "", TypeOfContraction.DYNAMIC.toString(), TypeOfMovement.PULLING.toString(), 0, 1, 0);
 
     private enum TypeOfContraction {
         DYNAMIC("Dynamic"),
@@ -40,19 +58,6 @@ public class ExerciseProfileTest {
 
     }
 
-
-    private Exercise tuckHollow1 = new Exercise("TuckHollow1", "6i1LsA5NDMQ", TypeOfContraction.ISOMETRIC.toString(), TypeOfMovement.CORE.toString(), 0, 1, 1);
-    private Exercise tuckHollow2 = new Exercise("TuckHollow2", "l6s1F0Xj0wk", TypeOfContraction.ISOMETRIC.toString(), TypeOfMovement.CORE.toString(), 0, 1, 2);
-    private Exercise tuckHollow3 = new Exercise("TuckHollow3", "", TypeOfContraction.ISOMETRIC.toString(), TypeOfMovement.CORE.toString(), 0, 1, 3);
-    private Exercise hollow1 = new Exercise("Hollow1", "", TypeOfContraction.ISOMETRIC.toString(), TypeOfMovement.CORE.toString(), 0, 2, 1);
-    private Exercise hollow2 = new Exercise("Hollow2", "", TypeOfContraction.ISOMETRIC.toString(), TypeOfMovement.CORE.toString(), 0, 2, 2);
-    private Exercise hollow3 = new Exercise("Hollow3", "", TypeOfContraction.ISOMETRIC.toString(), TypeOfMovement.CORE.toString(), 0, 2, 3);
-    private Exercise hollowPlank1 = new Exercise("HollowPlank1", "", TypeOfContraction.ISOMETRIC.toString(), TypeOfMovement.PUSHING.toString(), 0, 1, 1);
-    private Exercise hollowPlank2 = new Exercise("HolloowPlank2", "", TypeOfContraction.ISOMETRIC.toString(), TypeOfMovement.PUSHING.toString(), 0, 1, 2);
-    private Exercise hollowPlank3 = new Exercise("HollowPlank3", "", TypeOfContraction.ISOMETRIC.toString(), TypeOfMovement.PUSHING.toString(), 0, 1, 3);
-    private Exercise rowPullup1 = new Exercise("RowPullup1", "", TypeOfContraction.DYNAMIC.toString(), TypeOfMovement.PULLING.toString(), 0, 1, 1);
-    private Exercise rowPullup2 = new Exercise("RowPullup2", "", TypeOfContraction.DYNAMIC.toString(), TypeOfMovement.PULLING.toString(), 0, 1, 2);
-    private Exercise rowPullup3 = new Exercise("RowPullup3", "", TypeOfContraction.DYNAMIC.toString(), TypeOfMovement.PULLING.toString(), 0, 1, 3);
 
     public Exercise getTuckHollow1() {
         return tuckHollow1;

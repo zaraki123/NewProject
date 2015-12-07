@@ -6,11 +6,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.nelson.caliplay.model.Exercise;
 import com.example.nelson.caliplay.test.Timer;
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
+
+import java.util.ArrayList;
 
 /**
  * Created by Zaraki on 05/12/2015.
@@ -19,9 +22,9 @@ public class YouTube extends YouTubeBaseActivity implements YouTubePlayer.OnInit
 
     private static final int RECOVERY_REQUEST = 1;
     private YouTubePlayerView youTubeView;
-    private String videoID;
-    private int msecs = 0, secs = 0;
-    private boolean exerciseCompleted = false, testCompleted = false;
+    private int msecs = 0, secs = 0, exerciseLevel = 0;
+    private boolean testCompleted = false;
+    private ArrayList<Exercise> exerciseList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,14 +34,15 @@ public class YouTube extends YouTubeBaseActivity implements YouTubePlayer.OnInit
         youTubeView = (YouTubePlayerView) findViewById(R.id.youtube_view);
         youTubeView.initialize(Constants.YOUTUBE_API_KEY, this);
         Bundle extras = getIntent().getExtras();
-        videoID = extras.getString("videoId");
         msecs = extras.getInt("msecs");
+        exerciseList = extras.getParcelableArrayList("exerciseArrayList");
+        exerciseLevel = extras.getInt("exerciseLevel");
     }
 
     @Override
     public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer player, boolean wasRestored) {
         if (!wasRestored) {
-            player.cueVideo(videoID);
+            player.cueVideo(exerciseList.get(exerciseLevel).getVideoId());
         }
     }
 
@@ -62,12 +66,10 @@ public class YouTube extends YouTubeBaseActivity implements YouTubePlayer.OnInit
             if (resultCode == Activity.RESULT_OK) {
 
                 secs = data.getIntExtra("seconds", 1);
-                exerciseCompleted = data.getBooleanExtra("exerciseCompleted", false);
-                testCompleted = data.getBooleanExtra("testCompleted", false);
+                exerciseList = data.getParcelableArrayListExtra("exerciseArrayList");
                 Intent result = new Intent();
                 result.putExtra("seconds", secs);
-                result.putExtra("exerciseCompleted", exerciseCompleted);
-                result.putExtra("testCompleted", testCompleted);
+                result.putParcelableArrayListExtra("exerciseArrayList", exerciseList);
                 setResult(Activity.RESULT_OK, result);
                 finish();
 
@@ -84,7 +86,9 @@ public class YouTube extends YouTubeBaseActivity implements YouTubePlayer.OnInit
 
     public void startTimer(View view) {
         Intent startTimer = new Intent(this, Timer.class);
+        startTimer.putParcelableArrayListExtra("exerciseArrayList", exerciseList);
         startTimer.putExtra("msecs", msecs);
+        startTimer.putExtra("exerciseLevel", exerciseLevel);
         if (startTimer.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(startTimer, 1);
         }
