@@ -2,12 +2,13 @@ package com.example.nelson.caliplay.test;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,9 +29,9 @@ public class StartingTest extends AppCompatActivity {
     private MyApplication app;
     private int secs = 10, reps = 7;
     private int exerciseLevel = 1;
-    private TextView result, test;
-    private Button coreTest, pullTest, pushTest, squatTest, calfTest, next;
-    private String typeOfMovement;
+    private ImageView checkedCore,  checkedPull, checkedPush,  checkedSquat,  checkedCalf;
+    private ImageButton coreTest, pullTest, pushTest, squatTest, calfTest;
+    private TextView coreLevel, pullLevel, pushLevel, squatLevel, calfLevel;
     private ExerciseProfileTest exerciseProfileTest = new ExerciseProfileTest();
     private ArrayList<Exercise> coreExerciseList = new ArrayList<>();
     private ArrayList<Exercise> pullExerciseList = new ArrayList<>();
@@ -45,18 +46,33 @@ public class StartingTest extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.starting_test);
-        result = (TextView) findViewById(R.id.resultTest);
         app = (MyApplication) getApplication();
-        test = (TextView) findViewById(R.id.test);
-        test.setVisibility(View.GONE);
-        coreTest = (Button) findViewById(R.id.startCoreTest);
-        pullTest = (Button) findViewById(R.id.startPullTest);
-        pushTest = (Button) findViewById(R.id.startPushTest);
-        squatTest = (Button) findViewById(R.id.startSquatTest);
-        calfTest = (Button) findViewById(R.id.startCalfTest);
-        next = (Button) findViewById(R.id.next);
-        next.setVisibility(Button.GONE);
+
+        // Imageviews to indicate the test is completed
+        checkedCore = (ImageView) findViewById(R.id.checkCore);
+        checkedCore.setVisibility(View.GONE);
+        checkedPull = (ImageView) findViewById(R.id.checkPull);
+        checkedPull.setVisibility(View.GONE);
+        checkedPush = (ImageView) findViewById(R.id.checkPush);
+        checkedPush.setVisibility(View.GONE);
+        checkedSquat = (ImageView) findViewById(R.id.checkSquat);
+        checkedSquat.setVisibility(View.GONE);
+        checkedCalf = (ImageView) findViewById(R.id.checkCalf);
+        checkedCalf.setVisibility(View.GONE);
+
+        coreTest = (ImageButton) findViewById(R.id.startCoreTest);
+        pullTest = (ImageButton) findViewById(R.id.startPullTest);
+        pushTest = (ImageButton) findViewById(R.id.startPushTest);
+        squatTest = (ImageButton) findViewById(R.id.startSquatTest);
+        calfTest = (ImageButton) findViewById(R.id.startCalfTest);
+
+        // Text level
+        coreLevel = (TextView) findViewById(R.id.coreTestResult);
+
+        // Sound of test complete
         exerciseCompletedSound = MediaPlayer.create(this, R.raw.tadaaa);
+
+        // Exercise initialization
         coreExerciseInitialization();
         pullExerciseInitialization();
         pushExerciseInitialization();
@@ -121,19 +137,17 @@ public class StartingTest extends AppCompatActivity {
                 exerciseLevel = data.getIntExtra("exerciseLevel", 1);
                 testCompleted = data.getBooleanExtra("testCompleted", false);
                 exerciseList = data.getParcelableArrayListExtra("exerciseArrayList");
-                exerciseCompleted = (exerciseList.get(exerciseLevel).getCompleted() != 0);
+                if (exerciseList.get(exerciseLevel).getCompleted() == 1) {
+                    exerciseCompleted = true;
+                }
                 if (exerciseList.get(exerciseLevel).getTypeOfContraction().equals("Isometric")) {
-                    secs = data.getIntExtra("secs", 1);
-                } else {
+                    secs = data.getIntExtra("seconds", 1);
+                } else if (exerciseList.get(exerciseLevel).getTypeOfContraction().equals("Dynamic")) {
                     reps = data.getIntExtra("reps", 1);
                 }
 
                 // The exercise is complete, and the user needs to try the next level of progression
                 if (exerciseCompleted) {
-                    test.setVisibility(View.VISIBLE);
-                    test.setText(exerciseList.get(exerciseLevel).getTypeOfMovement() + " exercise completed! \nLet's try the next level");
-                    next.setVisibility(View.VISIBLE);
-                    next.setText("Next level");
                     exerciseLevel++;
                     exerciseCompletedSound.start();
                 }
@@ -142,36 +156,26 @@ public class StartingTest extends AppCompatActivity {
                 if (testCompleted) {
                     switch (exerciseList.get(exerciseLevel).getTypeOfMovement()) {
                         case "Core":
-                            coreTest.setText("COMPLETED");
-                            coreTest.setBackgroundColor(Color.parseColor("#80ff00"));
-                            test.setVisibility(View.VISIBLE);
+                            coreTest.setVisibility(View.GONE);
+                            checkedCore.setVisibility(View.VISIBLE);
+                            coreLevel.setText("Level " + exerciseLevel);
                             break;
                         case "Pulling":
-                            pullTest.setText("COMPLETED");
-                            pullTest.setBackgroundColor(Color.parseColor("#80ff00"));
-                            test.setVisibility(View.VISIBLE);
+                            pullTest.setVisibility(View.GONE);
+                            checkedPull.setVisibility(View.VISIBLE);
                             break;
                         case "Pushing":
-                            pushTest.setText("COMPLETED");
-                            pushTest.setBackgroundColor(Color.parseColor("#80ff00"));
-                            test.setVisibility(View.VISIBLE);
+                            pushTest.setVisibility(View.GONE);
+                            checkedPush.setVisibility(View.VISIBLE);
                             break;
                         case "Squat":
-                            squatTest.setText("COMPLETED");
-                            squatTest.setBackgroundColor(Color.parseColor("#80ff00"));
-                            test.setVisibility(View.VISIBLE);
+                            squatTest.setVisibility(View.GONE);
+                            checkedSquat.setVisibility(View.VISIBLE);
                             break;
                         case "Calf":
-                            calfTest.setText("COMPLETED");
-                            calfTest.setBackgroundColor(Color.parseColor("#80ff00"));
-                            test.setVisibility(View.VISIBLE);
+                            calfTest.setVisibility(View.GONE);
+                            checkedCalf.setVisibility(View.VISIBLE);
                             break;
-                    }
-                    test.setText(exerciseList.get(exerciseLevel).getTypeOfMovement() + " test completed! \nChoose another test");
-                    if (exerciseList.get(exerciseLevel).getTypeOfContraction().equals("Isometric")) {
-                        result.setText(String.valueOf(secs));
-                    } else {
-                        result.setText(String.valueOf(reps));;
                     }
 
                     exerciseCompletedSound.start();
@@ -185,9 +189,6 @@ public class StartingTest extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_SHORT).show();//Write your code if there's no result
         }
     }
-
-
-
 
     private void coreExerciseInitialization() {
         coreExerciseList.add(exerciseProfileTest.getTuckHollow1());

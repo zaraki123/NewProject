@@ -3,6 +3,7 @@ package com.example.nelson.caliplay;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -25,14 +26,15 @@ import java.util.ArrayList;
 public class Timer extends AppCompatActivity {
     private static final int PAUSE = 30000;
     private static final int READY = 6000;
-    private TextView timerDisplay, repsDisplay;
+    private TextView introduction, timerDisplay, repsDisplay;
     private CircularSeekBar seekBar;
     private int secs = 0, lastSeconds = 0, exerciseLevel = 0;
     private int reps = 0;
     private CountDownTimer timer;
     private int msecs = 0, newMsecsTimer2 = 0, newMsecsTimer1 = 0;
-    private MediaPlayer clockTicking, racestart1, racestart2;
+    private MediaPlayer clockTicking, racestart_sound_final_ticks, racestart_last_tick;
     private boolean testCompleted = false, exerciseCompleted = false;
+
     private ArrayList<Exercise> exerciseList;
     private Handler handler = new Handler();
 
@@ -42,13 +44,17 @@ public class Timer extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.timer);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        introduction = (TextView) findViewById(R.id.introduction);
         seekBar = (CircularSeekBar) findViewById(R.id.circularSeekBar1);
         timerDisplay = (TextView) findViewById(R.id.timer);
         repsDisplay = (TextView) findViewById(R.id.repsNumber);
         timerDisplay.bringToFront();
         clockTicking = MediaPlayer.create(this, R.raw.clock_ticking);
-        racestart1 = MediaPlayer.create(this, R.raw.race_start1);
-        racestart2 = MediaPlayer.create(this, R.raw.race_start2);
+        racestart_sound_final_ticks = MediaPlayer.create(this, R.raw.race_start1);
+        racestart_last_tick = MediaPlayer.create(this, R.raw.race_start_last_tic);
+
+        Typeface face = Typeface.createFromAsset(getAssets(), "font/android.ttf");
+        introduction.setTypeface(face);
 
 
         Bundle extras = getIntent().getExtras();
@@ -72,6 +78,7 @@ public class Timer extends AppCompatActivity {
     private void readyTimer(final int msecs) {
         secs = 0;
         lastSeconds = msecs / 1000;
+        introduction.setText("Wait for");
         seekBar.setProgress(secs);
         seekBar.setMax(msecs / 1000);
         seekBar.setCircleProgressColor(Color.parseColor("#80ff00"));
@@ -91,7 +98,7 @@ public class Timer extends AppCompatActivity {
                 timerDisplay.setText("" + (millisUntilFinished) / 1000);
                 seekBar.setProgress(secs);
                 if (secs >= (lastSeconds - 3) && secs < lastSeconds) {
-                    racestart1.start();
+                    racestart_sound_final_ticks.start();
                 } else {
                     clockTicking.start();
                 }
@@ -102,7 +109,7 @@ public class Timer extends AppCompatActivity {
                 secs++;
                 seekBar.setProgress(secs);
                 timerDisplay.setText("0");
-                racestart2.start();
+                racestart_last_tick.start();
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -110,7 +117,7 @@ public class Timer extends AppCompatActivity {
                         workoutTimer(newMsecsTimer1);
                         timer.start();
                     }
-                }, 1000);
+                }, 500);
 
 
             }
@@ -122,18 +129,12 @@ public class Timer extends AppCompatActivity {
     private void workoutTimer(int msecs) {
         secs = 0;
         lastSeconds = msecs / 1000;
+        introduction.setText("GOOOO");
         seekBar.setProgress(secs);
         seekBar.setMax(msecs / 1000);
         seekBar.setCircleProgressColor(Color.parseColor("#ffa600"));
         seekBar.setPointerColor(Color.parseColor("#ff3700"));
         seekBar.setPointerHaloColor(Color.parseColor("#ae0300"));
-        timerDisplay.setText("" + lastSeconds);
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println("wait for 1s");
-            }
-        }, 1000);
         timer = new CountDownTimer(msecs, 1000) {
 
             @Override
@@ -175,8 +176,10 @@ public class Timer extends AppCompatActivity {
     // Timer to rest, and after which the workoutTimer starts
     private void pauseTimer(final int msecs) {
         secs = 0;
+
         seekBar.setProgress(secs);
         lastSeconds = msecs / 1000;
+        introduction.setText("Rest for ");
         seekBar.setMax(msecs / 1000);
         seekBar.setCircleProgressColor(Color.parseColor("#00d4ff"));
         seekBar.setPointerColor(Color.parseColor("#0088ff"));
@@ -195,7 +198,7 @@ public class Timer extends AppCompatActivity {
                 timerDisplay.setText("" + (millisUntilFinished) / 1000);
                 seekBar.setProgress(secs);
                 if (secs >= (lastSeconds - 3) && secs < lastSeconds) {
-                    racestart1.start();
+                    racestart_sound_final_ticks.start();
                 } else {
                     clockTicking.start();
                 }
@@ -206,13 +209,13 @@ public class Timer extends AppCompatActivity {
                 secs++;
                 seekBar.setProgress(secs);
                 timerDisplay.setText("0");
-                racestart2.start();
+                racestart_last_tick.start();
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         timerDisplay.setText("" + newMsecsTimer2 / 1000);
-                            workoutTimer(newMsecsTimer2);
-                            timer.start();
+                        workoutTimer(newMsecsTimer2);
+                        timer.start();
 
                     }
                 }, 1000);
@@ -244,8 +247,10 @@ public class Timer extends AppCompatActivity {
                     reps = data.getIntExtra("reps", 1);
                     newMsecsTimer2 = reps * 3 * 1000;
                 }
+                if (exerciseList.get(exerciseLevel).getCompleted() == 1) {
+                    exerciseCompleted = true;
+                }
 
-                exerciseCompleted = (exerciseList.get(exerciseLevel).getCompleted() != 0);
 
                 // The isometric exercise or the test was completed, so it's time to go back
                 if ((exerciseList.get(exerciseLevel).getTypeOfContraction().equals("Isometric")) && (exerciseCompleted || testCompleted)) {
@@ -260,7 +265,7 @@ public class Timer extends AppCompatActivity {
                 }
 
                 // The dynamic exercise or the test was completed, so it's time to go back
-                if ((exerciseList.get(exerciseLevel).getTypeOfContraction().equals("Dynamic")) && (exerciseCompleted || testCompleted )) {
+                if ((exerciseList.get(exerciseLevel).getTypeOfContraction().equals("Dynamic")) && (exerciseCompleted || testCompleted)) {
                     Intent result = new Intent();
                     result.putExtra("reps", reps);
                     result.putExtra("testCompleted", testCompleted);

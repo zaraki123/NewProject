@@ -3,16 +3,17 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center">
+    android:layout_height="match_parent">
+
 
     <TextView
-        android:id="@+id/question"
+        android:id="@+id/introduction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        android:textSize="30sp"
         android:layout_centerHorizontal="true"
-        android:text="@string/strengthTest"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
@@ -24,23 +25,25 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="100sp"
         android:textColor="@color/white"
-        android:layout_marginTop="115dp"
+        android:layout_marginTop="155dp"
         />
 
 
     <com.example.nelson.caliplay.CircularSeekBar
         android:id="@+id/circularSeekBar1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_below="@id/introduction"
+        android:layout_centerHorizontal="true"
         app:use_custom_radii="true"
-        app:circle_x_radius="150dp"
-        app:circle_y_radius="150dp"
+        app:circle_x_radius="140dp"
+        app:circle_y_radius="140dp"
         app:circle_fill="@color/black"
         app:circle_color="@color/black"
-        app:circle_progress_color="@color/orange"
+        app:circle_progress_color="@color/green"
         app:circle_stroke_width="30dp"
-        app:pointer_color="@color/red"
-        app:pointer_halo_color="@color/darkRed"
+        app:pointer_color="@color/middleGreen"
+        app:pointer_halo_color="@color/darkGreen"
         app:pointer_halo_width="6dp"
         app:pointer_radius="10dp"/>
 
@@ -61,9 +64,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="30dp"
         android:onClick="start"
-        android:text="@string/startTestButton"
+        android:text="@string/startButton"
         android:layout_below="@id/circularSeekBar1"
         android:layout_centerHorizontal="true"/>
 

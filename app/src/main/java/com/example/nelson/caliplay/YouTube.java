@@ -75,6 +75,7 @@ public class YouTube extends YouTubeBaseActivity implements YouTubePlayer.OnInit
                 result.putParcelableArrayListExtra("exerciseArrayList", exerciseList);
                 result.putExtra("exerciseLevel", exerciseLevel);
                 result.putExtra("testCompleted", testCompleted);
+                secs = data.getIntExtra("seconds", 1);
                 if (exerciseList.get(exerciseLevel).getTypeOfContraction().equals("Isometric")) {
                     secs = data.getIntExtra("seconds", 1);
                     result.putExtra("seconds", secs);

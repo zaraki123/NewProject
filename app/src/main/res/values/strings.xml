@@ -1,6 +1,8 @@
 <resources>
 
     <string name="app_name">CaliPlay</string>
+
+    // UserProfile Activity
     <string name="username">Username</string>
     <string name="child"><![CDATA[< 16]]></string>
     <string name="young">16 - 30</string>
@@ -15,12 +17,17 @@
     <string name="sportPast">Did you do any sport, in the past?</string>
     <string name="chooseSport">PickSport</string>
     <string name="difficulty">How was it?</string>
+
+    // TestFeedback Activity
     <string name="very_easy">It\'s really easy! I can do much more!</string>
     <string name="easy">It\'s easy, I could do a little more</string>
     <string name="hard">It\'s a little hard, but feasible</string>
     <string name="impossible">It\'s too hard!</string>
+
+    // Timer Activity
     <string name="strengthTest">Ready to go?</string>
-    <string name="startTestButton">start</string>
+    <string name="startButton">start</string>
+
 
     <string name="rest">Take a rest!</string>
 

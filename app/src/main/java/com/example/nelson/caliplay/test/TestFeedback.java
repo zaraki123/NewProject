@@ -116,7 +116,6 @@ public class TestFeedback extends AppCompatActivity {
 
             case R.id.hard:
 
-
                 if (exerciseList.get(exerciseLevel).getTypeOfContraction().equals("Isometric") && secs <= 10) {
                     secs *= 0.8;
                     testComplete = true;
