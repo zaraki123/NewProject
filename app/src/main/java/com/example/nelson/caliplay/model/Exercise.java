@@ -9,15 +9,16 @@ import android.os.Parcelable;
 public class Exercise extends ModelBase implements Parcelable {
 
     private String name, typeOfContraction, typeOfMovement, videoId;
-    private int seconds, level, sublevel;
-    private int completed = 0;
+    private int seconds, level, sublevel, reps;
+    private int completed;
 
-    public Exercise(String name, String videoId, String typeOfContraction, String typeOfMovement, int seconds, int level, int completed) {
+    public Exercise(String name, String videoId, String typeOfContraction, String typeOfMovement, int seconds, int reps, int level, int completed) {
         this.name = name;
         this.videoId = videoId;
         this.typeOfContraction = typeOfContraction;
         this.typeOfMovement = typeOfMovement;
         this.seconds = seconds;
+        this.reps = reps;
         this.level = level;
         this.completed = completed;
     }
@@ -86,6 +87,22 @@ public class Exercise extends ModelBase implements Parcelable {
         this.completed = completed;
     }
 
+    public int getSublevel() {
+        return sublevel;
+    }
+
+    public void setSublevel(int sublevel) {
+        this.sublevel = sublevel;
+    }
+
+    public int getReps() {
+        return reps;
+    }
+
+    public void setReps(int reps) {
+        this.reps = reps;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -99,6 +116,7 @@ public class Exercise extends ModelBase implements Parcelable {
         dest.writeString(typeOfMovement);
         dest.writeString(videoId);
         dest.writeInt(seconds);
+        dest.writeInt(reps);
         dest.writeInt(level);
         dest.writeInt(completed);
 
@@ -122,6 +140,7 @@ public class Exercise extends ModelBase implements Parcelable {
         typeOfMovement = in.readString();
         videoId = in.readString();
         seconds = in.readInt();
+        reps = in.readInt();
         level = in.readInt();
         completed = in.readInt();
     }

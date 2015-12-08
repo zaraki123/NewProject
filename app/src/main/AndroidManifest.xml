@@ -51,14 +51,14 @@
 
         </activity>
 
-        <activity android:name=".test.Timer"
+        <activity android:name=".Timer"
             android:screenOrientation="locked">
 
 
 
         </activity>
 
-        <activity android:name=".test.TestResult">
+        <activity android:name=".test.TestFeedback">
 
         </activity>
 
@@ -74,6 +74,8 @@
         <activity android:name=".YouTube">
 
         </activity>
+
+
     </application>
 
 </manifest>

@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.nelson.caliplay.model.Exercise;
-import com.example.nelson.caliplay.test.Timer;
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
@@ -22,7 +21,7 @@ public class YouTube extends YouTubeBaseActivity implements YouTubePlayer.OnInit
 
     private static final int RECOVERY_REQUEST = 1;
     private YouTubePlayerView youTubeView;
-    private int msecs = 0, secs = 0, exerciseLevel = 0;
+    private int secs = 0, reps = 0, exerciseLevel = 0;
     private boolean testCompleted = false;
     private ArrayList<Exercise> exerciseList;
 
@@ -34,9 +33,14 @@ public class YouTube extends YouTubeBaseActivity implements YouTubePlayer.OnInit
         youTubeView = (YouTubePlayerView) findViewById(R.id.youtube_view);
         youTubeView.initialize(Constants.YOUTUBE_API_KEY, this);
         Bundle extras = getIntent().getExtras();
-        msecs = extras.getInt("msecs");
+
         exerciseList = extras.getParcelableArrayList("exerciseArrayList");
         exerciseLevel = extras.getInt("exerciseLevel");
+        if (exerciseList.get(exerciseLevel).getTypeOfContraction().equals("Isometric")) {
+            secs = extras.getInt("secs");
+        } else if (exerciseList.get(exerciseLevel).getTypeOfContraction().equals("Dynamic")) {
+            reps = extras.getInt("reps");
+        }
     }
 
     @Override
@@ -64,12 +68,20 @@ public class YouTube extends YouTubeBaseActivity implements YouTubePlayer.OnInit
         }
         if (requestCode == 1) {
             if (resultCode == Activity.RESULT_OK) {
-
-                secs = data.getIntExtra("seconds", 1);
-                exerciseList = data.getParcelableArrayListExtra("exerciseArrayList");
                 Intent result = new Intent();
-                result.putExtra("seconds", secs);
+                exerciseLevel = data.getIntExtra("exerciseLevel", 1);
+                testCompleted = data.getBooleanExtra("testCompleted", false);
+                exerciseList = data.getParcelableArrayListExtra("exerciseArrayList");
                 result.putParcelableArrayListExtra("exerciseArrayList", exerciseList);
+                result.putExtra("exerciseLevel", exerciseLevel);
+                result.putExtra("testCompleted", testCompleted);
+                if (exerciseList.get(exerciseLevel).getTypeOfContraction().equals("Isometric")) {
+                    secs = data.getIntExtra("seconds", 1);
+                    result.putExtra("seconds", secs);
+                } else {
+                    reps = data.getIntExtra("reps", 1);
+                    result.putExtra("reps", reps);
+                }
                 setResult(Activity.RESULT_OK, result);
                 finish();
 
@@ -87,8 +99,14 @@ public class YouTube extends YouTubeBaseActivity implements YouTubePlayer.OnInit
     public void startTimer(View view) {
         Intent startTimer = new Intent(this, Timer.class);
         startTimer.putParcelableArrayListExtra("exerciseArrayList", exerciseList);
-        startTimer.putExtra("msecs", msecs);
         startTimer.putExtra("exerciseLevel", exerciseLevel);
+        if (exerciseList.get(exerciseLevel).getTypeOfContraction().equals("Isometric")) {
+            startTimer.putExtra("secs", secs);
+        } else if (exerciseList.get(exerciseLevel).getTypeOfContraction().equals("Dynamic"))  {
+            startTimer.putExtra("reps", reps);
+        } else {
+            Toast.makeText(getApplicationContext(), "Qualcosa è andato storto", Toast.LENGTH_LONG).show();
+        }
         if (startTimer.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(startTimer, 1);
         }

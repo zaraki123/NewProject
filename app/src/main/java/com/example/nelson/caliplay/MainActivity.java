@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.example.nelson.caliplay.test.StartingTest;
-import com.example.nelson.caliplay.test.Timer;
 
 public class MainActivity extends AppCompatActivity {
 

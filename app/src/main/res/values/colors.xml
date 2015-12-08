@@ -9,6 +9,8 @@
     <color name="orange">#ffa600</color>
     <color name="red">#ff3700</color>
     <color name="green">#80ff00</color>
+    <color name="darkGreen">#00500f</color>
+    <color name="middleGreen">#4c9700</color>
     <color name="yellow">#ffee00</color>
     <color name="darkRed">#ae0300</color>
     <color name="light_blue">#00d4ff</color>

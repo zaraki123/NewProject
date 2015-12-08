@@ -18,6 +18,7 @@ public class ExerciseTable {
         public static final String TYPEOFCONTRATION = "typeOfContration";
         public static final String TYPEOFMOVEMENT = "typeOfMovement";
         public static final String SECONDS = "seconds";
+        public static final String REPS = "reps";
         public static final String LEVEL = "level";
         public static final String COMPLETED = "completed";
     }
@@ -31,6 +32,7 @@ public class ExerciseTable {
         sb.append(ExerciseColumns.TYPEOFCONTRATION + " TEXT, ");
         sb.append(ExerciseColumns.TYPEOFMOVEMENT + " TEXT, ");
         sb.append(ExerciseColumns.SECONDS + " INTEGER, ");
+        sb.append(ExerciseColumns.REPS + " INTEGER, ");
         sb.append(ExerciseColumns.LEVEL + " INTEGER, ");
         sb.append(ExerciseColumns.COMPLETED + " INTEGER ");
         sb.append(");");
