@@ -1,12 +1,10 @@
 package com.example.nelson.caliplay.test;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,7 +13,6 @@ import android.widget.Toast;
 import com.example.nelson.caliplay.ExerciseProfileTest;
 import com.example.nelson.caliplay.MyApplication;
 import com.example.nelson.caliplay.R;
-import com.example.nelson.caliplay.YouTube;
 import com.example.nelson.caliplay.model.Exercise;
 
 import java.util.ArrayList;
@@ -48,7 +45,7 @@ public class StartingTest extends AppCompatActivity {
         setContentView(R.layout.starting_test);
         app = (MyApplication) getApplication();
 
-        // Imageviews to indicate the test is completed
+    // Imageviews to indicate the test is completed
         checkedCore = (ImageView) findViewById(R.id.checkCore);
         checkedCore.setVisibility(View.GONE);
         checkedPull = (ImageView) findViewById(R.id.checkPull);
@@ -68,6 +65,10 @@ public class StartingTest extends AppCompatActivity {
 
         // Text level
         coreLevel = (TextView) findViewById(R.id.coreTestResult);
+        pullLevel = (TextView) findViewById(R.id.pullTestResult);
+        pushLevel = (TextView) findViewById(R.id.pushTestResult);
+        squatLevel = (TextView) findViewById(R.id.squatTestResult);
+        calfLevel = (TextView) findViewById(R.id.calfTestResult);
 
         // Sound of test complete
         exerciseCompletedSound = MediaPlayer.create(this, R.raw.tadaaa);
@@ -78,6 +79,13 @@ public class StartingTest extends AppCompatActivity {
         pushExerciseInitialization();
         squatExerciseInitialization();
         calfExerciseInitialziation();
+
+        // If the class is called after after a test
+
+
+
+
+
     }
 
     public void start(View view) {
@@ -86,109 +94,49 @@ public class StartingTest extends AppCompatActivity {
 
             case R.id.startCoreTest:
                 exerciseLevel = 1;
-                startVideo(coreExerciseList, exerciseLevel - 1);
+                startTestFeedBack(coreExerciseList, exerciseLevel - 1);
                 break;
 
             case R.id.startPullTest:
                 exerciseLevel = 1;
-                startVideo(pullExerciseList, exerciseLevel - 1);
+                startTestFeedBack(pullExerciseList, exerciseLevel - 1);
                 break;
 
             case R.id.startPushTest:
                 exerciseLevel = 1;
-                startVideo(pushExerciseList, exerciseLevel - 1);
+                startTestFeedBack(pushExerciseList, exerciseLevel - 1);
                 break;
 
             case R.id.startSquatTest:
                 exerciseLevel = 1;
-                startVideo(squatExerciseList, exerciseLevel - 1);
+                startTestFeedBack(squatExerciseList, exerciseLevel - 1);
                 break;
 
             case R.id.startCalfTest:
                 exerciseLevel = 1;
-                startVideo(calfExerciseList, exerciseLevel - 1);
+                startTestFeedBack(calfExerciseList, exerciseLevel - 1);
                 break;
 
         }
+
     }
 
-    private void startVideo(ArrayList<Exercise> exerciseList, int exerciseLevel) {
-        Intent startVideo = new Intent(this, YouTube.class);
+    private void startTestFeedBack(ArrayList<Exercise> exerciseList, int exerciseLevel) {
+        Intent startTestFeedback = new Intent(this, TestFeedback.class);
         if (exerciseList.get(exerciseLevel).getTypeOfContraction().equals("Isometric")) {
-            startVideo.putExtra("secs", secs);
+            startTestFeedback.putExtra("secs", secs);
         } else if (exerciseList.get(exerciseLevel).getTypeOfContraction().equals("Dynamic")) {
-            startVideo.putExtra("reps", reps);
+            startTestFeedback.putExtra("reps", reps);
         } else {
             Toast.makeText(getApplicationContext(), "Qualcosa è andato storto", Toast.LENGTH_LONG).show();
         }
-        startVideo.putParcelableArrayListExtra("exerciseArrayList", exerciseList);
-        startVideo.putExtra("exerciseLevel", exerciseLevel);
-        if (startVideo.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(startVideo, 1);
+        startTestFeedback.putParcelableArrayListExtra("exerciseArrayList", exerciseList);
+        startTestFeedback.putExtra("exerciseLevel", exerciseLevel);
+        if (startTestFeedback.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(startTestFeedback, 1);
         }
     }
 
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
-        if (requestCode == 1) {
-            if (resultCode == Activity.RESULT_OK) {
-                exerciseLevel = data.getIntExtra("exerciseLevel", 1);
-                testCompleted = data.getBooleanExtra("testCompleted", false);
-                exerciseList = data.getParcelableArrayListExtra("exerciseArrayList");
-                if (exerciseList.get(exerciseLevel).getCompleted() == 1) {
-                    exerciseCompleted = true;
-                }
-                if (exerciseList.get(exerciseLevel).getTypeOfContraction().equals("Isometric")) {
-                    secs = data.getIntExtra("seconds", 1);
-                } else if (exerciseList.get(exerciseLevel).getTypeOfContraction().equals("Dynamic")) {
-                    reps = data.getIntExtra("reps", 1);
-                }
-
-                // The exercise is complete, and the user needs to try the next level of progression
-                if (exerciseCompleted) {
-                    exerciseLevel++;
-                    exerciseCompletedSound.start();
-                }
-
-                // The test was completed, and the user can choose another one
-                if (testCompleted) {
-                    switch (exerciseList.get(exerciseLevel).getTypeOfMovement()) {
-                        case "Core":
-                            coreTest.setVisibility(View.GONE);
-                            checkedCore.setVisibility(View.VISIBLE);
-                            coreLevel.setText("Level " + exerciseLevel);
-                            break;
-                        case "Pulling":
-                            pullTest.setVisibility(View.GONE);
-                            checkedPull.setVisibility(View.VISIBLE);
-                            break;
-                        case "Pushing":
-                            pushTest.setVisibility(View.GONE);
-                            checkedPush.setVisibility(View.VISIBLE);
-                            break;
-                        case "Squat":
-                            squatTest.setVisibility(View.GONE);
-                            checkedSquat.setVisibility(View.VISIBLE);
-                            break;
-                        case "Calf":
-                            calfTest.setVisibility(View.GONE);
-                            checkedCalf.setVisibility(View.VISIBLE);
-                            break;
-                    }
-
-                    exerciseCompletedSound.start();
-                    app.getDataManager().saveExercise(coreExerciseList.get(exerciseLevel));
-                }
-
-            }
-
-        }
-        if (resultCode == Activity.RESULT_CANCELED) {
-            Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_SHORT).show();//Write your code if there's no result
-        }
-    }
 
     private void coreExerciseInitialization() {
         coreExerciseList.add(exerciseProfileTest.getTuckHollow1());
@@ -228,26 +176,93 @@ public class StartingTest extends AppCompatActivity {
 
         switch (exerciseList.get(exerciseLevel).getTypeOfMovement()) {
             case "Core":
-                startVideo(coreExerciseList, exerciseLevel - 1);
+                startTestFeedBack(coreExerciseList, exerciseLevel - 1);
                 break;
 
             case "Pulling":
-                startVideo(pullExerciseList, exerciseLevel - 1);
+                startTestFeedBack(pullExerciseList, exerciseLevel - 1);
                 break;
 
             case "Pushing":
-                startVideo(pushExerciseList, exerciseLevel - 1);
+                startTestFeedBack(pushExerciseList, exerciseLevel - 1);
                 break;
 
             case "Squat":
-                startVideo(squatExerciseList, exerciseLevel - 1);
+                startTestFeedBack(squatExerciseList, exerciseLevel - 1);
                 break;
 
             case "Calf":
-                startVideo(calfExerciseList, exerciseLevel - 1);
+                startTestFeedBack(calfExerciseList, exerciseLevel - 1);
                 break;
 
         }
     }
 
-}
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK) {
+
+                exerciseLevel = data.getIntExtra("exerciseLevel", 1);
+                testCompleted = data.getBooleanExtra("testCompleted", false);
+                exerciseList = data.getParcelableArrayListExtra("exerciseArrayList");
+                if (exerciseList.get(exerciseLevel).getCompleted() == 1) {
+                    exerciseCompleted = true;
+                }
+                if (exerciseList.get(exerciseLevel).getTypeOfContraction().equals("Isometric")) {
+                    secs = data.getIntExtra("seconds", 1);
+                } else if (exerciseList.get(exerciseLevel).getTypeOfContraction().equals("Dynamic")) {
+                    reps = data.getIntExtra("reps", 1);
+                }
+
+                // The exercise is complete, and the user needs to try the next level of progression
+                if (exerciseCompleted) {
+                    exerciseLevel++;
+                    exerciseCompletedSound.start();
+                }
+
+                // The test was completed, and the user can choose another one
+                if (testCompleted) {
+                    switch (exerciseList.get(exerciseLevel).getTypeOfMovement()) {
+                        case "Core":
+                            coreTest.setVisibility(View.GONE);
+                            checkedCore.setVisibility(View.VISIBLE);
+                            coreLevel.setText("Lev " + (exerciseLevel+1) + " " + secs + "s");
+                            break;
+                        case "Pulling":
+                            pullTest.setVisibility(View.GONE);
+                            checkedPull.setVisibility(View.VISIBLE);
+                            pullLevel.setText("Level " + (exerciseLevel+1));
+                            break;
+                        case "Pushing":
+                            pushTest.setVisibility(View.GONE);
+                            checkedPush.setVisibility(View.VISIBLE);
+                            pushLevel.setText("Level " + (exerciseLevel+1));
+                            break;
+                        case "Squat":
+                            squatTest.setVisibility(View.GONE);
+                            checkedSquat.setVisibility(View.VISIBLE);
+                            squatLevel.setText("Level " + (exerciseLevel + 1));
+                            break;
+                        case "Calf":
+                            calfTest.setVisibility(View.GONE);
+                            checkedCalf.setVisibility(View.VISIBLE);
+                            calfLevel.setText("Level " + (exerciseLevel + 1));
+                            break;
+                    }
+                    exerciseCompletedSound.start();
+                    app.getDataManager().saveExercise(exerciseList.get(exerciseLevel));
+                }
+            }
+            }
+
+            if (resultCode == RESULT_CANCELED) {
+                System.out.println("something went wrong");
+            }
+
+        }
+    }
+
+

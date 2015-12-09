@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.example.nelson.caliplay.Constants;
+import com.example.nelson.caliplay.utils.Constants;
 import com.example.nelson.caliplay.model.Exercise;
 import com.example.nelson.caliplay.model.User;
 

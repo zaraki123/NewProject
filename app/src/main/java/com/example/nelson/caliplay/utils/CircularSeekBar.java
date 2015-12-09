@@ -1,4 +1,4 @@
-package com.example.nelson.caliplay;
+package com.example.nelson.caliplay.utils;
 
 /**
  * Created by Zaraki on 01/12/2015.

@@ -1,4 +1,4 @@
-package com.example.nelson.caliplay;
+package com.example.nelson.caliplay.utils;
 
 public final class Constants {
 

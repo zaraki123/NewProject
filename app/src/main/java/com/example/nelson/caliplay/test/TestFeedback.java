@@ -1,14 +1,17 @@
 package com.example.nelson.caliplay.test;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.nelson.caliplay.R;
+import com.example.nelson.caliplay.YouTube;
 import com.example.nelson.caliplay.model.Exercise;
+import com.example.nelson.caliplay.timer.PauseTimer;
 
 import java.util.ArrayList;
 
@@ -20,11 +23,28 @@ public class TestFeedback extends AppCompatActivity {
     private int secs = 0, reps = 0, exerciseLevel = 0;
     private boolean testComplete = false;
     private ArrayList<Exercise> exerciseList;
+    private Button veryEasy, easy, hard, impossible, seeVideo;
+    private TextView question;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.test_analysis);
+        setContentView(R.layout.test_feedback);
+
+        question = (TextView) findViewById(R.id.question);
+        veryEasy = (Button) findViewById(R.id.very_easy);
+        easy = (Button) findViewById(R.id.easy);
+        hard = (Button) findViewById(R.id.hard);
+        impossible = (Button) findViewById(R.id.impossible);
+        seeVideo = (Button) findViewById(R.id.lookVideo);
+
+        veryEasy.setVisibility(View.GONE);
+        easy.setVisibility(View.GONE);
+        hard.setVisibility(View.GONE);
+        impossible.setVisibility(View.GONE);
+        question.setText("Are you ready?");
+
+        // Get everything you need from the bundle
         Bundle extras = getIntent().getExtras();
         exerciseList = extras.getParcelableArrayList("exerciseArrayList");
         exerciseLevel = extras.getInt("exerciseLevel");
@@ -32,7 +52,25 @@ public class TestFeedback extends AppCompatActivity {
         if (exerciseList.get(exerciseLevel).getTypeOfContraction().equals("Dynamic")) {
             reps = extras.getInt("reps");
         }
+
+
+
+
+
     }
+
+    public void lookVideo(View view) {
+        Intent video = new Intent(TestFeedback.this, YouTube.class);
+        video.putExtra("reps", reps);
+        video.putExtra("secs", secs);
+        video.putExtra("exerciseLevel", exerciseLevel);
+        video.putParcelableArrayListExtra("exerciseArrayList", exerciseList);
+        if (video.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(video, 1);
+        }
+
+    }
+
 
     public void result(View view) {
         switch (view.getId()) {
@@ -67,7 +105,7 @@ public class TestFeedback extends AppCompatActivity {
                     exerciseList.get(exerciseLevel).setCompleted(1);
                     feedBackIsometric(secs);
 
-                } else if (exerciseList.get(exerciseLevel).getTypeOfContraction().equals("Dynamic") && reps >= 15) {
+                } else if (exerciseList.get(exerciseLevel).getTypeOfContraction().equals("Dynamic") && reps >= 12) {
                     exerciseList.get(exerciseLevel).setCompleted(1);
                     feedBackDynamic(reps);
 
@@ -105,7 +143,7 @@ public class TestFeedback extends AppCompatActivity {
                     exerciseList.get(exerciseLevel).setCompleted(1);
                     feedBackIsometric(secs);
 
-                } else if (exerciseList.get(exerciseLevel).getTypeOfContraction().equals("Dynamic") && reps >= 15) {
+                } else if (exerciseList.get(exerciseLevel).getTypeOfContraction().equals("Dynamic") && reps >= 12) {
                     exerciseList.get(exerciseLevel).setCompleted(1);
                     feedBackDynamic(reps);
 
@@ -172,23 +210,76 @@ public class TestFeedback extends AppCompatActivity {
 
 
     private void feedBackIsometric(int seconds) {
-        Intent result = new Intent();
-        result.putExtra("milliseconds", seconds * 1000);
-        result.putExtra("testCompleted", testComplete);
-        result.putExtra("exerciseLevel", exerciseLevel);
-        result.putParcelableArrayListExtra("exerciseArrayList", exerciseList);
-        setResult(Activity.RESULT_OK, result);
-        finish();
+        if (testComplete || (seconds >= 40)) {
+            Intent result = new Intent(this, StartingTest.class);
+            result.putExtra("seconds", seconds);
+            result.putExtra("testCompleted", testComplete);
+            result.putExtra("exerciseLevel", exerciseLevel);
+            result.putParcelableArrayListExtra("exerciseArrayList", exerciseList);
+            if (result.resolveActivity(getPackageManager()) != null) {
+                setResult(RESULT_OK, result);
+                finish();
+            }
+        } else {
+            Intent result = new Intent(this, PauseTimer.class);
+            result.putExtra("seconds", seconds);
+            result.putExtra("testCompleted", testComplete);
+            result.putExtra("exerciseLevel", exerciseLevel);
+            result.putParcelableArrayListExtra("exerciseArrayList", exerciseList);
+            if (result.resolveActivity(getPackageManager()) != null) {
+                startActivity(result);
+            }
+
+        }
+
     }
 
     private void feedBackDynamic(int reps) {
-        Intent result = new Intent();
-        result.putExtra("reps", reps);
-        result.putExtra("testCompleted", testComplete);
-        result.putExtra("exerciseLevel", exerciseLevel);
-        result.putParcelableArrayListExtra("exerciseArrayList", exerciseList);
-        setResult(Activity.RESULT_OK, result);
-        finish();
+        // If test is completed or exercise is completed
+        if (testComplete || (reps >= 12)) {
+            Intent result = new Intent(TestFeedback.this, StartingTest.class);
+            result.putExtra("reps", reps);
+            result.putExtra("testCompleted", testComplete);
+            result.putExtra("exerciseLevel", exerciseLevel);
+            result.putParcelableArrayListExtra("exerciseArrayList", exerciseList);
+            if (result.resolveActivity(getPackageManager()) != null) {
+                setResult(RESULT_OK, result);
+                finish();
+            }
+        } else {
+            Intent result = new Intent(this, PauseTimer.class);
+            result.putExtra("reps", reps);
+            result.putExtra("testCompleted", testComplete);
+            result.putExtra("exerciseLevel", exerciseLevel);
+            result.putParcelableArrayListExtra("exerciseArrayList", exerciseList);
+            if (result.resolveActivity(getPackageManager()) != null) {
+                startActivity(result);
+            }
+
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK) {
+
+                question.setText("How was it?");
+                veryEasy.setVisibility(View.VISIBLE);
+                easy.setVisibility(View.VISIBLE);
+                hard.setVisibility(View.VISIBLE);
+                impossible.setVisibility(View.VISIBLE);
+                seeVideo.setVisibility(View.GONE);
+
+            } else if (resultCode == RESULT_CANCELED) {
+                finish();
+            }
+
+        }
+
+
     }
 
 
