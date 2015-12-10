@@ -3,8 +3,13 @@ package com.example.nelson.caliplay.test;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -39,13 +44,22 @@ public class StartingTest extends AppCompatActivity {
     private boolean exerciseCompleted = false, testCompleted = false;
     private MediaPlayer exerciseCompletedSound;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.starting_test);
         app = (MyApplication) getApplication();
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
 
-    // Imageviews to indicate the test is completed
+        ActionBar ab = getSupportActionBar();
+        ab.setDisplayHomeAsUpEnabled(true);
+
+
+
+        // Imageviews to indicate the test is completed
         checkedCore = (ImageView) findViewById(R.id.checkCore);
         checkedCore.setVisibility(View.GONE);
         checkedPull = (ImageView) findViewById(R.id.checkPull);
@@ -88,7 +102,7 @@ public class StartingTest extends AppCompatActivity {
 
     }
 
-    public void start(View view) {
+    public void startTest(View view) {
 
         switch (view.getId()) {
 

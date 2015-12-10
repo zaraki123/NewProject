@@ -11,7 +11,7 @@ import android.widget.Toast;
 import com.example.nelson.caliplay.R;
 import com.example.nelson.caliplay.YouTube;
 import com.example.nelson.caliplay.model.Exercise;
-import com.example.nelson.caliplay.timer.PauseTimer;
+import com.example.nelson.caliplay.timer.RestTimer;
 
 import java.util.ArrayList;
 
@@ -42,7 +42,7 @@ public class TestFeedback extends AppCompatActivity {
         easy.setVisibility(View.GONE);
         hard.setVisibility(View.GONE);
         impossible.setVisibility(View.GONE);
-        question.setText("Are you ready?");
+        question.setText("Are you ready?\n Lookthe following video");
 
         // Get everything you need from the bundle
         Bundle extras = getIntent().getExtras();
@@ -52,10 +52,6 @@ public class TestFeedback extends AppCompatActivity {
         if (exerciseList.get(exerciseLevel).getTypeOfContraction().equals("Dynamic")) {
             reps = extras.getInt("reps");
         }
-
-
-
-
 
     }
 
@@ -68,9 +64,7 @@ public class TestFeedback extends AppCompatActivity {
         if (video.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(video, 1);
         }
-
     }
-
 
     public void result(View view) {
         switch (view.getId()) {
@@ -221,7 +215,7 @@ public class TestFeedback extends AppCompatActivity {
                 finish();
             }
         } else {
-            Intent result = new Intent(this, PauseTimer.class);
+            Intent result = new Intent(this, RestTimer.class);
             result.putExtra("seconds", seconds);
             result.putExtra("testCompleted", testComplete);
             result.putExtra("exerciseLevel", exerciseLevel);
@@ -247,7 +241,7 @@ public class TestFeedback extends AppCompatActivity {
                 finish();
             }
         } else {
-            Intent result = new Intent(this, PauseTimer.class);
+            Intent result = new Intent(this, RestTimer.class);
             result.putExtra("reps", reps);
             result.putExtra("testCompleted", testComplete);
             result.putExtra("exerciseLevel", exerciseLevel);

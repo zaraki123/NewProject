@@ -10,7 +10,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
         <activity
             android:name=".MainActivity"
@@ -59,28 +59,33 @@
 
         </activity>
 
-        <activity android:name=".test.StartingTest">
+        <activity
+            android:name=".test.StartingTest"
+            android:parentActivityName=".MainActivity">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
 
         </activity>
 
 
-        <activity
-            android:name=".YouTube">
+        <activity android:name=".YouTube">
 
         </activity>
 
-        <activity
-            android:name=".timer.ReadyTimer">
+        <activity android:name=".timer.ReadyTimer"
+  >
 
         </activity>
 
-        <activity
-            android:name=".timer.WorkoutTimer">
+        <activity android:name=".timer.WorkoutTimer"
+       >
 
 
         </activity>
-        <activity
-            android:name=".timer.PauseTimer">
+        <activity android:name=".timer.RestTimer"
+           >
 
 
         </activity>

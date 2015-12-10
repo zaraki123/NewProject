@@ -30,6 +30,6 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
         android:onClick="startTimer"
-        android:background="@drawable/start" />
+        android:background="@drawable/start_workout_timer" />
 
 </LinearLayout>

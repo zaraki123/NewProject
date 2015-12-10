@@ -78,8 +78,9 @@ public class YouTube extends YouTubeBaseActivity implements YouTubePlayer.OnInit
             if (resultCode == RESULT_OK) {
                 setResult(RESULT_OK);
                 finish();
-            } else if (resultCode == RESULT_CANCELED) {
-                finish();
+            }
+            if (resultCode == RESULT_CANCELED) {
+                System.out.println("Do nothing");
             }
 
         }
