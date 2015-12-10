@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black">
+
+
+    <TextView
+        android:id="@+id/introduction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        android:textSize="25sp"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/white"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/timer"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="100sp"
+        android:textColor="@color/white"
+        android:layout_marginTop="150dp"
+        />
+
+
+    <com.example.nelson.caliplay.utils.CircularSeekBar
+        android:id="@+id/circularSeekBar1"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_below="@id/introduction"
+        android:layout_centerHorizontal="true"
+        app:use_custom_radii="true"
+        app:circle_x_radius="140dp"
+        app:circle_y_radius="140dp"
+        app:circle_fill="@color/black"
+        app:circle_color="@color/black"
+        app:circle_progress_color="@color/light_blue"
+        app:circle_stroke_width="30dp"
+        app:pointer_color="@color/middle_blue"
+        app:pointer_halo_color="@color/blue"
+        app:pointer_halo_width="6dp"
+        app:pointer_radius="10dp"/>
+
+    <TextView
+        android:id="@+id/repsNumber"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="100sp"
+        android:textColor="@color/white"
+        android:layout_below="@id/circularSeekBar1"
+        />
+
+    <ImageButton
+        android:id="@+id/startRestTimer"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:onClick="startRestTimer"
+        android:background="@drawable/start_rest_timer"
+        android:layout_below="@id/circularSeekBar1"
+        android:layout_centerHorizontal="true"/>
+
+    <ImageButton
+        android:id="@+id/restartRestTimer"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center_horizontal"
+        android:onClick="restartRestTimer"
+        android:background="@drawable/redo_rest_timer"
+        android:layout_toRightOf="@+id/startRestTimer"
+        android:layout_below="@id/circularSeekBar1"
+        android:layout_marginLeft="30dp" />
+
+    <ImageButton
+        android:id="@+id/stopRestTimer"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_below="@id/circularSeekBar1"
+        android:layout_marginRight="30dp"
+        android:layout_toLeftOf="@+id/startRestTimer"
+        android:background="@drawable/stop_rest_timer"
+        android:onClick="stopRestTimer" />
+
+</RelativeLayout>
