@@ -11,24 +11,26 @@
         android:id="@+id/introduction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="50dp"
-        android:textSize="25sp"
         android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="100dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/white"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textSize="25sp" />
 
     <TextView
         android:id="@+id/timer"
-        android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/introduction"
+        android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="103dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="100sp"
         android:textColor="@color/white"
-        android:layout_marginTop="150dp"
-        />
+        android:onClick="restTimerDisplay"
+        android:clickable="true"
+        android:textSize="100sp" />
 
 
     <com.example.nelson.caliplay.utils.CircularSeekBar
@@ -37,58 +39,68 @@
         android:layout_height="300dp"
         android:layout_below="@id/introduction"
         android:layout_centerHorizontal="true"
-        app:use_custom_radii="true"
-        app:circle_x_radius="140dp"
-        app:circle_y_radius="140dp"
-        app:circle_fill="@color/black"
+        android:layout_marginTop="20dp"
         app:circle_color="@color/black"
+        app:circle_fill="@color/black"
         app:circle_progress_color="@color/light_blue"
         app:circle_stroke_width="30dp"
+        app:circle_x_radius="140dp"
+        app:circle_y_radius="140dp"
         app:pointer_color="@color/middle_blue"
         app:pointer_halo_color="@color/blue"
         app:pointer_halo_width="6dp"
-        app:pointer_radius="10dp"/>
+        app:pointer_radius="10dp"
+        app:use_custom_radii="true" />
 
     <TextView
         android:id="@+id/repsNumber"
-        android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/circularSeekBar1"
+        android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="100sp"
         android:textColor="@color/white"
+        android:textSize="100sp" />
+
+    <ImageButton
+        android:id="@+id/startFastRestTimer"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
         android:layout_below="@id/circularSeekBar1"
-        />
+        android:layout_gravity="center_horizontal"
+        android:layout_toLeftOf="@+id/startRestTimer"
+        android:background="@drawable/fast_rest_timer"
+        android:onClick="startFastRestTimer" />
 
     <ImageButton
         android:id="@+id/startRestTimer"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:onClick="startRestTimer"
-        android:background="@drawable/start_rest_timer"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
         android:layout_below="@id/circularSeekBar1"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/start_rest_timer"
+        android:onClick="startRestTimer" />
 
     <ImageButton
         android:id="@+id/restartRestTimer"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_gravity="center_horizontal"
-        android:onClick="restartRestTimer"
-        android:background="@drawable/redo_rest_timer"
-        android:layout_toRightOf="@+id/startRestTimer"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
         android:layout_below="@id/circularSeekBar1"
-        android:layout_marginLeft="30dp" />
+        android:layout_gravity="center_horizontal"
+        android:layout_toRightOf="@+id/startRestTimer"
+        android:background="@drawable/redo_rest_timer"
+        android:onClick="restartRestTimer" />
 
     <ImageButton
         android:id="@+id/stopRestTimer"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
         android:layout_below="@id/circularSeekBar1"
-        android:layout_marginRight="30dp"
-        android:layout_toLeftOf="@+id/startRestTimer"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
         android:background="@drawable/stop_rest_timer"
         android:onClick="stopRestTimer" />
+
 
 </RelativeLayout>

@@ -20,10 +20,10 @@ import java.util.ArrayList;
  */
 public class TestFeedback extends AppCompatActivity {
 
-    private int secs = 0, reps = 0, exerciseLevel = 0;
+    private int secs = 10, reps = 7, exerciseLevel = 0;
     private boolean testComplete = false;
     private ArrayList<Exercise> exerciseList;
-    private Button veryEasy, easy, hard, impossible, seeVideo;
+    private Button veryEasy, easy, hard, impossible;
     private TextView question;
 
     @Override
@@ -36,26 +36,21 @@ public class TestFeedback extends AppCompatActivity {
         easy = (Button) findViewById(R.id.easy);
         hard = (Button) findViewById(R.id.hard);
         impossible = (Button) findViewById(R.id.impossible);
-        seeVideo = (Button) findViewById(R.id.lookVideo);
 
-        veryEasy.setVisibility(View.GONE);
-        easy.setVisibility(View.GONE);
-        hard.setVisibility(View.GONE);
-        impossible.setVisibility(View.GONE);
-        question.setText("Are you ready?\n Lookthe following video");
 
         // Get everything you need from the bundle
         Bundle extras = getIntent().getExtras();
         exerciseList = extras.getParcelableArrayList("exerciseArrayList");
         exerciseLevel = extras.getInt("exerciseLevel");
-        secs = extras.getInt("secs");
-        if (exerciseList.get(exerciseLevel).getTypeOfContraction().equals("Dynamic")) {
+        if (exerciseList.get(exerciseLevel).getTypeOfContraction().equals("Isometric")) {
+            secs = extras.getInt("secs");
+        } else if (exerciseList.get(exerciseLevel).getTypeOfContraction().equals("Dynamic")) {
             reps = extras.getInt("reps");
         }
-
+        lookVideo();
     }
 
-    public void lookVideo(View view) {
+    public void lookVideo() {
         Intent video = new Intent(TestFeedback.this, YouTube.class);
         video.putExtra("reps", reps);
         video.putExtra("secs", secs);
@@ -261,11 +256,7 @@ public class TestFeedback extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
 
                 question.setText("How was it?");
-                veryEasy.setVisibility(View.VISIBLE);
-                easy.setVisibility(View.VISIBLE);
-                hard.setVisibility(View.VISIBLE);
-                impossible.setVisibility(View.VISIBLE);
-                seeVideo.setVisibility(View.GONE);
+
 
             } else if (resultCode == RESULT_CANCELED) {
                 finish();

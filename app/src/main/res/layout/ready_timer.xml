@@ -6,6 +6,14 @@
     android:layout_height="match_parent"
     android:background="@color/black">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/black"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
     <TextView
         android:id="@+id/introduction"
@@ -13,21 +21,26 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="90dp"
+        android:text="@string/tenSeconds"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/white"
-        android:textSize="25sp" />
+        android:textSize="40sp"
+        android:textStyle="normal"/>
 
     <TextView
         android:id="@+id/timer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/introduction"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="103dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/white"
-        android:textSize="100sp" />
+        android:onClick="readyTimerDisplay"
+        android:textSize="100sp"
+        android:clickable="true"/>
 
 
     <com.example.nelson.caliplay.utils.CircularSeekBar
@@ -36,6 +49,7 @@
         android:layout_height="300dp"
         android:layout_below="@id/introduction"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
         app:circle_color="@color/black"
         app:circle_fill="@color/black"
         app:circle_progress_color="@color/green"
@@ -60,31 +74,42 @@
         android:textSize="100sp" />
 
     <ImageButton
-        android:id="@+id/stopReadyTimer"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:id="@+id/startFastReadyTimer"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
         android:layout_below="@id/circularSeekBar1"
-        android:layout_marginRight="30dp"
+        android:layout_gravity="center_horizontal"
         android:layout_toLeftOf="@+id/startWorkoutTimer"
+        android:background="@drawable/fast_ready_timer"
+        android:onClick="startFastReadyTimer" />
+
+    <ImageButton
+        android:id="@+id/stopReadyTimer"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_below="@id/circularSeekBar1"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
         android:background="@drawable/stop_ready_timer"
         android:onClick="stopReadyTimer" />
 
+
     <ImageButton
         android:id="@+id/startWorkoutTimer"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
         android:layout_below="@id/circularSeekBar1"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
         android:background="@drawable/start_ready_timer"
         android:onClick="startReadyTimer" />
 
+
     <ImageButton
         android:id="@+id/restartRestTimer"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
         android:layout_below="@id/circularSeekBar1"
-        android:layout_marginLeft="30dp"
         android:layout_toRightOf="@+id/startWorkoutTimer"
         android:background="@drawable/redo_ready_timer"
         android:onClick="restartReadyTimer" />

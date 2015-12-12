@@ -3,16 +3,13 @@ package com.example.nelson.caliplay.test;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.os.Handler;
-import android.support.v7.app.ActionBar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.Window;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.nelson.caliplay.ExerciseProfileTest;
@@ -31,9 +28,8 @@ public class StartingTest extends AppCompatActivity {
     private MyApplication app;
     private int secs = 10, reps = 7;
     private int exerciseLevel = 1;
-    private ImageView checkedCore,  checkedPull, checkedPush,  checkedSquat,  checkedCalf;
+    private ImageView checkedCore, checkedPull, checkedPush, checkedSquat, checkedCalf;
     private ImageButton coreTest, pullTest, pushTest, squatTest, calfTest;
-    private TextView coreLevel, pullLevel, pushLevel, squatLevel, calfLevel;
     private ExerciseProfileTest exerciseProfileTest = new ExerciseProfileTest();
     private ArrayList<Exercise> coreExerciseList = new ArrayList<>();
     private ArrayList<Exercise> pullExerciseList = new ArrayList<>();
@@ -43,7 +39,7 @@ public class StartingTest extends AppCompatActivity {
     private ArrayList<Exercise> exerciseList = new ArrayList<>();
     private boolean exerciseCompleted = false, testCompleted = false;
     private MediaPlayer exerciseCompletedSound;
-
+    private RelativeLayout coreRelative, pullRelative, pushRelative, squatRelative, calfRelative;
 
 
     @Override
@@ -51,25 +47,25 @@ public class StartingTest extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.starting_test);
         app = (MyApplication) getApplication();
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        setSupportActionBar(myToolbar);
-
-        ActionBar ab = getSupportActionBar();
-        ab.setDisplayHomeAsUpEnabled(true);
-
 
 
         // Imageviews to indicate the test is completed
         checkedCore = (ImageView) findViewById(R.id.checkCore);
-        checkedCore.setVisibility(View.GONE);
+        checkedCore.setVisibility(View.INVISIBLE);
         checkedPull = (ImageView) findViewById(R.id.checkPull);
-        checkedPull.setVisibility(View.GONE);
+        checkedPull.setVisibility(View.INVISIBLE);
         checkedPush = (ImageView) findViewById(R.id.checkPush);
-        checkedPush.setVisibility(View.GONE);
+        checkedPush.setVisibility(View.INVISIBLE);
         checkedSquat = (ImageView) findViewById(R.id.checkSquat);
-        checkedSquat.setVisibility(View.GONE);
+        checkedSquat.setVisibility(View.INVISIBLE);
         checkedCalf = (ImageView) findViewById(R.id.checkCalf);
-        checkedCalf.setVisibility(View.GONE);
+        checkedCalf.setVisibility(View.INVISIBLE);
+
+        coreRelative = (RelativeLayout) findViewById(R.id.relativeCore);
+        pullRelative = (RelativeLayout) findViewById(R.id.relativePull);
+        pushRelative = (RelativeLayout) findViewById(R.id.relativePush);
+        squatRelative = (RelativeLayout) findViewById(R.id.relativeSquat);
+        calfRelative = (RelativeLayout) findViewById(R.id.relativeCalf);
 
         coreTest = (ImageButton) findViewById(R.id.startCoreTest);
         pullTest = (ImageButton) findViewById(R.id.startPullTest);
@@ -77,12 +73,6 @@ public class StartingTest extends AppCompatActivity {
         squatTest = (ImageButton) findViewById(R.id.startSquatTest);
         calfTest = (ImageButton) findViewById(R.id.startCalfTest);
 
-        // Text level
-        coreLevel = (TextView) findViewById(R.id.coreTestResult);
-        pullLevel = (TextView) findViewById(R.id.pullTestResult);
-        pushLevel = (TextView) findViewById(R.id.pushTestResult);
-        squatLevel = (TextView) findViewById(R.id.squatTestResult);
-        calfLevel = (TextView) findViewById(R.id.calfTestResult);
 
         // Sound of test complete
         exerciseCompletedSound = MediaPlayer.create(this, R.raw.tadaaa);
@@ -94,39 +84,40 @@ public class StartingTest extends AppCompatActivity {
         squatExerciseInitialization();
         calfExerciseInitialziation();
 
-        // If the class is called after after a test
-
-
-
-
-
     }
+
+
 
     public void startTest(View view) {
 
         switch (view.getId()) {
 
             case R.id.startCoreTest:
+            case R.id.relativeCore:
                 exerciseLevel = 1;
                 startTestFeedBack(coreExerciseList, exerciseLevel - 1);
                 break;
 
             case R.id.startPullTest:
+            case R.id.relativePull:
                 exerciseLevel = 1;
                 startTestFeedBack(pullExerciseList, exerciseLevel - 1);
                 break;
 
             case R.id.startPushTest:
+            case R.id.relativePush:
                 exerciseLevel = 1;
                 startTestFeedBack(pushExerciseList, exerciseLevel - 1);
                 break;
 
             case R.id.startSquatTest:
+            case R.id.relativeSquat:
                 exerciseLevel = 1;
                 startTestFeedBack(squatExerciseList, exerciseLevel - 1);
                 break;
 
             case R.id.startCalfTest:
+            case R.id.relativeCalf:
                 exerciseLevel = 1;
                 startTestFeedBack(calfExerciseList, exerciseLevel - 1);
                 break;
@@ -134,6 +125,7 @@ public class StartingTest extends AppCompatActivity {
         }
 
     }
+
 
     private void startTestFeedBack(ArrayList<Exercise> exerciseList, int exerciseLevel) {
         Intent startTestFeedback = new Intent(this, TestFeedback.class);
@@ -241,42 +233,32 @@ public class StartingTest extends AppCompatActivity {
                 if (testCompleted) {
                     switch (exerciseList.get(exerciseLevel).getTypeOfMovement()) {
                         case "Core":
-                            coreTest.setVisibility(View.GONE);
                             checkedCore.setVisibility(View.VISIBLE);
-                            coreLevel.setText("Lev " + (exerciseLevel+1) + " " + secs + "s");
                             break;
                         case "Pulling":
-                            pullTest.setVisibility(View.GONE);
                             checkedPull.setVisibility(View.VISIBLE);
-                            pullLevel.setText("Level " + (exerciseLevel+1));
                             break;
                         case "Pushing":
-                            pushTest.setVisibility(View.GONE);
                             checkedPush.setVisibility(View.VISIBLE);
-                            pushLevel.setText("Level " + (exerciseLevel+1));
                             break;
                         case "Squat":
-                            squatTest.setVisibility(View.GONE);
                             checkedSquat.setVisibility(View.VISIBLE);
-                            squatLevel.setText("Level " + (exerciseLevel + 1));
                             break;
                         case "Calf":
-                            calfTest.setVisibility(View.GONE);
                             checkedCalf.setVisibility(View.VISIBLE);
-                            calfLevel.setText("Level " + (exerciseLevel + 1));
                             break;
                     }
                     exerciseCompletedSound.start();
                     app.getDataManager().saveExercise(exerciseList.get(exerciseLevel));
                 }
             }
-            }
-
-            if (resultCode == RESULT_CANCELED) {
-                System.out.println("something went wrong");
-            }
-
         }
+
+        if (resultCode == RESULT_CANCELED) {
+            System.out.println("something went wrong");
+        }
+
     }
+}
 
 

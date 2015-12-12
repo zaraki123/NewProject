@@ -13,21 +13,26 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="85dp"
+        android:text="Gooo"
+        android:textAllCaps="false"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/white"
-        android:textSize="25sp" />
+        android:textSize="40sp" />
 
     <TextView
         android:id="@+id/timer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/introduction"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="103dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/white"
-        android:textSize="100sp" />
+        android:onClick="workoutTimerDisplay"
+        android:textSize="100sp"
+        android:clickable="true" />
 
 
     <com.example.nelson.caliplay.utils.CircularSeekBar
@@ -36,6 +41,7 @@
         android:layout_height="300dp"
         android:layout_below="@id/introduction"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
         app:circle_color="@color/black"
         app:circle_fill="@color/black"
         app:circle_progress_color="@color/orange"
@@ -57,22 +63,34 @@
         android:layout_gravity="center_horizontal"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/white"
+        android:onClick="workoutTimerDisplay"
+        android:clickable="true"
         android:textSize="100sp" />
 
     <ImageButton
-        android:id="@+id/stopWorkoutTimer"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:id="@+id/startFastWorkoutTimer"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
         android:layout_below="@id/circularSeekBar1"
-        android:layout_marginRight="30dp"
+        android:layout_gravity="center_horizontal"
         android:layout_toLeftOf="@+id/startWorkoutTimer"
+        android:background="@drawable/fast_workout_timer"
+        android:onClick="startFastWorkoutTimer" />
+
+    <ImageButton
+        android:id="@+id/stopWorkoutTimer"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_below="@id/circularSeekBar1"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
         android:background="@drawable/stop_workout_timer"
         android:onClick="stopWorkoutTimer" />
 
     <ImageButton
         android:id="@+id/startWorkoutTimer"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
         android:layout_below="@id/circularSeekBar1"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
@@ -81,14 +99,15 @@
 
     <ImageButton
         android:id="@+id/restartWorkoutTimer"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
         android:layout_below="@id/circularSeekBar1"
         android:layout_gravity="center_horizontal"
-        android:layout_marginLeft="30dp"
         android:layout_toRightOf="@+id/startWorkoutTimer"
         android:background="@drawable/redo_workout_timer"
         android:onClick="restartWorkoutTimer" />
+
+
 
 
 </RelativeLayout>

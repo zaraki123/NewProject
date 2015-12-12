@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -55,10 +56,6 @@
 
         </activity>
 
-        <activity android:name=".ExerciseOverview">
-
-        </activity>
-
         <activity
             android:name=".test.StartingTest"
             android:parentActivityName=".MainActivity">
@@ -74,18 +71,21 @@
 
         </activity>
 
-        <activity android:name=".timer.ReadyTimer"
-  >
+        <activity
+            android:name=".timer.ReadyTimer"
+            android:screenOrientation="portrait">
 
         </activity>
 
-        <activity android:name=".timer.WorkoutTimer"
-       >
+        <activity
+            android:name=".timer.WorkoutTimer"
+            android:screenOrientation="portrait">
 
 
         </activity>
-        <activity android:name=".timer.RestTimer"
-           >
+        <activity
+            android:name=".timer.RestTimer"
+            android:screenOrientation="portrait">
 
 
         </activity>

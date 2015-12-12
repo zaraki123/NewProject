@@ -9,11 +9,12 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/reps_secs"
+        android:id="@+id/lookVideo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="130dp"
+        android:text="Look at this exercise"
         android:textColor="@color/white"
         android:textSize="30sp" />
 
@@ -24,12 +25,49 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp" />
 
+
+
     <ImageButton
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
+        android:id="@+id/startCoreTestReady"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/core_button"
         android:onClick="startTimer"
-        android:background="@drawable/start_workout_timer" />
+        android:visibility="gone"
+        android:layout_gravity="center_horizontal" />
+
+
+    <ImageButton
+        android:id="@+id/startPullTestReady"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/pullup_button"
+        android:onClick="startTimer"
+        android:visibility="gone"/>
+
+    <ImageButton
+        android:id="@+id/startPushTestReady"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/pushup_button"
+        android:onClick="startTimer"
+        android:visibility="gone"/>
+
+    <ImageButton
+        android:id="@+id/startSquatTestReady"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/squat_button"
+        android:onClick="startTimer"
+        android:visibility="gone"/>
+
+    <ImageButton
+        android:id="@+id/startCalfTestReady"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/calf_button"
+        android:onClick="startTimer"
+        android:visibility="gone"/>
+
 
 </LinearLayout>

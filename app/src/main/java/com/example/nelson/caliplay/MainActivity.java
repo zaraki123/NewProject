@@ -33,21 +33,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void video (View view) {
 
-        Intent video = new Intent(this, ExerciseOverview.class);
-        if (video.resolveActivity(getPackageManager()) != null) {
-            startActivity(video);
-        }
-    }
 
-    public void youtube (View view) {
-
-        Intent video = new Intent(this, YouTube.class);
-        if (video.resolveActivity(getPackageManager()) != null) {
-            startActivity(video);
-        }
-    }
 
 }
 

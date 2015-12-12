@@ -19,7 +19,7 @@ public class ExerciseProfileTest {
     private Exercise rowPullup1 = new Exercise("RowPullup1", "rdDdeizAxY0", TypeOfContraction.DYNAMIC.toString(), TypeOfMovement.PULLING.toString(), 0, 1, 0, 0);
     private Exercise rowPullup2 = new Exercise("RowPullup2", "", TypeOfContraction.DYNAMIC.toString(), TypeOfMovement.PULLING.toString(), 0, 2, 0, 0);
     private Exercise rowPullup3 = new Exercise("RowPullup3", "", TypeOfContraction.DYNAMIC.toString(), TypeOfMovement.PULLING.toString(), 0, 3, 0, 0);
-    private Exercise squat1 = new Exercise("Squat1",  "", TypeOfContraction.ISOMETRIC.toString(), TypeOfMovement.SQUATTING.toString(), 0, 1, 0, 0);
+    private Exercise squat1 = new Exercise("Squat1",  "fXNnt87tJGk", TypeOfContraction.ISOMETRIC.toString(), TypeOfMovement.SQUATTING.toString(), 0, 1, 0, 0);
     private Exercise squat2 = new Exercise("Squat2",  "", TypeOfContraction.ISOMETRIC.toString(), TypeOfMovement.SQUATTING.toString(), 0, 2, 0, 0);
     private Exercise squat3 = new Exercise("Squat3",  "", TypeOfContraction.ISOMETRIC.toString(), TypeOfMovement.SQUATTING.toString(), 0, 3, 0, 0);
     private Exercise calf1 = new Exercise("Calf1",  "", TypeOfContraction.DYNAMIC.toString(), TypeOfMovement.CALF.toString(), 0, 1, 0, 0);

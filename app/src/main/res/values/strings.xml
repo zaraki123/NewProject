@@ -28,6 +28,9 @@
     <string name="strengthTest">Ready to go?</string>
     <string name="startButton">start</string>
 
+    // ReadyTimer
+    <string name="tenSeconds">Ready in</string>
+
 
     <string name="rest">Take a rest!</string>
 

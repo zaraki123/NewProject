@@ -1,58 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
+    tools:context=".MainActivity">
 
 
     <Button
+        android:id="@+id/profilo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="CREA PROFILO"
-        android:id="@+id/profilo"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="169dp"
-        android:onClick="userProfile"/>
+        android:onClick="userProfile"
+        android:text="CREA PROFILO" />
+
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="picker"
-        android:id="@+id/picker"
-        android:layout_below="@+id/profilo"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="39dp"
-        android:onClick="picker"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TEST"
         android:id="@+id/test"
-        android:layout_centerVertical="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:onClick="test"/>
+        android:layout_centerVertical="true"
+        android:onClick="test"
+        android:text="TEST" />
 
-    <Button
-        android:id="@+id/video"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="VIDEO"
-        android:layout_below="@id/picker"
-        android:onClick="video"
-        android:layout_centerHorizontal="true"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Youtube"
-        android:layout_below="@+id/video"
-        android:onClick="youtube"
-        android:layout_centerHorizontal="true"/>
 
 
 </RelativeLayout>
