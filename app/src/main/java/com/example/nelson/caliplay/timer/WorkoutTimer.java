@@ -1,5 +1,7 @@
 package com.example.nelson.caliplay.timer;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -33,6 +35,8 @@ public class WorkoutTimer extends AppCompatActivity {
     private int secs = 0, lastSeconds = 0, reps = 0, exerciseLevel = 0, secsTimer = 0;
     private ImageButton startTimer, restartTimer, stopTimer, fastTimer;
     private int milliseconds;
+    private AlertDialog.Builder builder;
+    private AlertDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +56,21 @@ public class WorkoutTimer extends AppCompatActivity {
         introduction = (TextView) findViewById(R.id.introduction);
         Typeface face = Typeface.createFromAsset(getAssets(), "font/droid_serif_bold.ttf");
         introduction.setTypeface(face);
+
+        builder = new AlertDialog.Builder(WorkoutTimer.this);
+        builder.setMessage(R.string.dialog_message)
+                .setTitle(R.string.dialog_title)
+                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                    }
+                })
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // User cancelled the dialog
+                    }
+                });
+        dialog = builder.create();
 
 
         Bundle extras = getIntent().getExtras();
@@ -91,8 +110,6 @@ public class WorkoutTimer extends AppCompatActivity {
         timerDisplay.bringToFront();
 
 
-
-
         lastSeconds = secs;
         timerDisplay.setText("" + lastSeconds);
         secsTimer = 0;
@@ -120,6 +137,7 @@ public class WorkoutTimer extends AppCompatActivity {
     }
 
     public void startFastWorkoutTimer(View view) {
+        dialog.show();
         timer.cancel();
         timerInitialization(FIVE);
         stopTimer.setVisibility(View.VISIBLE);

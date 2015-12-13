@@ -41,4 +41,11 @@
     <string name="seek_to">Jump To</string>
     <string name="seek_to_hint">Seconds</string>
 
+    //Dialogue
+    <string name="dialog_title"> Be careful </string>
+    <string name="dialog_message"> Are you sure you want to modify the workout timer? You should use this button only in few cases and for particular reasons,
+        otherwise you could compromise all the training </string>
+    <string name="ok"> ok </string>
+    <string name="cancel"> cancel </string>
+
 </resources>

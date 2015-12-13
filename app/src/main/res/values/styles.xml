@@ -8,10 +8,12 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="ZarakiActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="ZarakiActionBar" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="android:background">#000000</item>
+
 
     </style>
+
+
 
 </resources>

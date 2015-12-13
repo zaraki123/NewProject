@@ -23,8 +23,13 @@ public class ExerciseDao implements Dao<Exercise>  {
             + ExerciseTable.ExerciseColumns.TYPEOFMOVEMENT + ", "
             + ExerciseTable.ExerciseColumns.SECONDS + ", "
             + ExerciseTable.ExerciseColumns.REPS + ", "
+            + ExerciseTable.ExerciseColumns.KG + ", "
+            + ExerciseTable.ExerciseColumns.SETS + ", "
+            + ExerciseTable.ExerciseColumns.VOLUME + ", "
+            + ExerciseTable.ExerciseColumns.FREQUENCY + ", "
+            + ExerciseTable.ExerciseColumns.TONNAGE + ", "
             + ExerciseTable.ExerciseColumns.LEVEL + ", "
-            + ExerciseTable.ExerciseColumns.COMPLETED + ") values (?, ?, ?, ?, ?, ?, ?, ?)";
+            + ExerciseTable.ExerciseColumns.COMPLETED + ") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     private SQLiteDatabase db;
     private SQLiteStatement insertStatement;
@@ -43,8 +48,13 @@ public class ExerciseDao implements Dao<Exercise>  {
         insertStatement.bindString(4, entity.getTypeOfMovement());
         insertStatement.bindDouble(5, entity.getSeconds());
         insertStatement.bindDouble(6, entity.getReps());
-        insertStatement.bindDouble(7, entity.getLevel());
-        insertStatement.bindDouble(8, entity.getCompleted());
+        insertStatement.bindDouble(7, entity.getKg());
+        insertStatement.bindDouble(8, entity.getSets());
+        insertStatement.bindDouble(9, entity.getVolume());
+        insertStatement.bindDouble(10, entity.getFrequency());
+        insertStatement.bindDouble(11, entity.getTonnage());
+        insertStatement.bindDouble(12, entity.getLevel());
+        insertStatement.bindDouble(13, entity.getCompleted());
         System.out.println("salvataggio esercizio effettuato");
         Cursor c = db.rawQuery("SELECT * from " + ExerciseTable.TABLE_NAME, null);
         while (c.moveToNext()) {
@@ -65,6 +75,11 @@ public class ExerciseDao implements Dao<Exercise>  {
         values.put(ExerciseTable.ExerciseColumns.TYPEOFMOVEMENT, entity.getTypeOfMovement());
         values.put(ExerciseTable.ExerciseColumns.SECONDS, entity.getSeconds());
         values.put(ExerciseTable.ExerciseColumns.REPS, entity.getReps());
+        values.put(ExerciseTable.ExerciseColumns.KG, entity.getKg());
+        values.put(ExerciseTable.ExerciseColumns.SETS, entity.getSets());
+        values.put(ExerciseTable.ExerciseColumns.VOLUME, entity.getVolume());
+        values.put(ExerciseTable.ExerciseColumns.FREQUENCY, entity.getFrequency());
+        values.put(ExerciseTable.ExerciseColumns.TONNAGE, entity.getTonnage());
         values.put(ExerciseTable.ExerciseColumns.LEVEL, entity.getLevel());
         values.put(ExerciseTable.ExerciseColumns.COMPLETED, entity.getCompleted());
         db.update(ExerciseTable.TABLE_NAME, values, BaseColumns._ID + " = ?", new String[] {
@@ -87,7 +102,8 @@ public class ExerciseDao implements Dao<Exercise>  {
         Exercise exercise = null;
         Cursor c = db.query(ExerciseTable.TABLE_NAME, new String[]{
                 BaseColumns._ID, ExerciseTable.ExerciseColumns.NAME, ExerciseTable.ExerciseColumns.VIDEOID, ExerciseTable.ExerciseColumns.TYPEOFCONTRATION, ExerciseTable.ExerciseColumns.TYPEOFMOVEMENT, ExerciseTable.ExerciseColumns.SECONDS,
-                ExerciseTable.ExerciseColumns.REPS, ExerciseTable.ExerciseColumns.LEVEL, ExerciseTable.ExerciseColumns.COMPLETED}, BaseColumns._ID + " = ?", new String[]{String.valueOf(id)}, null, null, null, "1");
+                ExerciseTable.ExerciseColumns.REPS, ExerciseTable.ExerciseColumns.KG, ExerciseTable.ExerciseColumns.SETS, ExerciseTable.ExerciseColumns.VOLUME,
+                ExerciseTable.ExerciseColumns.FREQUENCY, ExerciseTable.ExerciseColumns.TONNAGE, ExerciseTable.ExerciseColumns.LEVEL, ExerciseTable.ExerciseColumns.COMPLETED}, BaseColumns._ID + " = ?", new String[]{String.valueOf(id)}, null, null, null, "1");
         if (c.moveToFirst()) {
             exercise = this.buildExerciseFromCursor(c);
         }
@@ -104,7 +120,8 @@ public class ExerciseDao implements Dao<Exercise>  {
         List<Exercise> list = new ArrayList<>();
         Cursor c = db.query(ExerciseTable.TABLE_NAME, new String[]{
                 BaseColumns._ID, ExerciseTable.ExerciseColumns.NAME,  ExerciseTable.ExerciseColumns.VIDEOID, ExerciseTable.ExerciseColumns.TYPEOFCONTRATION, ExerciseTable.ExerciseColumns.TYPEOFMOVEMENT,
-                ExerciseTable.ExerciseColumns.SECONDS, ExerciseTable.ExerciseColumns.REPS, ExerciseTable.ExerciseColumns.LEVEL, ExerciseTable.ExerciseColumns.COMPLETED}, null, null, null, null, ExerciseTable.ExerciseColumns.NAME, null);
+                ExerciseTable.ExerciseColumns.SECONDS, ExerciseTable.ExerciseColumns.REPS, ExerciseTable.ExerciseColumns.KG, ExerciseTable.ExerciseColumns.SETS, ExerciseTable.ExerciseColumns.VOLUME,
+                ExerciseTable.ExerciseColumns.FREQUENCY, ExerciseTable.ExerciseColumns.TONNAGE, ExerciseTable.ExerciseColumns.LEVEL, ExerciseTable.ExerciseColumns.COMPLETED}, null, null, null, null, ExerciseTable.ExerciseColumns.NAME, null);
 
         if (c.moveToFirst()) {
             do {
@@ -124,15 +141,21 @@ public class ExerciseDao implements Dao<Exercise>  {
     private Exercise buildExerciseFromCursor(Cursor c) {
         Exercise exercise = null;
         if (c != null) {
-            exercise = new Exercise("", "", "", "", 0, 0, 0, 0);
+            exercise = new Exercise("", "", "", "", 0, 0, 0, 0, 0, 0, 0, 0, 0);
             exercise.setId(c.getLong(0));
             exercise.setExerciseName(c.getString(1));
-            exercise.setTypeOfContraction(c.getString(2));
-            exercise.setTypeOfMovement(c.getString(3));
-            exercise.setSeconds(c.getInt(4));
-            exercise.setReps(c.getInt(5));
-            exercise.setLevel(c.getInt(6));
-            exercise.setCompleted(c.getInt(7));
+            exercise.setVideoId(c.getString(2));
+            exercise.setTypeOfContraction(c.getString(3));
+            exercise.setTypeOfMovement(c.getString(4));
+            exercise.setSeconds(c.getInt(5));
+            exercise.setReps(c.getInt(6));
+            exercise.setKg(c.getInt(7));
+            exercise.setSets(c.getInt(8));
+            exercise.setVolume(c.getInt(9));
+            exercise.setFrequency(c.getInt(10));
+            exercise.setTonnage(c.getInt(11));
+            exercise.setLevel(c.getInt(12));
+            exercise.setCompleted(c.getInt(13));
         }
         return exercise;
     }

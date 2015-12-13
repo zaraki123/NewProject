@@ -44,8 +44,8 @@ public class ReadyTimer extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.ready_timer);
 
+        setContentView(R.layout.ready_timer);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
@@ -250,6 +250,7 @@ public class ReadyTimer extends AppCompatActivity {
         }
         if (workoutTimer.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(workoutTimer, 1);
+
         }
     }
 

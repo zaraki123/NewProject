@@ -19,6 +19,11 @@ public class ExerciseTable {
         public static final String TYPEOFMOVEMENT = "typeOfMovement";
         public static final String SECONDS = "seconds";
         public static final String REPS = "reps";
+        public static final String KG = "kg";
+        public static final String SETS = "sets";
+        public static final String VOLUME = "volume";
+        public static final String FREQUENCY = "frequency";
+        public static final String TONNAGE = "tonnage";
         public static final String LEVEL = "level";
         public static final String COMPLETED = "completed";
     }
@@ -33,6 +38,11 @@ public class ExerciseTable {
         sb.append(ExerciseColumns.TYPEOFMOVEMENT + " TEXT, ");
         sb.append(ExerciseColumns.SECONDS + " INTEGER, ");
         sb.append(ExerciseColumns.REPS + " INTEGER, ");
+        sb.append(ExerciseColumns.KG + " INTEGER, ");
+        sb.append(ExerciseColumns.SETS + " INTEGER, ");
+        sb.append(ExerciseColumns.VOLUME + " INTEGER, ");
+        sb.append(ExerciseColumns.FREQUENCY + " INTEGER, ");
+        sb.append(ExerciseColumns.TONNAGE + " INTEGER, ");
         sb.append(ExerciseColumns.LEVEL + " INTEGER, ");
         sb.append(ExerciseColumns.COMPLETED + " INTEGER ");
         sb.append(");");
