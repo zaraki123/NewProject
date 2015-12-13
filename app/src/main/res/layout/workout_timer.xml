@@ -14,11 +14,11 @@
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="85dp"
-        android:text="Gooo"
+        android:text="Perform the exercise"
         android:textAllCaps="false"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/white"
-        android:textSize="40sp" />
+        android:textSize="30sp" />
 
     <TextView
         android:id="@+id/timer"

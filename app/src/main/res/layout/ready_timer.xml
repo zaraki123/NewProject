@@ -22,10 +22,9 @@
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="90dp"
-        android:text="@string/tenSeconds"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Ready up in"
         android:textColor="@color/white"
-        android:textSize="40sp"
+        android:textSize="30sp"
         android:textStyle="normal"/>
 
     <TextView

@@ -1,10 +1,11 @@
 package com.example.nelson.caliplay.test;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,7 +24,7 @@ public class TestFeedback extends AppCompatActivity {
     private int secs = 10, reps = 7, exerciseLevel = 0;
     private boolean testComplete = false;
     private ArrayList<Exercise> exerciseList;
-    private Button veryEasy, easy, hard, impossible;
+    private ImageButton veryEasy, easy, hard, impossible;
     private TextView question;
 
     @Override
@@ -32,10 +33,10 @@ public class TestFeedback extends AppCompatActivity {
         setContentView(R.layout.test_feedback);
 
         question = (TextView) findViewById(R.id.question);
-        veryEasy = (Button) findViewById(R.id.very_easy);
-        easy = (Button) findViewById(R.id.easy);
-        hard = (Button) findViewById(R.id.hard);
-        impossible = (Button) findViewById(R.id.impossible);
+        veryEasy = (ImageButton) findViewById(R.id.very_easy_icon);
+        easy = (ImageButton) findViewById(R.id.easy_icon);
+        hard = (ImageButton) findViewById(R.id.feasible_icon);
+        impossible = (ImageButton) findViewById(R.id.hard_icon);
 
 
         // Get everything you need from the bundle
@@ -47,6 +48,8 @@ public class TestFeedback extends AppCompatActivity {
         } else if (exerciseList.get(exerciseLevel).getTypeOfContraction().equals("Dynamic")) {
             reps = extras.getInt("reps");
         }
+        Typeface questionFace = Typeface.createFromAsset(getAssets(), "font/droid_serif_bold.ttf");
+        question.setTypeface(questionFace);
         lookVideo();
     }
 
@@ -63,7 +66,8 @@ public class TestFeedback extends AppCompatActivity {
 
     public void result(View view) {
         switch (view.getId()) {
-            case R.id.very_easy:
+            case R.id.very_easy_icon:
+            case R.id.relative_very_easy:
 
                 if (exerciseList.get(exerciseLevel).getTypeOfContraction().equals("Isometric") && secs <= 10) {
                     secs *= 2;
@@ -103,7 +107,8 @@ public class TestFeedback extends AppCompatActivity {
 
                 break;
 
-            case R.id.easy:
+            case R.id.easy_icon:
+            case R.id.relative_easy:
 
                 if (exerciseList.get(exerciseLevel).getTypeOfContraction().equals("Isometric") && secs <= 10) {
                     secs *= 1.5;
@@ -141,7 +146,8 @@ public class TestFeedback extends AppCompatActivity {
 
                 break;
 
-            case R.id.hard:
+            case R.id.feasible_icon:
+            case R.id.relative_feasible:
 
                 if (exerciseList.get(exerciseLevel).getTypeOfContraction().equals("Isometric") && secs <= 10) {
                     secs *= 0.8;
@@ -185,7 +191,8 @@ public class TestFeedback extends AppCompatActivity {
                     feedBackDynamic(reps);
                 }
 
-            case R.id.impossible:
+            case R.id.hard_icon:
+            case R.id.relative_hard:
                 if (secs < 10) {
                     Toast.makeText(getApplicationContext(), "it's better to change exercise", Toast.LENGTH_SHORT).show();
                 } else {
@@ -255,7 +262,6 @@ public class TestFeedback extends AppCompatActivity {
         if (requestCode == 1) {
             if (resultCode == RESULT_OK) {
 
-                question.setText("How was it?");
 
 
             } else if (resultCode == RESULT_CANCELED) {

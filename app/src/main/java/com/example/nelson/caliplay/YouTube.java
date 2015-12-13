@@ -114,9 +114,6 @@ public class YouTube extends YouTubeBaseActivity implements YouTubePlayer.OnInit
         @Override
         public void onPlaying() {
 
-                startExercise.setVisibility(View.INVISIBLE);
-                startExercise.setClickable(false);
-                Toast.makeText(getApplicationContext(), String.valueOf(playerVideo.getCurrentTimeMillis()), Toast.LENGTH_LONG).show();
 
         }
 

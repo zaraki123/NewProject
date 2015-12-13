@@ -6,11 +6,11 @@
     android:id="@+id/startingTestLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:weightSum="5">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/my_toolbar"
+        android:id="@+id/test_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/black"
@@ -22,7 +22,7 @@
         android:id="@+id/relativeCore"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
+        android:layout_weight="1"
         android:background="@drawable/start_test_clicked"
         android:clickable="true"
         android:onClick="startTest"
@@ -31,20 +31,21 @@
 
         <ImageButton
             android:id="@+id/startCoreTest"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="95dp"
+            android:layout_height="95dp"
+            android:layout_centerVertical="true"
             android:background="@drawable/core_button"
             android:onClick="startTest" />
 
         <TextView
-            android:id="@+id/coreTestView"
+            android:id="@+id/coreTest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
+            android:layout_centerInParent="true"
             android:layout_toRightOf="@id/startCoreTest"
-            android:text="Core Test"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@color/white" />
+            android:text="Core"
+            android:textColor="@color/black"
+            android:textSize="30sp" />
 
         <ImageView
             android:id="@+id/checkCore"
@@ -53,8 +54,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_centerInParent="true"
-            android:background="@drawable/ic_check_white_48dp"
-            android:backgroundTint="@color/green"
+            android:background="@drawable/orange_checkmark"
             android:contentDescription="Sign to indicate test complete" />
 
 
@@ -69,6 +69,7 @@
         android:id="@+id/relativePull"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:background="@drawable/start_test_clicked"
         android:clickable="true"
         android:onClick="startTest"
@@ -76,8 +77,9 @@
 
         <ImageButton
             android:id="@+id/startPullTest"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="95dp"
+            android:layout_centerVertical="true"
+            android:layout_height="95dp"
             android:background="@drawable/pullup_button"
             android:onClick="startTest" />
 
@@ -85,11 +87,11 @@
             android:id="@+id/pullTest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
+            android:layout_centerInParent="true"
             android:layout_toRightOf="@id/startPullTest"
-            android:text="Pulling Test"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@color/white" />
+            android:text="Pull"
+            android:textColor="@color/black"
+            android:textSize="30sp" />
 
 
         <ImageView
@@ -100,8 +102,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerInParent="true"
             android:layout_marginTop="30dp"
-            android:background="@drawable/ic_check_white_48dp"
-            android:backgroundTint="@color/green" />
+            android:background="@drawable/orange_checkmark" />
 
 
     </RelativeLayout>
@@ -115,6 +116,7 @@
         android:id="@+id/relativePush"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:background="@drawable/start_test_clicked"
         android:clickable="true"
         android:onClick="startTest"
@@ -122,8 +124,9 @@
 
         <ImageButton
             android:id="@+id/startPushTest"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="95dp"
+            android:layout_height="95dp"
+            android:layout_centerVertical="true"
             android:background="@drawable/pushup_button"
             android:onClick="startTest" />
 
@@ -131,11 +134,11 @@
             android:id="@+id/pushTest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
+            android:layout_centerInParent="true"
             android:layout_toRightOf="@id/startPushTest"
-            android:text="Pushing Test"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@color/white" />
+            android:text="Push"
+            android:textColor="@color/black"
+            android:textSize="30sp" />
 
 
         <ImageView
@@ -146,8 +149,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerInParent="true"
             android:layout_marginTop="30dp"
-            android:background="@drawable/ic_check_white_48dp"
-            android:backgroundTint="@color/green" />
+            android:background="@drawable/orange_checkmark" />
 
 
     </RelativeLayout>
@@ -161,6 +163,7 @@
         android:id="@+id/relativeSquat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:background="@drawable/start_test_clicked"
         android:clickable="true"
         android:onClick="startTest"
@@ -168,8 +171,9 @@
 
         <ImageButton
             android:id="@+id/startSquatTest"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="95dp"
+            android:layout_height="95dp"
+            android:layout_centerVertical="true"
             android:background="@drawable/squat_button"
             android:onClick="startTest" />
 
@@ -177,11 +181,11 @@
             android:id="@+id/squatTest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
+            android:layout_centerInParent="true"
             android:layout_toRightOf="@id/startSquatTest"
-            android:text="Squat test"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@color/white" />
+            android:text="Squat"
+            android:textColor="@color/black"
+            android:textSize="30sp" />
 
 
         <ImageView
@@ -192,8 +196,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerInParent="true"
             android:layout_marginTop="30dp"
-            android:background="@drawable/ic_check_white_48dp"
-            android:backgroundTint="@color/green" />
+            android:background="@drawable/orange_checkmark" />
 
 
     </RelativeLayout>
@@ -207,6 +210,7 @@
         android:id="@+id/relativeCalf"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:background="@drawable/start_test_clicked"
         android:clickable="true"
         android:onClick="startTest"
@@ -214,8 +218,9 @@
 
         <ImageButton
             android:id="@+id/startCalfTest"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="95dp"
+            android:layout_height="95dp"
+            android:layout_centerVertical="true"
             android:background="@drawable/calf_button"
             android:onClick="startTest" />
 
@@ -223,11 +228,11 @@
             android:id="@+id/calfTest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
+            android:layout_centerInParent="true"
             android:layout_toRightOf="@id/startCalfTest"
-            android:text="Calf test"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@color/white" />
+            android:text="Calf"
+            android:textColor="@color/black"
+            android:textSize="30sp" />
 
 
         <ImageView
@@ -238,8 +243,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerInParent="true"
             android:layout_marginTop="30dp"
-            android:background="@drawable/ic_check_white_48dp"
-            android:backgroundTint="@color/green" />
+            android:background="@drawable/orange_checkmark" />
 
 
     </RelativeLayout>

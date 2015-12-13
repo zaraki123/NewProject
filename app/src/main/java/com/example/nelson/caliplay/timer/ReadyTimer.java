@@ -3,17 +3,13 @@ package com.example.nelson.caliplay.timer;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageButton;
@@ -87,6 +83,7 @@ public class ReadyTimer extends AppCompatActivity {
         if (exerciseList.get(exerciseLevel).getTypeOfContraction().equals("Dynamic")) {
             reps = extras.getInt("reps");
         }
+
 
         // Sounds initialization
         clockTicking = MediaPlayer.create(this, R.raw.tick2);

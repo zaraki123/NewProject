@@ -16,7 +16,7 @@
     <string name="sportPresent">Are you doing any sport, now?</string>
     <string name="sportPast">Did you do any sport, in the past?</string>
     <string name="chooseSport">PickSport</string>
-    <string name="difficulty">How was it?</string>
+    <string name="difficulty">How was the exercise?</string>
 
     // TestFeedback Activity
     <string name="very_easy">It\'s really easy! I can do much more!</string>

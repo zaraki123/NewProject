@@ -1,15 +1,16 @@
 package com.example.nelson.caliplay.test;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.nelson.caliplay.ExerciseProfileTest;
@@ -40,6 +41,7 @@ public class StartingTest extends AppCompatActivity {
     private boolean exerciseCompleted = false, testCompleted = false;
     private MediaPlayer exerciseCompletedSound;
     private RelativeLayout coreRelative, pullRelative, pushRelative, squatRelative, calfRelative;
+    private TextView coreText, pullText, pushText, squatText, calfText;
 
 
     @Override
@@ -72,6 +74,26 @@ public class StartingTest extends AppCompatActivity {
         pushTest = (ImageButton) findViewById(R.id.startPushTest);
         squatTest = (ImageButton) findViewById(R.id.startSquatTest);
         calfTest = (ImageButton) findViewById(R.id.startCalfTest);
+
+        coreText = (TextView) findViewById(R.id.coreTest);
+        Typeface coreFace = Typeface.createFromAsset(getAssets(), "font/calibri.ttf");
+        coreText.setTypeface(coreFace);
+
+        pullText = (TextView) findViewById(R.id.pullTest);
+        Typeface pullFace = Typeface.createFromAsset(getAssets(), "font/calibri.ttf");
+        pullText.setTypeface(pullFace);
+
+        pushText = (TextView) findViewById(R.id.pushTest);
+        Typeface pushFace = Typeface.createFromAsset(getAssets(), "font/calibri.ttf");
+        pushText.setTypeface(pushFace);
+
+        squatText = (TextView) findViewById(R.id.squatTest);
+        Typeface squatFace = Typeface.createFromAsset(getAssets(), "font/calibri.ttf");
+        squatText.setTypeface(squatFace);
+
+        calfText = (TextView) findViewById(R.id.calfTest);
+        Typeface calfFace = Typeface.createFromAsset(getAssets(), "font/calibri.ttf");
+        calfText.setTypeface(calfFace);
 
 
         // Sound of test complete
@@ -183,22 +205,27 @@ public class StartingTest extends AppCompatActivity {
         switch (exerciseList.get(exerciseLevel).getTypeOfMovement()) {
             case "Core":
                 startTestFeedBack(coreExerciseList, exerciseLevel - 1);
+
                 break;
 
             case "Pulling":
                 startTestFeedBack(pullExerciseList, exerciseLevel - 1);
+
                 break;
 
             case "Pushing":
                 startTestFeedBack(pushExerciseList, exerciseLevel - 1);
+
                 break;
 
             case "Squat":
                 startTestFeedBack(squatExerciseList, exerciseLevel - 1);
+
                 break;
 
             case "Calf":
                 startTestFeedBack(calfExerciseList, exerciseLevel - 1);
+
                 break;
 
         }
@@ -234,18 +261,28 @@ public class StartingTest extends AppCompatActivity {
                     switch (exerciseList.get(exerciseLevel).getTypeOfMovement()) {
                         case "Core":
                             checkedCore.setVisibility(View.VISIBLE);
+                            coreRelative.setBackgroundColor(Color.DKGRAY);
+                            coreText.setTextColor(Color.WHITE);
                             break;
                         case "Pulling":
                             checkedPull.setVisibility(View.VISIBLE);
+                            pullRelative.setBackgroundColor(Color.DKGRAY);
+                            pullText.setTextColor(Color.WHITE);
                             break;
                         case "Pushing":
                             checkedPush.setVisibility(View.VISIBLE);
+                            pushRelative.setBackgroundColor(Color.DKGRAY);
+                            pushText.setTextColor(Color.WHITE);
                             break;
                         case "Squat":
                             checkedSquat.setVisibility(View.VISIBLE);
+                            squatRelative.setBackgroundColor(Color.DKGRAY);
+                            squatText.setTextColor(Color.WHITE);
                             break;
                         case "Calf":
                             checkedCalf.setVisibility(View.VISIBLE);
+                            calfRelative.setBackgroundColor(Color.DKGRAY);
+                            calfText.setTextColor(Color.WHITE);
                             break;
                     }
                     exerciseCompletedSound.start();

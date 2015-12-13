@@ -83,9 +83,8 @@ public class RestTimer extends AppCompatActivity {
 
 
         introduction = (TextView) findViewById(R.id.introduction);
-        Typeface face = Typeface.createFromAsset(getAssets(), "font/android.ttf");
+        Typeface face = Typeface.createFromAsset(getAssets(), "font/droid_serif_bold.ttf");
         introduction.setTypeface(face);
-        introduction.setText("rest  for ");
 
 
         lastSeconds = (REST / 1000);

@@ -1,62 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/test_analysis"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/almostBlack"
     android:gravity="center"
-    android:id="@+id/test_analysis"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/question"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="5dp"
         android:text="@string/difficulty"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/white"
+        android:textSize="25sp" />
 
-    <Button
-        android:id="@+id/very_easy"
-        android:layout_width="250dp"
+    <RelativeLayout
+        android:id="@+id/relative_very_easy"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:layout_marginTop="30dp"
-        android:background="@color/green"
-        android:onClick="result"
-        android:text="@string/very_easy"
-        android:textAllCaps="false" />
+        android:background="@drawable/relative_feedback"
+        android:clickable="true"
+        android:onClick="result">
 
-    <Button
-        android:id="@+id/easy"
-        android:layout_width="250dp"
+        <ImageButton
+            android:id="@+id/very_easy_icon"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginStart="30dp"
+            android:background="@drawable/very_easy_selector" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/very_easy_icon"
+            android:text="Very easy"
+            android:textColor="@color/white"
+            android:textSize="25sp" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray" />
+
+    <RelativeLayout
+        android:id="@+id/relative_easy"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:background="@color/yellow"
-        android:onClick="result"
-        android:text="@string/easy"
-        android:textAllCaps="false" />
+        android:background="@drawable/relative_feedback"
+        android:clickable="true"
+        android:onClick="result">
 
+        <ImageButton
+            android:id="@+id/easy_icon"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginStart="30dp"
+            android:background="@drawable/easy_selector" />
 
-    <Button
-        android:id="@+id/hard"
-        android:layout_width="250dp"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/easy_icon"
+            android:text="Easy"
+            android:textColor="@color/white"
+            android:textSize="25sp" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray" />
+
+    <RelativeLayout
+        android:id="@+id/relative_feasible"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:background="@color/orange"
-        android:onClick="result"
-        android:text="@string/hard"
-        android:textAllCaps="false" />
+        android:background="@drawable/relative_feedback"
+        android:clickable="true"
+        android:onClick="result">
 
-    <Button
-        android:id="@+id/impossible"
-        android:layout_width="250dp"
+        <ImageButton
+            android:id="@+id/feasible_icon"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginStart="30dp"
+            android:background="@drawable/feasible_selector" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/feasible_icon"
+            android:text="Hard, but feasible"
+            android:textColor="@color/white"
+            android:textSize="25sp" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray" />
+
+    <RelativeLayout
+
+        android:id="@+id/relative_hard"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:background="@color/red"
-        android:onClick="result"
-        android:text="@string/impossible"
-        android:textAllCaps="false" />
+        android:background="@drawable/relative_feedback"
+        android:clickable="true"
+        android:onClick="result">
+
+        <ImageButton
+            android:id="@+id/hard_icon"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginStart="30dp"
+            android:background="@drawable/hard_selector" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/hard_icon"
+            android:text="Too hard"
+            android:textColor="@color/white"
+            android:textSize="25sp" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray" />
 
 </LinearLayout>
