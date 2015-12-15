@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="40dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/white"
         android:text="Recover for"
@@ -66,8 +66,8 @@
 
     <ImageButton
         android:id="@+id/startFastRestTimer"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_below="@id/circularSeekBar1"
         android:layout_gravity="center_horizontal"
         android:layout_toLeftOf="@+id/startRestTimer"
@@ -76,8 +76,8 @@
 
     <ImageButton
         android:id="@+id/startRestTimer"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_below="@id/circularSeekBar1"
         android:layout_centerHorizontal="true"
         android:background="@drawable/start_rest_timer"
@@ -85,8 +85,8 @@
 
     <ImageButton
         android:id="@+id/restartRestTimer"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_below="@id/circularSeekBar1"
         android:layout_gravity="center_horizontal"
         android:layout_toRightOf="@+id/startRestTimer"
@@ -95,8 +95,8 @@
 
     <ImageButton
         android:id="@+id/stopRestTimer"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_below="@id/circularSeekBar1"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"

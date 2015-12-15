@@ -46,8 +46,7 @@ public class UserProfile extends AppCompatActivity implements NumberPicker.OnVal
 
         Button pickerHeight = (Button) findViewById(R.id.heightPicker);
         Button pickerWeight = (Button) findViewById(R.id.weightPicker);
-        Button sportPickerPresent = (Button) findViewById(R.id.sportPickerPresent);
-        Button sportPickerPast = (Button) findViewById(R.id.sportPickerPast);
+
 
         pickerHeight.setOnClickListener(new View.OnClickListener() {
 
@@ -63,42 +62,12 @@ public class UserProfile extends AppCompatActivity implements NumberPicker.OnVal
                 showWeight();
             }
         });
-        sportPickerPresent.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                sportPresentPicker();
-            }
-        });
-        sportPickerPast.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                sportPastPicker();
-            }
-        });
     }
 
     @Override
     public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
 
-    }
-
-    public void onRadioSexClicked(View view) {
-        boolean checked = ((RadioButton) view).isChecked();
-
-        switch (view.getId()) {
-            case R.id.male:
-                if (checked) {
-                    sex = "male";
-                }
-                break;
-            case R.id.female:
-                if (checked) {
-                    sex = "female";
-                }
-                break;
-        }
     }
 
     public void onRadioAge(View view) {

@@ -44,15 +44,8 @@ public class ReadyTimer extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.ready_timer);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        setSupportActionBar(myToolbar);
-
-        ActionBar ab = getSupportActionBar();
-
+        setContentView(R.layout.ready_timer);
         introduction = (TextView) findViewById(R.id.introduction);
         Typeface face = Typeface.createFromAsset(getAssets(), "font/droid_serif_bold.ttf");
         introduction.setTypeface(face);
@@ -71,8 +64,6 @@ public class ReadyTimer extends AppCompatActivity {
         restartTimer.setClickable(false);
 
         seekBar = (CircularSeekBar) findViewById(R.id.circularSeekBar1);
-
-
         seekBar.setOnSeekBarChangeListener(new CircleSeekBarListener());
 
         exerciseList = extras.getParcelableArrayList("exerciseArrayList");

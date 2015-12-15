@@ -111,6 +111,7 @@ public class ExerciseDao implements Dao<Exercise>  {
             c.close();
         }
 
+
         return exercise;
     }
 

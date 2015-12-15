@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="85dp"
+        android:layout_marginTop="50dp"
         android:text="Perform the exercise"
         android:textAllCaps="false"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -69,8 +69,8 @@
 
     <ImageButton
         android:id="@+id/startFastWorkoutTimer"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_below="@id/circularSeekBar1"
         android:layout_gravity="center_horizontal"
         android:layout_toLeftOf="@+id/startWorkoutTimer"
@@ -79,8 +79,8 @@
 
     <ImageButton
         android:id="@+id/stopWorkoutTimer"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_below="@id/circularSeekBar1"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
@@ -89,8 +89,8 @@
 
     <ImageButton
         android:id="@+id/startWorkoutTimer"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_below="@id/circularSeekBar1"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
@@ -99,8 +99,8 @@
 
     <ImageButton
         android:id="@+id/restartWorkoutTimer"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_below="@id/circularSeekBar1"
         android:layout_gravity="center_horizontal"
         android:layout_toRightOf="@+id/startWorkoutTimer"

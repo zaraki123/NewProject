@@ -7,7 +7,7 @@
     <string name="child"><![CDATA[< 16]]></string>
     <string name="young">16 - 30</string>
     <string name="adult">31 - 50</string>
-    <string name="old"><![CDATA[> 50]]></string>
+    <string name="old">></string>
     <string name="athletic">Athletic</string>
     <string name="competitive">Competitive</string>
     <string name="active">Active</string>
@@ -43,7 +43,7 @@
 
     //Dialogue
     <string name="dialog_title"> Be careful </string>
-    <string name="dialog_message"> Are you sure you want to modify the workout timer? You should use this button only in few cases and for particular reasons,
+    <string name="dialog_message"> You should use this button only in few cases and for particular reasons,
         otherwise you could compromise all the training </string>
     <string name="ok"> ok </string>
     <string name="cancel"> cancel </string>
