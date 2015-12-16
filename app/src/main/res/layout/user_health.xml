@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/very_light_blue"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:padding="5dp">
+
+
+        <TextView
+            android:id="@+id/lifeStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/lifestyle"
+            android:textAllCaps="true"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/darkGray"
+            android:textSize="15sp" />
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lifeStyle"
+            android:layout_marginLeft="3dp"
+            android:layout_marginTop="5dp"
+            android:orientation="vertical">
+
+
+            <RadioButton
+                android:id="@+id/sedentary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onRadioLifeStyle"
+                android:text="@string/sedentary"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="33dp"
+                android:layout_marginRight="10dp"
+                android:text="You are always at home or office, you move by means, and you don't practice any physical activity"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/darkGray"
+                android:textSize="15sp" />
+
+            <RadioButton
+                android:id="@+id/active"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:onClick="onRadioLifeStyle"
+                android:text="@string/active"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="33dp"
+                android:layout_marginRight="10dp"
+                android:text="You move by walking or by bicycle everyday, and practice some physical activity"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/darkGray"
+                android:textSize="15sp" />
+
+            <RadioButton
+                android:id="@+id/athletic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:onClick="onRadioLifeStyle"
+                android:text="@string/athletic"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="33dp"
+                android:layout_marginRight="10dp"
+                android:text="You practice sport, two or three times every week for at least one hour"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/darkGray"
+                android:textSize="15sp" />
+
+            <RadioButton
+                android:id="@+id/veryAthletic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:onClick="onRadioLifeStyle"
+                android:text="Very athletic"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="33dp"
+                android:layout_marginRight="10dp"
+                android:text="You practice sport three or more times a week for more than one hour"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/darkGray"
+                android:textSize="15sp" />
+
+            <ImageButton
+                android:id="@+id/userHealthNextButton"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/next_button"
+                android:onClick="userHealthNextButton" />
+
+        </RadioGroup>
+    </RelativeLayout>
+
+
+</LinearLayout>
