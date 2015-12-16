@@ -1,50 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/relativeUserProfile"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/very_light_blue"
+    android:gravity="center_vertical"
     android:orientation="vertical">
 
-    <RelativeLayout
+
+
+    <LinearLayout
+        android:id="@+id/userNameLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:background="@color/whiteGray">
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@color/white"
+        android:paddingTop="5dp">
+
 
         <TextView
-            android:id="@+id/hintUsername"
+            android:id="@+id/userameText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"
-            android:text="Username"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:text="Name"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="@color/darkGray"
             android:textSize="20sp" />
 
         <EditText
-            android:id="@+id/username"
+            android:id="@+id/usernameEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/hintUsername"
             android:layout_marginLeft="12dp"
             android:ems="10"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:textColor="@color/black"
+            android:textSize="25dp" />
 
-    </RelativeLayout>
+    </LinearLayout>
+
 
     <RelativeLayout
+        android:id="@+id/sexProfileLayout"
         android:layout_width="match_parent"
-
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:background="@color/whiteGray">
+        android:layout_below="@id/userNameLayout"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:paddingLeft="5dp"
+        android:paddingTop="5dp">
 
         <TextView
             android:id="@+id/sexType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
             android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
             android:text="Sex"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="@color/darkGray"
@@ -53,169 +70,231 @@
         <ImageButton
             android:id="@+id/femaleIcon"
             android:layout_width="100dp"
-            android:layout_marginLeft="20dp"
             android:layout_height="100dp"
+            android:layout_marginLeft="30dp"
             android:layout_toRightOf="@id/sexType"
-            android:background="@drawable/female_selector" />
+            android:background="@drawable/female_selector"
+            android:onClick="userProfileFemaleIcon" />
 
         <ImageButton
             android:id="@+id/maleIcon"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_toRightOf="@id/femaleIcon"
-            android:background="@drawable/male_selector" />
+            android:background="@drawable/male_selector"
+            android:onClick="userProfileMaleIcon" />
 
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/age"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:id="@+id/ageProfileLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="30dp"
-        android:text="Age"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="@color/darkGray"
-        android:textSize="20sp" />
-
-    <RadioGroup
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="12dp"
-        android:orientation="horizontal">
-
-        <RadioButton
-            android:id="@+id/child"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onRadioAge" />
+        android:layout_below="@id/sexProfileLayout"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp">
 
         <TextView
+            android:id="@+id/age"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/child"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="@color/black" />
-
-        <RadioButton
-            android:id="@+id/young"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="15dp"
-            android:onClick="onRadioAge" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/young"
+            android:layout_marginTop="10dp"
+            android:text="Age"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="@color/black" />
+            android:textColor="@color/darkGray"
+            android:textSize="20sp" />
 
-        <RadioButton
-            android:id="@+id/adult"
+        <RadioGroup
+            android:id="@+id/radioFirstRow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:onClick="onRadioAge" />
+            android:layout_marginLeft="45dp"
+            android:layout_toRightOf="@id/age"
+            android:orientation="horizontal">
 
-        <TextView
+            <RadioButton
+                android:id="@+id/child"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="40dp"
+                android:height="40dp"
+                android:onClick="onRadioAge"
+                android:shadowColor="@color/orange" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/child"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <RadioButton
+                android:id="@+id/young"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="29dp"
+                android:onClick="onRadioAge" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/young"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+        </RadioGroup>
+
+        <RadioGroup
+            android:id="@+id/radioSecondRow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/adult"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="@color/black" />
+            android:layout_below="@id/radioFirstRow"
+            android:layout_marginLeft="45dp"
+            android:layout_toRightOf="@id/age"
+            android:orientation="horizontal">
 
-        <RadioButton
-            android:id="@+id/old"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:onClick="onRadioAge" />
+            <RadioButton
+                android:id="@+id/adult"
+                android:layout_width="wrap_content"
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/old"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="@color/black" />
+                android:layout_height="wrap_content"
+                android:onClick="onRadioAge" />
 
-    </RadioGroup>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/adult"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <RadioButton
+                android:id="@+id/old"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:onClick="onRadioAge" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/old"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+        </RadioGroup>
+    </RelativeLayout>
+
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:id="@+id/heightProfileLayout"
+        android:layout_width="245dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ageProfileLayout"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:paddingRight="10dp">
+
 
         <TextView
             android:id="@+id/heightText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="12dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginLeft="15dp"
             android:text="Height"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="@color/darkGray" />
+            android:textColor="@color/darkGray"
+            android:textSize="20sp" />
+
+        <ImageButton
+            android:id="@+id/heightPicker"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/height_button"
+            android:textSize="15sp" />
+
+
+        <TextView
+            android:id="@+id/height_measurement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/weightProfileLayout"
+        android:layout_width="245dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/heightProfileLayout"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:paddingRight="10dp">
 
         <TextView
             android:id="@+id/weightText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="120dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@id/heightText"
             android:text="Weight"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="@color/darkGray" />
+            android:textColor="@color/darkGray"
+            android:textSize="20sp" />
 
-    </LinearLayout>
 
+        <ImageButton
+            android:id="@+id/weightPicker"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/weight_button"
+            android:textSize="15sp" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/height_measurement"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="12dp" />
 
         <TextView
-            android:id="@+id/unitMeasure"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="2dp"
-            android:text="cm"
-            android:textColor="@color/darkGray" />
-
-        <Button
-            android:id="@+id/heightPicker"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="PickHeight"
-            android:textAllCaps="false" />
-
-        <EditText
             android:id="@+id/weight_measurement"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp" />
+            android:textColor="@color/black"
+            android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/weightMeasure"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="2dp"
-            android:text="kg"
-            android:textColor="@color/darkGray" />
-
-        <Button
-            android:id="@+id/weightPicker"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="PickWeight"
-            android:textAllCaps="false" />
 
     </LinearLayout>
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/ageProfileLayout"
+        android:layout_marginTop="68dp">
 
-</LinearLayout>
+        <ImageButton
+            android:id="@+id/userProfileNextButton"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/next_button"
+            android:onClick="userProfileNextButton" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

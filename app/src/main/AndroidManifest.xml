@@ -3,8 +3,10 @@
     package="com.example.nelson.caliplay">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-sdk
-        android:minSdkVersion="19" />
+    <uses-permission android:name="android.permission.SET_WALLPAPER" />
+    <uses-permission android:name="android.permission.SET_WALLPAPER_HINTS"/>
+
+    <uses-sdk android:minSdkVersion="19" />
 
 
     <application
@@ -36,7 +38,7 @@
 
         </activity>
 
-        <activity android:name=".UserProfile">
+        <activity android:name=".user_profile.UserProfile">
 
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -50,10 +52,14 @@
 
         </activity>
 
-        <activity android:name=".UserHealth">
+        <activity android:name=".user_profile.UserHealth">
         </activity>
 
         <activity android:name=".UserPrint">
+
+        </activity>
+
+        <activity android:name=".user_profile.UserSport">
 
         </activity>
 

@@ -5,10 +5,12 @@
     <color name="colorAccent">#FF4081</color>
     <color name="black">#000000</color>
     <color name="white">#ffffff</color>
-    <color name="lightGray">#cccccc</color>
-    <color name="whiteGray">#f4f4f4</color>
+    <color name="lightGray">#eaeaea</color>
+    <color name="whiteGray">#ececec</color>
     <color name="darkGray">#505050</color>
     <color name="almostBlack">#161616</color>
+    <color name="lightOrange">#ffcc84</color>
+    <color name="backgroundOrange">#ffe8be</color>
     <color name="orange">#ffa600</color>
     <color name="red">#ff3700</color>
     <color name="green">#80ff00</color>
@@ -16,6 +18,8 @@
     <color name="middleGreen">#4c9700</color>
     <color name="yellow">#ffee00</color>
     <color name="darkRed">#ae0300</color>
+    <color name="very_light_blue">#e7faff</color>
+    <color name="blue_next">#96e9ff</color>
     <color name="light_blue">#00d4ff</color>
     <color name="middle_blue">#0088ff</color>
     <color name="blue">#000dff</color>

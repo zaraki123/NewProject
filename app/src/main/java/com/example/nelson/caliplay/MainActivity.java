@@ -1,18 +1,29 @@
 package com.example.nelson.caliplay;
 
+import android.app.ActionBar;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.TypefaceSpan;
 import android.view.View;
 
 import com.example.nelson.caliplay.test.StartingTest;
+import com.example.nelson.caliplay.user_profile.UserProfile;
+
+import java.lang.reflect.Type;
 
 public class MainActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
     }
 

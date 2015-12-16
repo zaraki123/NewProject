@@ -54,7 +54,7 @@ public class WorkoutTimer extends AppCompatActivity {
         seekBar.setOnSeekBarChangeListener(new CircleSeekBarListener());
 
         introduction = (TextView) findViewById(R.id.introduction);
-        Typeface face = Typeface.createFromAsset(getAssets(), "font/droid_serif_bold.ttf");
+        final Typeface face = Typeface.createFromAsset(getAssets(), "font/droid_serif_bold.ttf");
         introduction.setTypeface(face);
 
         builder = new AlertDialog.Builder(WorkoutTimer.this);

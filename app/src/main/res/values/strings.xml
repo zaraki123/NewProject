@@ -4,10 +4,10 @@
 
     // UserProfile Activity
     <string name="username">Username</string>
-    <string name="child"><![CDATA[< 16]]></string>
-    <string name="young">16 - 30</string>
-    <string name="adult">31 - 50</string>
-    <string name="old">></string>
+    <string name="child"><![CDATA[< 21]]></string>
+    <string name="young">21 - 30</string>
+    <string name="adult">31 - 60</string>
+    <string name="old">> 60</string>
     <string name="athletic">Athletic</string>
     <string name="competitive">Competitive</string>
     <string name="active">Active</string>

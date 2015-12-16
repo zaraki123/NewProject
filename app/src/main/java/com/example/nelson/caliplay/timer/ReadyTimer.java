@@ -1,5 +1,6 @@
 package com.example.nelson.caliplay.timer;
 
+import android.app.WallpaperManager;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -7,9 +8,8 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageButton;
@@ -20,6 +20,7 @@ import com.example.nelson.caliplay.R;
 import com.example.nelson.caliplay.model.Exercise;
 import com.example.nelson.caliplay.utils.CircularSeekBar;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -43,13 +44,15 @@ public class ReadyTimer extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+
         super.onCreate(savedInstanceState);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         setContentView(R.layout.ready_timer);
+
+
         introduction = (TextView) findViewById(R.id.introduction);
         Typeface face = Typeface.createFromAsset(getAssets(), "font/droid_serif_bold.ttf");
         introduction.setTypeface(face);
-
 
         Bundle extras = getIntent().getExtras();
         startTimer = (ImageButton) findViewById(R.id.startWorkoutTimer);
@@ -232,6 +235,9 @@ public class ReadyTimer extends AppCompatActivity {
         Intent workoutTimer = new Intent(ReadyTimer.this, WorkoutTimer.class);
         workoutTimer.putParcelableArrayListExtra("exerciseArrayList", exerciseList);
         workoutTimer.putExtra("exerciseLevel", exerciseLevel);
+
+
+
         if (exerciseList.get(exerciseLevel).getTypeOfContraction().equals("Isometric")) {
             workoutTimer.putExtra("secs", secs);
         } else if (exerciseList.get(exerciseLevel).getTypeOfContraction().equals("Dynamic")) {
@@ -240,8 +246,8 @@ public class ReadyTimer extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Qualcosa è andato storto", Toast.LENGTH_LONG).show();
         }
         if (workoutTimer.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(workoutTimer, 1);
 
+                startActivityForResult(workoutTimer, 1);
         }
     }
 
