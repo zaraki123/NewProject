@@ -56,7 +56,7 @@ public class UserSport extends AppCompatActivity {
 
     public void sportPastNo (View view) {
         sportYesPast.setBackground(ContextCompat.getDrawable(this, R.drawable.sport_yes));
-        sportNoPast.setBackground(ContextCompat.getDrawable(this, R.drawable.sport_not_pressed));
+        sportNoPast.setBackground(ContextCompat.getDrawable(this, R.drawable.relax_pressed));
     }
 
     public void teamSport (View view) {
