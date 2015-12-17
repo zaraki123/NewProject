@@ -141,13 +141,13 @@ public class UserProfile extends AppCompatActivity implements NumberPicker.OnVal
     public void showHeight() {
 
         final Dialog d = new Dialog(UserProfile.this);
-        d.setTitle("NumberPicker");
+        d.setTitle("Height");
         d.setContentView(R.layout.dialog);
         Button set = (Button) d.findViewById(R.id.set);
         Button cancel = (Button) d.findViewById(R.id.cancel);
         final NumberPicker np = (NumberPicker) d.findViewById(R.id.numberPicker1);
         np.setMaxValue(220);
-        np.setMinValue(50);
+        np.setMinValue(130);
         np.setWrapSelectorWheel(false);
         np.setOnValueChangedListener(this);
         set.setOnClickListener(new View.OnClickListener() {
@@ -173,13 +173,13 @@ public class UserProfile extends AppCompatActivity implements NumberPicker.OnVal
     public void showWeight() {
 
         final Dialog d = new Dialog(UserProfile.this);
-        d.setTitle("NumberPicker");
+        d.setTitle("Weight");
         d.setContentView(R.layout.dialog);
         Button set = (Button) d.findViewById(R.id.set);
         Button cancel = (Button) d.findViewById(R.id.cancel);
         final NumberPicker np = (NumberPicker) d.findViewById(R.id.numberPicker1);
         np.setMaxValue(130);
-        np.setMinValue(10);
+        np.setMinValue(40);
         np.setWrapSelectorWheel(false);
         np.setOnValueChangedListener(this);
         set.setOnClickListener(new View.OnClickListener() {

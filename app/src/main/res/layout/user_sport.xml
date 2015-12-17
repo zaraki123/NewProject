@@ -71,8 +71,7 @@
             android:layout_height="100dp"
             android:layout_below="@+id/questionSportPast"
             android:background="@drawable/sport_yes"
-            android:onClick="sportPastYes"
-            />
+            android:onClick="sportPastYes" />
 
         <ImageButton
             android:id="@+id/sportPastNo"
@@ -102,12 +101,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:text="Team or individual sport?"
+            android:text="Team, individual sport, or both?"
             android:textColor="@color/darkGray"
             android:textSize="15sp" />
 
         <ImageButton
             android:id="@+id/team_sport"
+            android:layout_marginLeft="12dp"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_below="@id/kindSport"
@@ -130,5 +130,6 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_gravity="center_horizontal"
-        android:background="@drawable/next_button" />
+        android:background="@drawable/next_button"
+        android:onClick="user_sport_nextActivity"/>
 </LinearLayout>
