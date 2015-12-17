@@ -1,6 +1,5 @@
 package com.example.nelson.caliplay.user_profile;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -8,23 +7,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.NumberPicker;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
-import com.example.nelson.caliplay.ListSports;
-import com.example.nelson.caliplay.MyApplication;
 import com.example.nelson.caliplay.R;
-import com.example.nelson.caliplay.model.User;
 
 /**
  * Created by Zaraki on 19/11/2015.
  */
 
-public class UserHealth extends AppCompatActivity implements GestureDetector.OnGestureListener {
+public class UserHealth extends AppCompatActivity {
 
 
     private static final int SWIPE_THRESHOLD = 100;
@@ -86,61 +79,56 @@ public class UserHealth extends AppCompatActivity implements GestureDetector.OnG
             Intent sport = new Intent(this, UserSport.class);
             if (sport.resolveActivity(getPackageManager()) != null) {
                 startActivity(sport);
-                overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+                overridePendingTransition(R.anim.slide_in_next, R.anim.slide_out_next);
             }
         }
     }
 
+
     @Override
-    public boolean onDown(MotionEvent e) {
-        return false;
+    public boolean onTouchEvent(MotionEvent me) {
+
+        return gestureDetector.onTouchEvent(me);
     }
 
-    @Override
-    public void onShowPress(MotionEvent e) {
+    GestureDetector.SimpleOnGestureListener simpleOnGestureListener = new GestureDetector.SimpleOnGestureListener() {
 
-    }
+        @Override
+        public boolean onDown(MotionEvent e) {
 
-    @Override
-    public boolean onSingleTapUp(MotionEvent e) {
-        return false;
-    }
+            return true;
+        }
 
-    @Override
-    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-        return false;
-    }
-
-    @Override
-    public void onLongPress(MotionEvent e) {
-
-    }
-
-    @Override
-    public boolean onFling(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-        boolean result = false;
-        try {
-            float diffY = e2.getY() - e1.getY();
-            float diffX = e2.getX() - e1.getX();
-            if (Math.abs(diffX) > Math.abs(diffY)) {
-                if (Math.abs(diffX) > SWIPE_THRESHOLD && Math.abs(distanceX) > SWIPE_VELOCITY_THRESHOLD) {
-                    if (diffX > 0) {
-                        onSwipeRight();
-                    } else {
-                        onSwipeLeft();
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+            boolean result = false;
+            try {
+                float diffY = e2.getY() - e1.getY();
+                float diffX = e2.getX() - e1.getX();
+                if (Math.abs(diffX) > Math.abs(diffY)) {
+                    if (Math.abs(diffX) > SWIPE_THRESHOLD && Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
+                        if (diffX > 0) {
+                            onSwipeRight();
+                        } else {
+                            onSwipeLeft();
+                        }
                     }
+                } else {
+                    // onTouch(e);
                 }
-            } else {
-                // onTouch(e);
+            } catch (Exception exception) {
+                exception.printStackTrace();
             }
-        } catch (Exception exception) {
-            exception.printStackTrace();
+            return result;
         }
-        return result;
-    }
+    };
+
+    GestureDetector gestureDetector = new GestureDetector(null,
+            simpleOnGestureListener);
 
     public void onSwipeRight() {
-
+        this.finish();
+        overridePendingTransition(R.anim.slide_in_back, R.anim.slide_out_back);
     }
 
     public void onSwipeLeft() {

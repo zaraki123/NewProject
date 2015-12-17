@@ -39,7 +39,7 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:textColor="@color/black"
-            android:textSize="25dp" />
+            android:textSize="22sp" />
 
     </LinearLayout>
 

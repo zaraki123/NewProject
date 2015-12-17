@@ -263,11 +263,13 @@ public class StartingTest extends AppCompatActivity {
                             checkedCore.setVisibility(View.VISIBLE);
                             coreRelative.setBackgroundColor(Color.DKGRAY);
                             coreText.setTextColor(Color.WHITE);
+                            Toast.makeText(getApplicationContext(), String.valueOf(secs), Toast.LENGTH_LONG).show();
                             break;
                         case "Pulling":
                             checkedPull.setVisibility(View.VISIBLE);
                             pullRelative.setBackgroundColor(Color.DKGRAY);
                             pullText.setTextColor(Color.WHITE);
+                            Toast.makeText(getApplicationContext(), String.valueOf(reps), Toast.LENGTH_LONG).show();
                             break;
                         case "Pushing":
                             checkedPush.setVisibility(View.VISIBLE);

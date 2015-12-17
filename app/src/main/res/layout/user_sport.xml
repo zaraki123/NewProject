@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/very_light_blue"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:gravity="center_horizontal"
+        android:paddingTop="10dp">
+
+        <TextView
+            android:id="@+id/questionSportPresent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="@string/sportPresent"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/darkGray"
+            android:textSize="15sp" />
+
+        <ImageButton
+            android:id="@+id/sportPresentYes"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_below="@id/questionSportPresent"
+            android:background="@drawable/sport_yes"
+            android:onClick="sportPresentYes" />
+
+        <ImageButton
+            android:id="@+id/sportPresentNo"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_below="@id/questionSportPresent"
+            android:layout_toRightOf="@id/sportPresentYes"
+            android:background="@drawable/sport_no"
+            android:onClick="sportPresentNo" />
+
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/white"
+        android:gravity="center_horizontal"
+        android:paddingTop="10dp">
+
+        <TextView
+            android:id="@+id/questionSportPast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:text="Did you do any sport?"
+            android:textColor="@color/darkGray"
+            android:textSize="15sp" />
+
+        <ImageButton
+            android:id="@+id/sportPastYes"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_below="@+id/questionSportPast"
+            android:background="@drawable/sport_yes"
+            android:onClick="sportPastYes"
+            />
+
+        <ImageButton
+            android:id="@+id/sportPastNo"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_below="@id/questionSportPast"
+            android:layout_toRightOf="@id/sportPastYes"
+            android:background="@drawable/sport_no"
+            android:onClick="sportPastNo" />
+
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/white"
+        android:gravity="center_horizontal"
+        android:paddingTop="10dp">
+
+        <TextView
+            android:id="@+id/kindSport"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Team or individual sport?"
+            android:textColor="@color/darkGray"
+            android:textSize="15sp" />
+
+        <ImageButton
+            android:id="@+id/team_sport"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_below="@id/kindSport"
+            android:background="@drawable/team_sport"
+            android:onClick="teamSport" />
+
+        <ImageButton
+            android:id="@+id/individual_sport"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_below="@id/kindSport"
+            android:layout_toRightOf="@id/team_sport"
+            android:background="@drawable/individual_sport"
+            android:onClick="individualSport" />
+
+    </RelativeLayout>
+
+    <ImageButton
+        android:id="@+id/userSportNextButton"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/next_button" />
+</LinearLayout>

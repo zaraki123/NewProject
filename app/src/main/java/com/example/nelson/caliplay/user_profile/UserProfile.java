@@ -14,7 +14,6 @@ import android.widget.ImageButton;
 import android.widget.NumberPicker;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,7 +24,7 @@ import com.example.nelson.caliplay.R;
  * Created by Zaraki on 19/11/2015.
  */
 
-public class UserProfile extends AppCompatActivity implements NumberPicker.OnValueChangeListener,  GestureDetector.OnGestureListener {
+public class UserProfile extends AppCompatActivity implements NumberPicker.OnValueChangeListener {
 
     private static final int SWIPE_THRESHOLD = 100;
     private static final int SWIPE_VELOCITY_THRESHOLD = 100;
@@ -221,56 +220,10 @@ public class UserProfile extends AppCompatActivity implements NumberPicker.OnVal
 
 
 
-    @Override
-    public boolean onDown(MotionEvent e) {
-        return false;
-    }
-
-    @Override
-    public void onShowPress(MotionEvent e) {
-
-    }
-
-    @Override
-    public boolean onSingleTapUp(MotionEvent e) {
-        return false;
-    }
-
-    @Override
-    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-        return false;
-    }
-
-    @Override
-    public void onLongPress(MotionEvent e) {
-
-    }
-
-    @Override
-    public boolean onFling(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-        boolean result = false;
-        try {
-            float diffY = e2.getY() - e1.getY();
-            float diffX = e2.getX() - e1.getX();
-            if (Math.abs(diffX) > Math.abs(diffY)) {
-                if (Math.abs(diffX) > SWIPE_THRESHOLD && Math.abs(distanceX) > SWIPE_VELOCITY_THRESHOLD) {
-                    if (diffX > 0) {
-                        onSwipeRight();
-                    } else {
-                        onSwipeLeft();
-                    }
-                }
-            } else {
-                // onTouch(e);
-            }
-        } catch (Exception exception) {
-            exception.printStackTrace();
-        }
-        return result;
-    }
 
     public void onSwipeRight() {
-
+        this.finish();
+        overridePendingTransition(R.anim.slide_in_back, R.anim.slide_out_back);
     }
 
     public void onSwipeLeft() {
@@ -296,10 +249,57 @@ public class UserProfile extends AppCompatActivity implements NumberPicker.OnVal
             Intent lifeStyle = new Intent(this, UserHealth.class);
             if (lifeStyle.resolveActivity(getPackageManager()) != null) {
                 startActivity(lifeStyle);
-                overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+                overridePendingTransition(R.anim.slide_in_next, R.anim.slide_out_next);
             }
         }
     }
+
+
+
+
+
+    @Override
+    public boolean onTouchEvent(MotionEvent me) {
+
+        return gestureDetector.onTouchEvent(me);
+    }
+
+    GestureDetector.SimpleOnGestureListener simpleOnGestureListener = new GestureDetector.SimpleOnGestureListener() {
+
+        @Override
+        public boolean onDown(MotionEvent e) {
+
+            return true;
+        }
+
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+            boolean result = false;
+            try {
+                float diffY = e2.getY() - e1.getY();
+                float diffX = e2.getX() - e1.getX();
+                if (Math.abs(diffX) > Math.abs(diffY)) {
+                    if (Math.abs(diffX) > SWIPE_THRESHOLD && Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
+                        if (diffX > 0) {
+                            onSwipeRight();
+                        } else {
+                            onSwipeLeft();
+                        }
+                    }
+                } else {
+                    // onTouch(e);
+                }
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
+            return result;
+        }
+    };
+
+    GestureDetector gestureDetector = new GestureDetector(null,
+            simpleOnGestureListener);
+
+
     @Override
     protected void onResume() {
         super.onResume();
